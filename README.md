@@ -6,8 +6,8 @@ To use the demos:
 1) Get a copy of the Terraform files by downloading then unzipping file https://github.com/cpauliat/my-terraform-oci-examples/archive/master.zip
 2) Install Terraform on your machine
 3) Create an API key for your user in the CloudUI/console of your OCI tenancy
-(see https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm)
-(you can use my script available at https://github.com/cpauliat/my-oci-scripts/blob/master/generate_api_keys.sh)
+(see https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm. 
+You can use my script available at https://github.com/cpauliat/my-oci-scripts/blob/master/generate_api_keys.sh)
 4) Cd to one of the demo folders
 5) Copy file **terraform.tfvars.template** to **terraform.tfvars**
 6) Edit and update file terraform.tfvars for this demo
