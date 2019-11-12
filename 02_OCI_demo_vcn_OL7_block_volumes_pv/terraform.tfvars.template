@@ -22,8 +22,14 @@ authorized_ips		= "0.0.0.0/0"		    # all Internet
 # ---- availability domain (1, 2 or 3)
 AD 			= "1"
 
-# ---- Authorized public IPs ingress (0.0.0.0/0 means all Internet)
+# ---- IP addresses
+cidr_vcn         = "10.0.0.0/16"
+cidr_subnet1     = "10.0.0.0/24"
 
 # -- variables for BM/VM creation
 BootStrapFile_ol7   = "userdata/bootstrap_ol7.sh" 
+
+# -- Storage
+bkvol_attachment_name = "/dev/oracleoci/oraclevdb"          # set a permanent name for device in Linux (don't change after reboots)
+bkvol_mount_point     = "/mnt/vol1"
 

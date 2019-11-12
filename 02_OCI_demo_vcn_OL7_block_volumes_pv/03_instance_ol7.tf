@@ -25,6 +25,7 @@ resource "oci_core_volume_attachment" "tf-demo02-ol7-vol1-attach" {
   attachment_type = "paravirtualized"
   instance_id     = oci_core_instance.tf-demo02-ol7.id
   volume_id       = oci_core_volume.tf-demo02-ol7-vol1.id
+  device          = var.bkvol_attachment_name
 }
 
 # ------ Create a compute instance from the more recent Oracle Linux 7.x image
@@ -49,6 +50,8 @@ resource "oci_core_instance" "tf-demo02-ol7" {
   metadata = {
     ssh_authorized_keys = file(var.ssh_public_key_file_ol7)
     user_data           = base64encode(file(var.BootStrapFile_ol7))
+    myarg_dsk_name      = var.bkvol_attachment_name
+    myarg_mount_point   = var.bkvol_mount_point
   }
 }
 

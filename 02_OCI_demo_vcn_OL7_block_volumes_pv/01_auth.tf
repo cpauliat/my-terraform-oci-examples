@@ -12,6 +12,8 @@ variable "ssh_private_key_file_ol7" {}
 variable "authorized_ips" {}
 variable "cidr_vcn" {}
 variable "cidr_subnet1" {}
+variable "bkvol_attachment_name" {}
+variable "bkvol_mount_point" {}
 
 # ---- provider
 provider "oci" {
