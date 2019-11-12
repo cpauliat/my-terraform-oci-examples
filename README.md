@@ -19,7 +19,7 @@ You can use my script available at https://github.com/cpauliat/my-oci-scripts/bl
 ### 01_OCI_demo_vcn_OL7_win2016_instances
 
 ```
-Summary: basic VCN + basic compute instances
+Summary: basic VCN + basic compute instances for Oracle Linux 7 and Microsoft Windows Server 2016
 
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
