@@ -38,9 +38,10 @@ Summary: basic VCN + 1 compute instance with block volumes (paravirtualized atta
 Details:
 - 1 VCN with 1 public AD-specific subnet + 1 internet gateway + 1 route table + 1 security list
 - 1 VM  instance Oracle Linux 7 with public IP with 1 block volume (attached in paravirtualized mode)
+- post provisioning tasks with cloud-init, passing arguments to cloud-init script.
 - after provisioning, print instructions to connect to the Linux compute instance (SSH)
 
-Last update: September 5, 2019
+Last update: November 12, 2019
 ```
 
 ### 05_OCI_demo_vcn_DB_VM_remote-exec
