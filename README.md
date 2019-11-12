@@ -1,4 +1,3 @@
-➜  terraform_oci_examples git:(master) ✗ more README.md
 # Some Terraform demo config files I created for OCI
 
 Prequisites: Terraform 0.12 or later
