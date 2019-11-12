@@ -42,3 +42,17 @@ Details:
 
 Last update: September 5, 2019
 ```
+
+### 05_OCI_demo_vcn_DB_VM_remote-exec
+
+```
+Summary: basic VCN + public subnet + DB SYSTEM (VM shape) + OCI filesystem + remote-exec provisioner
+
+Details
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- 1 DB system on VM.Standard* shape with 1 DB instance
+- 1 filesystem (File Storage) that will be used on the DB system to store staging files, backups...
+- Filesystem NFS-mounted automatically on the DB system using remote-exec provisioner
+
+Last update: November 7, 2019
+```
