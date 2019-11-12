@@ -56,3 +56,37 @@ Details
 
 Last update: November 7, 2019
 ```
+
+### 12_OCI_demo_vcn_peering_local
+
+```
+Summary: Local VCN peering between 2 VCNs in same tenant and same region
+
+Details:
+- 2 VCNs with following objects in each:
+  1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- Local VCN peering configured between the 2 VCNs
+- 2 compute instances Oracle Linux 7 (public IP), 1 per VCN
+- after instances provisioning, you can test access (ping) between the 2 instances in different VCNs
+
+Reminder: the 2 VCNs must have non overlapping CIDRs
+
+Last update: September 9, 2019
+```
+
+### 13_OCI_demo_vcn_peering_local
+
+```
+Summary: Remote VCN peering between 2 VCNs in same tenant but different regions
+
+Details:
+- 2 VCNs with following objects in each:
+  1 public regional subnet + 1 private regional subnet + 1 internet gateway + 2 route tables + 2 security lists
+- Remote VCN peering configured between the 2 VCNs.
+- 2 compute instances Oracle Linux 7 (public IP), 1 per VCN
+- after instances provisioning, you can test access (ping) between the 2 instances in different VCNs / REGIONs
+
+Reminder: the 2 VCNs must have non overlapping CIDRs
+
+Last update: September 9, 2019
+```
