@@ -29,3 +29,16 @@ Details:
 
 Last update: September 5, 2019
 ```
+
+### 02_OCI_demo_vcn_OL7_block_volumes_pv
+
+```
+Summary: basic VCN + 1 compute instance with block volumes (paravirtualized attachment)
+
+Details:
+- 1 VCN with 1 public AD-specific subnet + 1 internet gateway + 1 route table + 1 security list
+- 1 VM  instance Oracle Linux 7 with public IP with 1 block volume (attached in paravirtualized mode)
+- after provisioning, print instructions to connect to the Linux compute instance (SSH)
+
+Last update: September 5, 2019
+```
