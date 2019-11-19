@@ -98,9 +98,9 @@ Last update: September 9, 2019
 Summary: Autonomous Database instance (Shared, ATP or ADW)
 
 Details:
-- 1 Autonomous Database instance (shared): ATP or ADW
+- 1 Autonomous Database instance (shared): ATP or ADW with password generated using random provider
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
 - 1 compute instance Oracle Linux 7 (public IP) with Oracle Instant Client 18.3 installed by cloud-init
 
-Last update: September 6, 2019
+Last update: November 19, 2019
 ```

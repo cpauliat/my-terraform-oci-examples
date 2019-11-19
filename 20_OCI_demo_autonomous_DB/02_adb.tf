@@ -5,8 +5,8 @@ resource "random_string" "autonomous_database_admin_password" {
 
 resource "oci_database_autonomous_database" "autonomous_database" {
   db_workload              = var.adb_type
-  # admin_password           = "${random_string.autonomous_database_admin_password.result}"
-  admin_password           = var.adb_password
+  admin_password           = "${random_string.autonomous_database_admin_password.result}"
+  #admin_password           = var.adb_password
   compartment_id           = var.compartment_ocid
   cpu_core_count           = var.adb_cpu_core_count
   data_storage_size_in_tbs = var.adb_data_storage_tbs
@@ -24,7 +24,7 @@ output "ADB" {
 
   service console URL = "${oci_database_autonomous_database.autonomous_database.service_console_url}
             user      = "admin"
-            password  = "${var.adb_password}"
+            password  = "${random_string.autonomous_database_admin_password.result}"
 EOF
-
+#            password  = "${var.adb_password}"
 }
