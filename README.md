@@ -71,6 +71,19 @@ Details
 Last update: November 7, 2019
 ```
 
+### 06_OCI_demo_vcn_OL7_count
+
+```
+Summary: basic VCN + several identical compute instances for Oracle Linux 7 using "count"
+
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- several compute instances Oracle Linux 7 with public IP and Cloud-init post provisioning actions (without block volume)
+- after provisioning, print instructions to connect to the compute instances (SSH for Linux, RDP for Windows)
+
+Last update: November 19, 2019
+```
+
 ### 12_OCI_demo_vcn_peering_local
 
 ```
