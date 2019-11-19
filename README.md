@@ -44,6 +44,19 @@ Details:
 Last update: November 12, 2019
 ```
 
+### 04_OCI_demo_vcn_OL7_security_groups
+
+```
+Summary: basic VCN + 1 network security group (NSG) + 1 compute instance using the NSG
+
+Details:
+- 1 VCN with 1 public AD-specific subnet + 1 internet gateway + 1 route table + 1 empty security list + 1 network security list
+- 1 VM instance Oracle Linux 7 with public IP with 1 VNIC connected to the network security group
+- after provisioning, print instructions to connect to the Linux compute instance (SSH)
+
+Last update: October 21, 2019
+```
+
 ### 05_OCI_demo_vcn_DB_VM_remote-exec
 
 ```
