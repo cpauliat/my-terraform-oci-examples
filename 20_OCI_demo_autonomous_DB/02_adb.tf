@@ -22,9 +22,9 @@ resource "oci_database_autonomous_database" "autonomous_database" {
 output "ADB" {
   value = <<EOF
 
-  service console URL = "${oci_database_autonomous_database.autonomous_database.service_console_url}
-            user      = "admin"
-            password  = "${random_string.autonomous_database_admin_password.result}"
+  service console URL = ${oci_database_autonomous_database.autonomous_database.service_console_url}
+            user      = admin
+            password  = ${random_string.autonomous_database_admin_password.result}
 EOF
-#            password  = "${var.adb_password}"
+#            password  = ${var.adb_password}
 }
