@@ -66,7 +66,7 @@ resource "oci_core_security_list" "tf-demo20-subnet1-sl" {
   }
 }
 
-# ------ Create a public subnet 1 in AD1 in the new VCN
+# ------ Create a public regional subnet 1 in the new VCN
 resource "oci_core_subnet" "tf-demo20-public-subnet1" {
   cidr_block          = var.cidr_subnet1
   display_name        = "tf-demo20-public-subnet1"
