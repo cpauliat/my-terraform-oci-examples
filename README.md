@@ -64,7 +64,7 @@ Summary: basic VCN + 1 network security group (NSG) + 1 compute instance using t
 
 Details:
 - 1 VCN with 1 public AD-specific subnet + 1 internet gateway + 1 route table + 1 empty security list + 1 network security list
-- 1 VM instance Oracle Linux 7 with public IP with 1 VNIC connected to the network security group
+- 1 VM compute instance Oracle Linux 7 with public IP with 1 VNIC connected to the network security group
 - after provisioning, print instructions to connect to the Linux compute instance (SSH)
 
 Last update: October 21, 2019

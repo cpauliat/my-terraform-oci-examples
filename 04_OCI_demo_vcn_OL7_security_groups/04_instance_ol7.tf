@@ -33,8 +33,9 @@ resource "oci_core_instance" "tf-demo04-ol7" {
   }
 
   metadata = {
-    ssh_authorized_keys = file(var.ssh_public_key_file_ol7)
-    user_data           = base64encode(file(var.BootStrapFile_ol7))
+    ssh_authorized_keys     = file(var.ssh_public_key_file_ol7)
+    user_data               = base64encode(file(var.BootStrapFile_ol7))
+    myarg_db_client_version = var.db_client_version
   }
 }
 
@@ -43,18 +44,22 @@ output "Instance_OL7" {
   value = <<EOF
 
 
-  ---- You can SSH directly to the OL7 instance by typing the following ssh command
-  ssh -i ${var.ssh_private_key_file_ol7} opc@${oci_core_instance.tf-demo04-ol7.public_ip}
+  ---- You can SSH directly to the OL7 instance by typing one of the following ssh commands
+  ssh -i ${var.ssh_private_key_file_ol7} opc@${oci_core_instance.tf-demo04-ol7.public_ip}       # Connect with user opc
+  ssh -i ${var.ssh_private_key_file_ol7} oracle@${oci_core_instance.tf-demo04-ol7.public_ip}    # Connect with user oracle
 
-  ---- Alternatively, you can add the following lines to your file $HOME/.ssh/config and then just run "ssh ol7"
 
-  Host ol7
+  ---- Alternatively, you can add the following lines to your file $HOME/.ssh/config and then just run "ssh d04-opc" or "ssh d04-oracle"
+
+  Host d04-opc
           Hostname ${oci_core_instance.tf-demo04-ol7.public_ip}
           User opc
           IdentityFile ${var.ssh_private_key_file_ol7}
+  Host d04-oracle
+          Hostname ${oci_core_instance.tf-demo04-ol7.public_ip}
+          User oracle
+          IdentityFile ${var.ssh_private_key_file_ol7}
 
-  
 EOF
 
 }
-

@@ -12,6 +12,7 @@ variable "ssh_private_key_file_ol7" {}
 variable "authorized_ips" {}
 variable "cidr_vcn" {}
 variable "cidr_subnet1" {}
+variable "db_client_version" {}
 
 # ---- provider
 provider "oci" {
@@ -21,4 +22,3 @@ provider "oci" {
   fingerprint      = var.fingerprint
   private_key_path = var.private_key_path
 }
-
