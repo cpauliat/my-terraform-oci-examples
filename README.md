@@ -95,6 +95,8 @@ Details:
 - 1 VM instance from Oracle Linux Cloud Developer image 19.11 with public IP and block storage (PV attached)
 - after provisioning, print instructions to connect to the Linux compute instance (SSH)
 
+Note: see https://console.eu-frankfurt-1.oraclecloud.com/marketplace/application/54030984/overview for more details about this image
+
 Last update: November 27, 2019
 ```
 
