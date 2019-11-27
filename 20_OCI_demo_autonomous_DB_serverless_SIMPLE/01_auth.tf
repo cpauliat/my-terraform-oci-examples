@@ -13,6 +13,7 @@ variable "authorized_ips" {}
 variable "cidr_vcn" {}
 variable "cidr_subnet1" {}
 variable "adb_type" {}
+variable "adb_is_free_tier" {}
 variable "adb_cpu_core_count" {}
 variable "adb_data_storage_tbs" {}
 variable "adb_db_name" {}
@@ -21,6 +22,7 @@ variable "adb_display_name" {}
 variable "adb_license_model" {}
 variable "adb_autoscaling_enabled" {}
 variable "adb_whitelisted_ips" {}  
+variable "adb_data_safe_status" {}
 
 # ---- provider
 provider "oci" {

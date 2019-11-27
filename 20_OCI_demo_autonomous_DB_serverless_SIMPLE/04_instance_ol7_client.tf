@@ -43,7 +43,7 @@ Host dbclient-opc
           Hostname ${oci_core_instance.tf-demo20-ol7.public_ip}
           User opc
           IdentityFile ${var.ssh_private_key_file_ol7}
-Host dbclient
+Host dbclient-oracle
           Hostname ${oci_core_instance.tf-demo20-ol7.public_ip}
           User oracle
           IdentityFile ${var.ssh_private_key_file_ol7}
@@ -61,10 +61,15 @@ output "DB_client" {
 
   as user opc   :   ssh -F sshcfg dbclient-opc
 
-  as user oracle:   ssh -F sshcfg dbclient
+  as user oracle:   ssh -F sshcfg dbclient-oracle
 
-  You need to donwload the Client Credentials (Wallet) from ADB service Console and copy it to DB client with following command:
-  scp -F sshcfg <Wallet_xxx>.zip  dbclient:
+  You need to donwload the Client Credentials (Wallet) from ADB service Console
+  and then run the following commands to finish configuration
+
+  scp -F sshcfg <Wallet_xxx>.zip dbclient-oracle:/home/oracle/wallet.zip
+  ssh -F sshcfg dbclient-oracle "cd /home/oracle/credentials_adb; unzip ../wallet.zip"
+  ssh -F sshcfg dbclient-oracle "sed -i.bak 's#?/network/admin#/home/oracle/credentials_adb#' /home/oracle/credentials_adb/sqlnet.ora"
+
 EOF
 
 }

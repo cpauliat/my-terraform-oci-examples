@@ -19,14 +19,16 @@ authorized_ips          = "0.0.0.0/0"               # all Internet
 
 # -- Autonomous Database (ADW or ATP)
 adb_type                = "OLTP"    # OLTP for ATP or DW for ADW
-adb_cpu_core_count      = "1"
-adb_data_storage_tbs    = "1"
+adb_is_free_tier        = "true"
+adb_cpu_core_count      = "1"       # not used with free tier
+adb_data_storage_tbs    = "1"       # not used with free tier
 adb_db_name             = "atppdb1"
-adb_password            = "OCI2018##atp"
+adb_password            = "OCI2019##atp"
 adb_display_name        = "tf-demo20-atppdb1"
-adb_license_model       = "LICENSE_INCLUDED"        # or "BRING_YOUR_OWN_LICENSE"
+adb_license_model       = "LICENSE_INCLUDED"        # LICENSE_INCLUDED or BRING_YOUR_OWN_LICENSE
 adb_autoscaling_enabled = "false"                   # or "true"
 adb_whitelisted_ips     = [ "0.0.0.0/0" ]           # or [ "0.0.0.0/0" ]
+adb_data_safe_status    = "REGISTERED"              # REGISTERED or NOT_REGISTERED
 
 # ============== NO UPDATE NEEDED BELOW
 
