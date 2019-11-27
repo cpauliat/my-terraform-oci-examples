@@ -85,6 +85,19 @@ Details
 Last update: November 7, 2019
 ```
 
+### 06_OCI_demo_vcn_OL7_dev_image_pv
+
+```
+Summary: basic VCN + 1 compute instance from Oracle Linux Cloud developer image 19.11 
+
+Details:
+- 1 VCN with 1 public AD-specific subnet + 1 internet gateway + 1 route table + 1 security list
+- 1 VM instance from Oracle Linux Cloud Developer image 19.11 with public IP and block storage (PV attached)
+- after provisioning, print instructions to connect to the Linux compute instance (SSH)
+
+Last update: November 27, 2019
+```
+
 ### 12_OCI_demo_vcn_peering_local
 
 ```
