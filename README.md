@@ -6,7 +6,7 @@ To use the demos:
 1) Get a copy of the Terraform files by downloading then unzipping file https://github.com/cpauliat/my-terraform-oci-examples/archive/master.zip
 2) Install Terraform on your machine
 3) Create an API key for your user in the CloudUI/console of your OCI tenancy
-(see https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm. 
+(see https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm.
 You can use my script available at https://github.com/cpauliat/my-oci-scripts/blob/master/generate_api_keys.sh)
 4) Cd to one of the demo folders
 5) Copy file **terraform.tfvars.template** to **terraform.tfvars**
@@ -64,10 +64,11 @@ Summary: basic VCN + 1 network security group (NSG) + 1 compute instance using t
 
 Details:
 - 1 VCN with 1 public AD-specific subnet + 1 internet gateway + 1 route table + 1 empty security list + 1 network security list
-- 1 VM compute instance Oracle Linux 7 with public IP with 1 VNIC connected to the network security group
+- 1 VM instance Oracle Linux 7 with public IP with 1 VNIC connected to the network security group
+- Oracle Database Instant Client (18.5 or 19.5) installed with cloud-init post-provisioning
 - after provisioning, print instructions to connect to the Linux compute instance (SSH)
 
-Last update: October 21, 2019
+Last update: November 27, 2019
 ```
 
 ### 05_OCI_demo_vcn_DB_VM_remote-exec
