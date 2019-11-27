@@ -134,7 +134,7 @@ Reminder: the 2 VCNs must have non overlapping CIDRs
 Last update: September 9, 2019
 ```
 
-### 20_OCI_demo_autonomous_DB_serverless
+### 20_OCI_demo_autonomous_DB_serverless_SIMPLE
 
 ```
 Summary: Serverless Autonomous Database instance (ATP or ADW)
@@ -143,14 +143,15 @@ Details:
 - 1 Serverless Autonomous Database instance (shared): ATP or ADW with password generated using random provider
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
 - 1 compute instance Oracle Linux 7 (public IP) with Oracle Instant Client 18.3 installed by cloud-init
+- manual download of wallet file and manual configuration for sqlplus access
 
-Last update: November 19, 2019
+Last update: November 27, 2019
 ```
 
-### 21_OCI_demo_autonomous_DB_serverless_VCN_ACL
+### 21_OCI_demo_autonomous_DB_serverless_ADVANCED
 
 ```
-Summary: Serverless Autonomous Database instance (ATP or ADW) with access control list for VCN (more secure)  
+Summary: Serverless Autonomous Database instance (ATP or ADW) with ACL for VCN and automatic SQLplus configuration  
 
 Details:
 - 1 Serverless Autonomous Database instance (shared): ATP or ADW with password generated using random provider
@@ -159,6 +160,7 @@ Details:
   - 1 private regional subnet + 1 NAT gateway + 1 service gateway + 1 route table + 1 security list for DB CLIENT HOST
 - 1 compute instance (DB CLIENT) Oracle Linux 7 (private IP) with Oracle Instant Client 18.5 or 19.3 installed by cloud-init
 - 1 compute instance (BASTION HOST) Oracle Linux 7 (public IP) 
+- automatic download of wallet file and automatic configuration of sqlplus using cloud-init
 
 Last update: November 27, 2019
 ```
