@@ -131,3 +131,19 @@ Details:
 
 Last update: November 19, 2019
 ```
+
+### 21_OCI_demo_autonomous_DB_serverless_VCN_ACL
+
+```
+Summary: Serverless Autonomous Database instance (ATP or ADW) with access control list for VCN (more secure)  
+
+Details:
+- 1 Serverless Autonomous Database instance (shared): ATP or ADW with password generated using random provider
+- 1 VCN with:
+  - 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list for BASTION HOST
+  - 1 private regional subnet + 1 NAT gateway + 1 service gateway + 1 route table + 1 security list for DB CLIENT HOST
+- 1 compute instance (DB CLIENT) Oracle Linux 7 (private IP) with Oracle Instant Client 18.5 or 19.3 installed by cloud-init
+- 1 compute instance (BASTION HOST) Oracle Linux 7 (public IP) 
+
+Last update: November 27, 2019
+```
