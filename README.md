@@ -134,6 +134,18 @@ Reminder: the 2 VCNs must have non overlapping CIDRs
 Last update: September 9, 2019
 ```
 
+### 14_OCI_demo_modules
+
+```
+Summary: basic example showing how to use Terraform modules
+
+Details:
+- 2 basics VCNs 
+- 1 compute instances Oracle Linux 7 (public IP) in 1st VCN
+
+Last update: December 5, 2019
+```
+
 ### 20_OCI_demo_autonomous_DB_serverless_SIMPLE
 
 ```
