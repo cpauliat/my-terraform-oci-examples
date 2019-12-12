@@ -176,3 +176,19 @@ Details:
 
 Last update: November 27, 2019
 ```
+
+### 34_OCI_demo_SGD_marketplace
+
+```
+Summary: Oracle Secure Global Desktop from OCI Marketplace to access graphical applications in private compute instance  
+
+Details:
+- 1 VCN with:
+  - 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list 
+  - 1 private regional subnet + 1 NAT gateway + 1 service gateway + 1 route table + 1 security list 
+- 1 compute instance (DESKTOP) Oracle Linux 7 (private IP) with cloud-init post-provisioning tasks
+- 1 compute instance (SGD HOST) Oracle Linux 7 (public IP) with cloud-init post-provisioning tasks
+  including creation and publishing of new SGD applications for the DESKTOP instance
+
+Last update: December 12, 2019
+```
