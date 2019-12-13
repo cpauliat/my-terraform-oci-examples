@@ -1,4 +1,4 @@
-# ------ Create a DB Systems on shape VM.Standard1.*
+# ------ Create a DB System on shape VM.Standard.*
 resource "oci_database_db_system" "tf-demo05-db-vm" {
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id      = var.compartment_ocid
