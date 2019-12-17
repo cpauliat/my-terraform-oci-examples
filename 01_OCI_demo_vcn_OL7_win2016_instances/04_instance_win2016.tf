@@ -12,6 +12,21 @@ data "oci_core_images" "ImageOCID-win2016" {
   }
 }
 
+# ------ generate a random password to replace the temporary password in the cloud-init post-provisioning task
+resource "random_string" "windows_password" {
+  # must contains at least 2 upper case letters, 2 lower case letters, 2 numbers and 2 special characters
+  length      = 12
+  upper       = true
+  min_upper   = 2
+  lower       = true
+  min_lower   = 2
+  number      = true
+  min_numeric = 2
+  special     = true
+  min_special = 2
+  override_special = "#-_"   # use only special characters in this list
+}
+
 # ------ Create a compute instance from the most recent Windows 2016 image
 resource "oci_core_instance" "tf-demo01-win2016" {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
@@ -28,11 +43,11 @@ resource "oci_core_instance" "tf-demo01-win2016" {
   create_vnic_details {
     subnet_id      = oci_core_subnet.tf-demo01-public-subnet1.id
     hostname_label = "tf-demo01-win2016"
-    #  private_ip    = "10.0.0.4"
   }
 
   metadata = {
-    user_data = base64encode(file(var.BootStrapFile_win2016))
+    user_data      = base64encode(file(var.BootStrapFile_win2016))
+    myarg_password = random_string.windows_password.result
   }
 }
 
@@ -48,11 +63,11 @@ output "Instance_Win2016" {
   ---- You can RDP directly to the Win2016 instance using following parameters
   public IP = ${oci_core_instance.tf-demo01-win2016.public_ip}
   user      = ${data.oci_core_instance_credentials.tf-demo01-win2016.username}
-  password  = WELcome2018##
+  password  = ${random_string.windows_password.result}
 
 
 EOF
 
-  # Password is WELcome2018## as it is changed from temporary password (see below) by cloud-init
+  # Password is changed from temporary password (see below) by cloud-init
   # password  = ${data.oci_core_instance_credentials.tf-demo01-win2016.password}
 }
