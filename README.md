@@ -23,11 +23,11 @@ Summary: basic VCN + basic compute instances for Oracle Linux 7 and Microsoft Wi
 
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
-- 1 compute instance Oracle Linux 7 with public IP and Cloud-init post provisioning actions (without block volume)
-- 1 compute instance MS Windows 2016 with public IP and Cloud-init post provisioning actions (without block volume)
+- 1 compute instance Oracle Linux 7 with public IP and Cloud-init post provisioning actions 
+- 1 compute instance MS Windows 2016 with public IP and Cloud-init post provisioning actions passing arguments
 - after provisioning, print instructions to connect to the compute instances (SSH for Linux, RDP for Windows)
 
-Last update: September 5, 2019
+Last update: December 17, 2019
 ```
 
 ### 02_OCI_demo_vcn_OL7_block_volumes_pv
