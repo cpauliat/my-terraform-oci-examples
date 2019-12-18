@@ -180,7 +180,7 @@ Last update: November 27, 2019
 ### 34_OCI_demo_SGD_marketplace
 
 ```
-Summary: Oracle Secure Global Desktop from OCI Marketplace to access graphical applications in private compute instance  
+Summary: HTTPS Remote Desktop using Oracle Secure Global Desktop from OCI Marketplace
 
 Details:
 - 1 VCN with:
@@ -196,7 +196,7 @@ Last update: December 12, 2019
 ### 35_OCI_demo_remote_desktop_noVNC
 
 ```
-Summary: Remote Desktop Oracle Linux 7 using noVNC HTTPS WebUI (no VNC client needed) 
+Summary: HTTPS Remote Desktop Oracle Linux 7 using noVNC WebUI (no VNC client needed) 
 
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list 
