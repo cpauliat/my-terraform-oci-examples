@@ -192,3 +192,17 @@ Details:
 
 Last update: December 12, 2019
 ```
+
+### 35_OCI_demo_remote_desktop_noVNC
+
+```
+Summary: Remote Desktop Oracle Linux 7 using noVNC HTTPS WebUI (no VNC client needed) 
+
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list 
+- 1 compute instance (DESKTOP) Oracle Linux 7 with cloud-init post-provisioning tasks:
+  + install and configure VNC server (including VNC password from random string)
+  + install and configure noVNC with HTTPS self signed certificate
+
+Last update: December 18, 2019
+```
