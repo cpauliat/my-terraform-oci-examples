@@ -100,6 +100,23 @@ Note: see https://console.eu-frankfurt-1.oraclecloud.com/marketplace/application
 Last update: November 27, 2019
 ```
 
+### 09_OCI_demo_vcn_VirtualBox_VNC
+
+```
+Summary: Install VirtualBox and VNC (secured thru SSH tunnel) on a Bare Metal compute instance
+
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- 1 compute instance Oracle Linux 7 (public IP) on a Bare Metal server BM.Standard2.52
+- 1 block volume (iscsi attached to the compute instance) to store VirtualBox images with remote-exec iscsi commands
+- 1 Shell script (Linux/MacOS) you can use to create a SSH Tunnel for VNC secure communication
+- after instance provisioning, automatically install and configure VirtualBox and VNC (remote desktop) on the instance
+
+Note: As VNC traffic is not encrypted, use a SSH tunnel to access the remote Desktop
+
+Last update: December 18, 2019
+```
+
 ### 12_OCI_demo_vcn_peering_local
 
 ```
