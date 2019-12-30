@@ -69,7 +69,8 @@ resource "null_resource" "mount_fss_on_dbsystem" {
       "sudo service rpcbind start",
       "sudo chkconfig rpcbind on",
       "sudo mkdir -p /mnt${var.export_path_fs1_mt1}",
-      "echo '${local.mount_target_1_ip_address}:${var.export_path_fs1_mt1} /mnt${var.export_path_fs1_mt1} nfs defaults,noatime,_netdev,nofail 0 0' > /tmp/fstabline",
+      "echo > /tmp/fstabline",
+      "echo '${local.mount_target_1_ip_address}:${var.export_path_fs1_mt1} /mnt${var.export_path_fs1_mt1} nfs defaults,noatime,_netdev,nofail 0 0' >> /tmp/fstabline",
       "sudo su -c 'cat /tmp/fstabline >> /etc/fstab'",
       "sudo mount /mnt${var.export_path_fs1_mt1}",
       "sudo chmod 777 /mnt${var.export_path_fs1_mt1}"
