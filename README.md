@@ -223,3 +223,17 @@ Details:
 
 Last update: December 18, 2019
 ```
+
+### 36_OCI_demo_vcn_OL8_cockpit
+
+```
+Summary: HTTPS Cockpit Web interface on Oracle Linux 8
+
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list 
+- 1 compute instance Oracle Linux 8 with cloud-init post-provisioning tasks:
+  + install and configure Cockpit Web Interface
+  + create a new Linux user (with random password) to connect to Cockpit Web Interface
+
+Last update: December 30, 2019
+```
