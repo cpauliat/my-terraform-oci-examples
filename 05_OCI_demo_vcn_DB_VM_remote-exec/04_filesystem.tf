@@ -56,45 +56,23 @@ locals {
 
 # ------ Mount the filesystem in the db system
 resource "null_resource" "mount_fss_on_dbsystem" {
-  depends_on = ["oci_database_db_system.tf-demo05-db-vm",
-                "oci_file_storage_export.tf-demo05-fs1-mt1"]
+  depends_on = [ oci_database_db_system.tf-demo05-db-vm, oci_file_storage_export.tf-demo05-fs1-mt1]
   provisioner "remote-exec" {
     connection {
       agent = false
       timeout = "10m"
-      host = "${data.oci_core_vnic.tf-demo05-vm.public_ip_address}"
+      host = data.oci_core_vnic.tf-demo05-vm.public_ip_address
       user = "opc"
-      private_key = "${file(var.ssh_private_key_file)}"
+      private_key = file(var.ssh_private_key_file)
     }
     inline = [
-      "set -vx",
       "sudo service rpcbind start",
       "sudo chkconfig rpcbind on",
       "sudo mkdir -p /mnt${var.export_path_fs1_mt1}",
-      "sudo chmod 777 /mnt${var.export_path_fs1_mt1}",
-      "echo > /tmp/fstabline",
-      "echo '${local.mount_target_1_ip_address}:${var.export_path_fs1_mt1} /mnt${var.export_path_fs1_mt1} nfs defaults,noatime,_netdev,nofail 0 0' >> /tmp/fstabline",
+      "echo '${local.mount_target_1_ip_address}:${var.export_path_fs1_mt1} /mnt${var.export_path_fs1_mt1} nfs defaults,noatime,_netdev,nofail 0 0' > /tmp/fstabline",
       "sudo su -c 'cat /tmp/fstabline >> /etc/fstab'",
-      "sudo mount /mnt${var.export_path_fs1_mt1}"
+      "sudo mount /mnt${var.export_path_fs1_mt1}",
+      "sudo chmod 777 /mnt${var.export_path_fs1_mt1}"
     ]
   }
 }
-/*
-
-output "INSTRUCTIONS" {
-  value = <<EOF
-
-  To mount the filesystem on the DB system, manually execute the following commands on the DB system as opc user:
-
-  sudo service rpcbind start
-  sudo chkconfig rpcbind on
-  sudo mkdir -p /mnt${var.export_path_fs1_mt1}
-  sudo mount ${local.mount_target_1_ip_address}:${var.export_path_fs1_mt1} /mnt${var.export_path_fs1_mt1}
-  echo > /tmp/fstabline
-  echo '${local.mount_target_1_ip_address}:${var.export_path_fs1_mt1} /mnt${var.export_path_fs1_mt1} nfs defaults,noatime,_netdev,nofail 0 0' >> /tmp/fstabline
-  sudo su -c 'cat /tmp/fstabline >> /etc/fstab'
-EOF
-
-}
-*/
-

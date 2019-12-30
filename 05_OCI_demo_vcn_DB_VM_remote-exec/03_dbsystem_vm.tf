@@ -1,3 +1,18 @@
+# ------ Generate a random password for DB system
+resource "random_string" "tf-demo05-dbs-passwd" {
+  # must contains at least 2 upper case letters, 2 lower case letters, 2 numbers and 2 special characters
+  length      = 12
+  upper       = true
+  min_upper   = 2
+  lower       = true
+  min_lower   = 2
+  number      = true
+  min_numeric = 2
+  special     = true
+  min_special = 2
+  override_special = "#-_"   # use only special characters in this list
+}
+
 # ------ Create a DB System on shape VM.Standard.*
 resource "oci_database_db_system" "tf-demo05-db-vm" {
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
@@ -7,7 +22,7 @@ resource "oci_database_db_system" "tf-demo05-db-vm" {
 
   db_home {
     database {
-      admin_password = var.VM-DBAdminPassword
+      admin_password = random_string.tf-demo05-dbs-passwd.result
       db_name        = var.VM-DBName
       character_set  = var.VM-CharacterSet
       ncharacter_set = var.VM-NCharacterSet
@@ -30,7 +45,7 @@ resource "oci_database_db_system" "tf-demo05-db-vm" {
   # trimspace needed as a workaround to issue https://github.com/hashicorp/terraform/issues/7889
   ssh_public_keys         = [trimspace(file(var.ssh_public_key_file))]
   display_name            = var.VM-DBNodeDisplayName
-  domain                  = var.VM-DBNodeDomainName
+  domain                  = "${var.dns_subnet1}.${var.dns_vcn}.oraclevcn.com"
   hostname                = var.VM-DBNodeHostName
   data_storage_size_in_gb = var.VM-DataStorageSizeInGB
   license_model           = var.VM-LicenseModel
@@ -68,6 +83,8 @@ output "DB_SYSTEM" {
           User opc
           IdentityFile ${var.ssh_private_key_file}
 
+  ---- Connection to Oracle Database
+  Use following password for SYS and SYSTEM accounts: ${random_string.tf-demo05-dbs-passwd.result}
 
 EOF
 

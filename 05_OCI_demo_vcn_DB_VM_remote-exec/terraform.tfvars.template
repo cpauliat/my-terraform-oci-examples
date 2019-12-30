@@ -8,7 +8,7 @@ private_key_path = "/Users/cpauliat/.oci/oci_api_key_EMEAOSC_20190430_private.pe
 compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
 region           = "eu-frankfurt-1"
 
-# ---- SSH key pair (UPDATE INFORMATION HERE BEFORE USE)
+# ---- SSH key pair
 ssh_public_key_file  = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
 ssh_private_key_file = "/Users/cpauliat/.ssh/id_rsa"
 
@@ -25,12 +25,10 @@ VM-DBEdition          = "STANDARD_EDITION"
 #VM-DBEdition         = "ENTERPRISE_EDITION"
 #VM-DBEdition         = "ENTERPRISE_EDITION_HIGH_PERFORMANCE"
 #VM-DBEdition         = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
-VM-DBAdminPassword    = "BEstrO0ng_#11"
 VM-DBName             = "DB1"
 VM-DBVersion          = "19.0.0.0"
 VM-DBDisplayName      = "tf-demo05-db1"
 VM-DBNodeDisplayName  = "tf-demo05-dbs-VM"
-VM-DBNodeDomainName   = "subnet1.tfdemovcn.oraclevcn.com"
 VM-DBNodeHostName     = "tf-demo05-dbsvm"
 VM-NCharacterSet      = "AL16UTF16"
 VM-CharacterSet       = "AL32UTF8"
@@ -53,5 +51,5 @@ cidr_subnet1     = "192.168.0.0/24"
 export_path_fs1_mt1 = "/staging"
 
 # ---- DNS
-dns_vcn          = "tfdemovcn"
+dns_vcn          = "demo05"
 dns_subnet1      = "subnet1"
