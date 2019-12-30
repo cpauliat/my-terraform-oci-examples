@@ -82,7 +82,7 @@ Details
 - 1 filesystem (File Storage) that will be used on the DB system to store staging files, backups...
 - Filesystem NFS-mounted automatically on the DB system using remote-exec provisioner
 
-Last update: November 7, 2019
+Last update: December 30, 2019
 ```
 
 ### 06_OCI_demo_vcn_OL7_dev_image_pv
