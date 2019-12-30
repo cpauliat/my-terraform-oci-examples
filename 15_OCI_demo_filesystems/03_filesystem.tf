@@ -19,7 +19,7 @@ resource "oci_file_storage_export_set" "tf-demo15-es1" {
 resource "oci_file_storage_export" "tf-demo15-fs1-mt1" {
   export_set_id   = oci_file_storage_mount_target.tf-demo15-mt1.export_set_id
   file_system_id  = oci_file_storage_file_system.tf-demo15-fs1.id
-  path            = var.fs1_export_path
+  path            = "/${var.fs1_export_path}"
 }
 
 data "oci_core_private_ips" "tf-demo15-mt1" {

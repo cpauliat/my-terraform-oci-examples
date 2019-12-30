@@ -10,8 +10,8 @@ EXPORT_PATH=`curl -L http://169.254.169.254/opc/v1/instance/metadata | jq -j ".m
 
 echo "========== NFS-mount shared filesystem"
 mkdir -p $MOUNT_PT
-mount -t nfs $NFS_IP:$EXPORT_PATH $MOUNT_PT
-echo "$NFS_IP:$EXPORT_PATH    $MOUNT_PT    nfs    defaults,noatime,_netdev,nofail" >> /etc/fstab
+mount -t nfs $NFS_IP:/$EXPORT_PATH $MOUNT_PT
+echo "$NFS_IP:/$EXPORT_PATH    $MOUNT_PT    nfs    defaults,noatime,_netdev,nofail" >> /etc/fstab
 chown opc:opc $MOUNT_PT
 
 echo "========== Install additional packages"

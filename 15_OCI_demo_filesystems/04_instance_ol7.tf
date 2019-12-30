@@ -54,7 +54,6 @@ output "Instance_OL7" {
           User opc
           IdentityFile ${var.ssh_private_key_file_ol7}
 
-
 EOF
 
 }
