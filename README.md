@@ -163,6 +163,20 @@ Details:
 Last update: December 5, 2019
 ```
 
+## 15_OCI_demo_filesystems
+
+```
+Summary: file storage example with Oracle Linux 7 and Microsoft Windows 2016
+
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- 1 compute instance Oracle Linux 7 with public IP address
+- 1 compute instance MS Windows 2016 with public IP address
+- cloud-init post provisioning task: NFS mount the filesystem on both instances
+
+Last update: December 30, 2019
+```
+
 ### 20_OCI_demo_autonomous_DB_serverless_SIMPLE
 
 ```
