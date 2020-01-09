@@ -1,0 +1,39 @@
+
+# ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# ---- Tenant 
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "80:8d:62:02:9a:0f:95:e0:29:79:90:78:8a:4e:9d:bb"
+private_key_path = "/Users/cpauliat/.oci/oci_api_key_EMEAOSC_20190430_private.pem"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+region           = "eu-frankfurt-1"
+
+# ---- SSH key pair (UPDATE INFORMATION HERE BEFORE USE)
+ssh_public_key_file = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+ssh_private_key_file= "/Users/cpauliat/.ssh/id_rsa"
+
+# ---- Authorized public IPs ingress
+#authorized_ips  = "90.119.77.177/32"	# a specific public IP on Internet
+#authorized_ips  = "129.156.0.0/16"	    # a specific Class B network on Internet
+authorized_ips   = "0.0.0.0/0"		    # all Internet
+
+# -- DNS
+dns_domain_name  = "cpauliat.tk"
+dns_hostname     = "demo26.cpauliat.tk"    
+
+# -- Compute instance shape
+shape            = "VM.Standard1.1"
+
+# ============== NO UPDATE NEEDED BELOW 
+
+# ---- availability domain (1, 2 or 3)
+AD               = "1"
+
+# ---- IP addresses
+cidr_vcn         = "10.0.0.0/16"
+cidr_subnet1     = "10.0.0.0/24"
+
+# -- variables for post provisioning
+BootStrapFile    = "userdata/bootstrap_websrv.sh"
+web_page_zip     = "welcome_page.zip"

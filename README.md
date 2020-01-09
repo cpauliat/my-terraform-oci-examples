@@ -3,10 +3,11 @@
 Prequisites: Terraform 0.12 or later
 
 To use the demos:
-1) Get a copy of the Terraform files by downloading then unzipping file https://github.com/cpauliat/my-terraform-oci-examples/archive/master.zip
+1) Get a copy of the Terraform files by downloading then unzipping file
+   https://github.com/cpauliat/my-terraform-oci-examples/archive/master.zip
 2) Install Terraform on your machine
 3) Create an API key for your user in the CloudUI/console of your OCI tenancy
-(see https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm.
+(see https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm)
 You can use my script available at https://github.com/cpauliat/my-oci-scripts/blob/master/generate_api_keys.sh)
 4) Cd to one of the demo folders
 5) Copy file **terraform.tfvars.template** to **terraform.tfvars**
@@ -52,9 +53,10 @@ Summary: basic VCN + several identical compute instances for Oracle Linux 7 usin
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
 - several compute instances Oracle Linux 7 with public IP and Cloud-init post provisioning actions (without block volume)
+- get name, shape, hostname and post-provisioning from array variables 
 - after provisioning, print instructions to connect to the compute instances (SSH for Linux, RDP for Windows)
 
-Last update: November 19, 2019
+Last update: January 9, 2020
 ```
 
 ### 04_OCI_demo_vcn_OL7_security_groups
@@ -158,7 +160,7 @@ Summary: basic example showing how to use Terraform modules
 
 Details:
 - 2 basics VCNs 
-- 1 compute instances Oracle Linux 7 (public IP) in 1st VCN
+- 1 compute instance Oracle Linux 7 (public IP) in 1st VCN
 
 Last update: December 5, 2019
 ```
@@ -208,6 +210,24 @@ Details:
 Last update: November 27, 2019
 ```
 
+### 26_OCI_demo_DNS_webserver_https
+
+```
+Summary: Domain Name Resolution (DNS)
+
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- 1 compute instance Oracle Linux 7 (public IP) with NGINX Web server
+- 1 DNS zone with 1 DNS record (type A) for the public IP address
+- NGINX Web server automatically configured with SSL certificate (HTTPS) using certbot from letsencrypt.org
+- New NGINX welcome page (zip file pushed by Terraform file provisioner and extract by remote-exec provisioner)
+
+Prerequisite: 
+- Register a public DNS domain (in my case, I use freenom.com with free domain) and delegate name resolution to OCI DNS zone.
+
+Last update: October 22, 2019
+```
+
 ### 34_OCI_demo_SGD_marketplace
 
 ```
@@ -250,4 +270,16 @@ Details:
   + create a new Linux user (with random password) to connect to Cockpit Web Interface
 
 Last update: December 30, 2019
+```
+
+### 38_OCI_demo_vcn_count_subnets
+
+```
+Summary: basic VCN + several subnets using count
+
+Details:
+- 1 VCN with 1 internet gateway + 1 route table + 1 security list and n subnets
+- get name, cidr, dnslabem of subnets from array variables 
+
+Last update: January 9, 2020
 ```
