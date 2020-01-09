@@ -9,7 +9,7 @@ private_key_path = "/Users/cpauliat/.oci/oci_api_key_TENANT1_private.pem"
 compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
 region           = "eu-frankfurt-1"
 
-# ---- SSH key pair (UPDATE INFORMATION HERE BEFORE USE)
+# ---- SSH key pair
 ssh_public_key_file_ol7 = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
 ssh_private_key_file_ol7= "/Users/cpauliat/.ssh/id_rsa"
 
@@ -29,4 +29,7 @@ cidr_subnet1     = "10.0.0.0/24"
 
 # ---- compute instances
 number_of_instances     = "3"
-BootStrapFile_ol7       = "userdata/bootstrap_ol7.sh"
+instances_name          = [ "production"      , "pre-production"     , "development" ]
+instances_hostname      = [ "prod"            , "preprod"            , "dev" ]
+instances_shape         = [ "VM.Standard2.2"  , "VM.Standard2.1"     , "VM.Standard.E2.1"]
+instances_post_prov     = [ "userdata/prod.sh", "userdata/preprod.sh", "userdata/dev.sh" ]
