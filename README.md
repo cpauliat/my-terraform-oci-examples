@@ -87,6 +87,19 @@ Details
 Last update: December 30, 2019
 ```
 
+### 05b_OCI_demo_vcn_DB_BM_dataguard
+
+```
+Summary: basic VCN + public subnet + 2 DB SYSTEMS (bare metal shape) + Data Guard enabled for DB instance in DBS #1
+
+Details
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- 2 DB systems in different availability domains on bare metal BM.DenseIO2.52 shape with 1 DB instance each (DB1 and DB2)
+- Data Guard enabled on DB1 (creates DB1 standby instance in DB system #2)
+
+Last update: January 15, 2020
+```
+
 ### 06_OCI_demo_vcn_OL7_dev_image_pv
 
 ```
