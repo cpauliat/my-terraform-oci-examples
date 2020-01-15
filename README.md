@@ -165,7 +165,7 @@ Details:
 Last update: December 5, 2019
 ```
 
-## 15_OCI_demo_filesystems
+### 15_OCI_demo_filesystems
 
 ```
 Summary: file storage example with Oracle Linux 7 and Microsoft Windows 2016
@@ -177,6 +177,19 @@ Details:
 - cloud-init post provisioning task: NFS mount the filesystem on both instances
 
 Last update: December 30, 2019
+```
+
+### 17_OCI_demo_vcn_OKE_managed_Kubernetes
+
+```
+Summary: Oracle Container Engine (OKE / managed Kubernetes) example
+
+Details:
+- 1 VCN with 1 internet gateway + 1 route table + 1 security list
+- 1 public regional subnet for Kubernetes worker nodes + 1 public regional subnet for load balancer
+- 1 Kubernetes cluster with 1 node pool containing 3 worker nodes (Oracle Linux 7.7)
+
+Last update: January 15, 2020
 ```
 
 ### 20_OCI_demo_autonomous_DB_serverless_SIMPLE
