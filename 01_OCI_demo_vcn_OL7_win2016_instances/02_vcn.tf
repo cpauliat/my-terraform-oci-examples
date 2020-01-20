@@ -27,6 +27,7 @@ resource "oci_core_route_table" "tf-demo01-rt" {
   route_rules {
     destination       = "0.0.0.0/0"
     network_entity_id = oci_core_internet_gateway.tf-demo01-ig.id
+    description       = "single route rule to Internet gateway for all traffic"
   }
 }
 
@@ -39,6 +40,7 @@ resource "oci_core_security_list" "tf-demo01-subnet1-sl" {
   egress_security_rules {
     protocol    = "all"
     destination = "0.0.0.0/0"
+    description = "Allow all outgoing traffic"
   }
 
   ingress_security_rules {
@@ -46,28 +48,27 @@ resource "oci_core_security_list" "tf-demo01-subnet1-sl" {
     source   = var.cidr_vcn
   }
   ingress_security_rules {
-    protocol = "6" # tcp
-    source   = var.authorized_ips
-
+    protocol    = "6" # tcp
+    source      = var.authorized_ips
+    description = "Allow SSH access to Linux instance from authorized public IP address(es)"
     tcp_options {
-      min = 22 # to allow SSH acccess to Linux instance
+      min = 22 
       max = 22
     }
   }
   ingress_security_rules {
     protocol = "6" # tcp
     source   = var.authorized_ips
-
+    description = "Allow RDP access to Windows instance from authorized public IP address(es)"
     tcp_options {
-      min = 3389 # to allow RDP acccess to Windows instance
+      min = 3389 
       max = 3389
     }
   }
-  # needed. See https://docs.cloud.oracle.com/iaas/Content/Network/Troubleshoot/connectionhang.htm?Highlight=MTU#Path
   ingress_security_rules {
-    protocol = "1" # icmp
-    source   = var.authorized_ips
-
+    protocol    = "1" # icmp
+    source      = var.authorized_ips
+    description = "Needed for MTU. See https://docs.cloud.oracle.com/iaas/Content/Network/Troubleshoot/connectionhang.htm?Highlight=MTU#Path"
     icmp_options {
       type = 3
       code = 4

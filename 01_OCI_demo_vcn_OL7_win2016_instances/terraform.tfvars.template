@@ -27,6 +27,6 @@ AD               = "1"
 cidr_vcn         = "10.0.0.0/16"
 cidr_subnet1     = "10.0.0.0/24"
 
-# -- variables for BM/VM creation 
+# ---- Compute instances
 BootStrapFile_win2016   = "userdata/bootstrap_win2016.ps1"
 BootStrapFile_ol7       = "userdata/bootstrap_ol7.sh"
