@@ -9,7 +9,7 @@ private_key_path = "/Users/cpauliat/.oci/oci_api_key_TENANT1_private.pem"
 compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
 region           = "eu-frankfurt-1"
 
-# ---- SSH key pair (UPDATE INFORMATION HERE BEFORE USE)
+# ---- SSH key pair
 ssh_public_key_file_ol7 = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
 ssh_private_key_file_ol7= "/Users/cpauliat/.ssh/id_rsa"
 
