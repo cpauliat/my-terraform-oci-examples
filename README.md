@@ -217,7 +217,7 @@ Details:
 Prerequisites:
 - Create an object storage bucket in a OCI tenant (can be a different OCI tenant)
 - Create a customer secret key for the OCI user, update s3key.template file, then copy it to s3key
-- run ```terraform init``` to initialize remote state file
+- Run terraform init to initialize remote state file
 
 Last update: January 20, 2020
 ```
