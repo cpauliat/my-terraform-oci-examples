@@ -8,7 +8,7 @@ resource "oci_core_virtual_network" "tf-demo02-vcn" {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo02-vcn"
-  dns_label      = "tfdemovcn"
+  dns_label      = "demo02"
 }
 
 # ------ Create a new Internet Gategay
@@ -26,6 +26,7 @@ resource "oci_core_route_table" "tf-demo02-rt" {
   route_rules {
     cidr_block        = "0.0.0.0/0"
     network_entity_id = oci_core_internet_gateway.tf-demo02-ig.id
+    description       = "single route rule to Internet gateway for all traffic"
   }
 }
 
@@ -40,12 +41,14 @@ resource "oci_core_security_list" "tf-demo02-subnet1-sl" {
   }
 
   ingress_security_rules {
-    protocol = "6" # tcp
-    source   = var.cidr_vcn
+    protocol    = "6" # tcp
+    source      = var.cidr_vcn
+    description = "Allow communication between all VNICs inside the VCN"
   }
   ingress_security_rules {
-    protocol = "6" # tcp
-    source   = var.authorized_ips
+    protocol    = "6" # tcp
+    source      = var.authorized_ips
+    description = "Allow SSH access to Linux instance from authorized public IP address(es)"
     tcp_options {
       min = 22
       max = 22
@@ -53,9 +56,9 @@ resource "oci_core_security_list" "tf-demo02-subnet1-sl" {
   }
   # needed. See https://docs.cloud.oracle.com/iaas/Content/Network/Troubleshoot/connectionhang.htm?Highlight=MTU#Path
   ingress_security_rules {
-    protocol = "1" # icmp
-    source   = var.authorized_ips
-
+    protocol    = "1" # icmp
+    source      = var.authorized_ips
+    description = "Needed for MTU. See https://docs.cloud.oracle.com/iaas/Content/Network/Troubleshoot/connectionhang.htm?Highlight=MTU#Path"
     icmp_options {
       type = 3
       code = 4
