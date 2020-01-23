@@ -328,6 +328,20 @@ Details:
 Last update: December 30, 2019
 ```
 
+### 37_OCI_demo_vcn_OL7_instance_reserved_public_IP
+
+```
+Summary: basic VCN + basic compute instance Oracle Linux 7 + reserved public IP
+
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- 1 compute instance Oracle Linux 7  
+- 1 reserved public IP assigned to compute instance and protected against destruction (prevent_destroy = true)
+- after provisioning, print instructions to connect to the compute instance
+
+Last update: January 21, 2020
+```
+
 ### 38_OCI_demo_vcn_count_subnets
 
 ```
