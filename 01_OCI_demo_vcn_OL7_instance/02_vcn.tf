@@ -8,7 +8,7 @@ resource "oci_core_virtual_network" "tf-demo01-vcn" {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo01-vcn"
-  dns_label      = "tfdemovcn"
+  dns_label      = "demo01"
 }
 
 # ------ Create a new Internet Gategay
@@ -57,15 +57,6 @@ resource "oci_core_security_list" "tf-demo01-subnet1-sl" {
     }
   }
   ingress_security_rules {
-    protocol = "6" # tcp
-    source   = var.authorized_ips
-    description = "Allow RDP access to Windows instance from authorized public IP address(es)"
-    tcp_options {
-      min = 3389 
-      max = 3389
-    }
-  }
-  ingress_security_rules {
     protocol    = "1" # icmp
     source      = var.authorized_ips
     description = "Needed for MTU. See https://docs.cloud.oracle.com/iaas/Content/Network/Troubleshoot/connectionhang.htm?Highlight=MTU#Path"
@@ -76,7 +67,7 @@ resource "oci_core_security_list" "tf-demo01-subnet1-sl" {
   }
 }
 
-# ------ Create a public subnet 1 in AD1 in the new VCN
+# ------ Create a regional public subnet 
 resource "oci_core_subnet" "tf-demo01-public-subnet1" {
 # uncomment the following line to create an AD specific subnet
 # availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
