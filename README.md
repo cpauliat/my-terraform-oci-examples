@@ -17,18 +17,17 @@ You can use my script available at https://github.com/cpauliat/my-oci-scripts/bl
 9) run `terraform apply` to execute those actions and provision the infrastructure
 10) Finally, run `terraform destroy` to delete objects created previously with `terraform apply`
 
-### 01_OCI_demo_vcn_OL7_win2016_instances
+### 01_OCI_demo_vcn_OL7_instance
 
 ```
-Summary: basic VCN + basic compute instances for Oracle Linux 7 and Microsoft Windows Server 2016
+Summary: basic VCN + basic Oracle Linux 7 compute instance for Oracle Linux 7
 
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
 - 1 compute instance Oracle Linux 7 with public IP and Cloud-init post provisioning actions 
-- 1 compute instance MS Windows 2016 with public IP and Cloud-init post provisioning actions passing arguments
-- after provisioning, print instructions to connect to the compute instances (SSH for Linux, RDP for Windows)
+- after provisioning, print instructions to connect to the compute instance
 
-Last update: January 20, 2020
+Last update: January 28, 2020
 ```
 
 ### 01b_OCI_demo_vcn_OL7_instance_with_generated_ssh_key
@@ -143,6 +142,19 @@ Details:
 Note: As VNC traffic is not encrypted, use a SSH tunnel to access the remote Desktop
 
 Last update: December 18, 2019
+```
+
+### 10_OCI_demo_vcn_win2016_instance
+
+```
+Summary: basic VCN + basic Microsoft Windows Server 2016 compute instance 
+
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- 1 compute instance MS Windows 2016 with public IP and Cloud-init post provisioning
+- after provisioning, print instructions to connect to the compute instance
+
+Last update: January 28, 2020
 ```
 
 ### 12_OCI_demo_vcn_peering_local
