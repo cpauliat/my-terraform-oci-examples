@@ -12,36 +12,6 @@ data "oci_core_images" "ImageOCID-win2016" {
   }
 }
 
-# ------ generate a random password to replace the temporary password in the cloud-init post-provisioning task
-resource "random_string" "windows_password" {
-  # must contains at least 2 upper case letters, 2 lower case letters, 2 numbers and 2 special characters
-  length      = 12
-  upper       = true
-  min_upper   = 2
-  lower       = true
-  min_lower   = 2
-  number      = true
-  min_numeric = 2
-  special     = true
-  min_special = 2
-  override_special = "#-_"   # use only special characters in this list
-}
-
-# ------ Create a block volume
-resource "oci_core_volume" "tf-demo10-win2016-vol1" {
-  availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
-  compartment_id      = var.compartment_ocid
-  display_name        = "tf-demo10-win2016-vol1"
-  size_in_gbs         = "100"
-}
-
-# ------ Attach the new block volume to the Windows compute instance after it is created
-resource "oci_core_volume_attachment" "tf-demo10-win2016-vol1-attach" {
-  attachment_type = "iscsi"
-  instance_id     = oci_core_instance.tf-demo10-win2016.id
-  volume_id       = oci_core_volume.tf-demo10-win2016-vol1.id
-}
-
 # ------ Create a compute instance from the most recent Windows 2016 image
 resource "oci_core_instance" "tf-demo10-win2016" {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
@@ -62,7 +32,6 @@ resource "oci_core_instance" "tf-demo10-win2016" {
 
   metadata = {
     user_data      = base64encode(file(var.BootStrapFile_win2016))
-    myarg_password = random_string.windows_password.result
   }
 }
 
@@ -77,12 +46,14 @@ output "Instance_Win2016" {
 
   ---- You can RDP directly to the Win2016 instance using following parameters
   public IP = ${oci_core_instance.tf-demo10-win2016.public_ip}
-  user      = ${data.oci_core_instance_credentials.tf-demo10-win2016.username}
-  password  = ${random_string.windows_password.result}
 
+  user      = ${data.oci_core_instance_credentials.tf-demo10-win2016.username}  (user with Administrator privileges)
+  password  = ${data.oci_core_instance_credentials.tf-demo10-win2016.password}  (temporary password, needs to be changed on the first connection)
 
+  OR
+
+  user     = user01   (regular user)
+  password = TH1S_1s_my_PWD
 EOF
 
-  # Password is changed from temporary password (see below) by cloud-init
-  # password  = ${data.oci_core_instance_credentials.tf-demo10-win2016.password}
 }
