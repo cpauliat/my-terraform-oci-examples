@@ -1,12 +1,7 @@
 
-# -------- get the list of available ADs
-data "oci_identity_availability_domains" "ADs" {
-  compartment_id = var.tenancy_ocid
-}
-
 # ------ Create a compute instance
 resource "oci_core_instance" "tf-instance" {
-  availability_domain = lookup(data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1],"name")
+  availability_domain = var.AD_name
   compartment_id      = var.compartment_ocid
   display_name        = var.vm_name
   shape               = var.shape
@@ -17,8 +12,9 @@ resource "oci_core_instance" "tf-instance" {
   }
 
   create_vnic_details {
-    subnet_id      = var.subnet_ocid
-    hostname_label = var.hostname
+    subnet_id        = var.subnet_ocid
+    hostname_label   = var.hostname
+    assign_public_ip = var.assign_public_ip
   }
 
   metadata = {
