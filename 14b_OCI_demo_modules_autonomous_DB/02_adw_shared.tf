@@ -31,7 +31,7 @@ module "adw2" {
 output "adw1" {
   value = <<EOF
 
-  service console URL = ${module.adw1.console_url}
+  service console URL = ${module.adw1.service_console_url}
             user      = admin
             password  = ${module.adw1.password}
 
@@ -41,7 +41,7 @@ EOF
 output "adw2" {
   value = <<EOF
 
-  service console URL = ${module.adw2.console_url}
+  service console URL = ${module.adw2.service_console_url}
             user      = admin
             password  = ${module.adw2.password}
 
