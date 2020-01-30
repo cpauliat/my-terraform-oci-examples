@@ -18,7 +18,7 @@ ssh_private_key_file = "/Users/cpauliat/.ssh/id_rsa"
 authorized_ips          = "0.0.0.0/0"               # all Internet
 
 # ---- variables for DB system with shape VM.Standard.x
-VM-StorageMgt         = "LVM"   # or "ASM"   # LVM available for 18c and 19c versions only
+VM-StorageMgt         = "LVM"                   # LVM or ASM, LVM available for 18c and 19c versions only
 VM-DBNodeShape        = "VM.Standard2.2"
 VM-CPUCoreCount       = "2"
 VM-DBEdition          = "STANDARD_EDITION"
@@ -26,7 +26,7 @@ VM-DBEdition          = "STANDARD_EDITION"
 #VM-DBEdition         = "ENTERPRISE_EDITION_HIGH_PERFORMANCE"
 #VM-DBEdition         = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
 VM-DBName             = "DB1"
-VM-DBVersion          = "19.0.0.0"
+VM-DBVersion          = "19.0.0.0"              # 11.2.0.4 or 12.1.0.2 or 12.2.0.1 or 18.0.0.0 or 19.0.0.0
 VM-DBDisplayName      = "tf-demo05-db1"
 VM-DBNodeDisplayName  = "tf-demo05-dbs-VM"
 VM-DBNodeHostName     = "tf-demo05-dbsvm"
@@ -35,6 +35,9 @@ VM-CharacterSet       = "AL32UTF8"
 VM-DBWorkload         = "OLTP"
 VM-PDBName            = "PDB1"
 VM-DataStorageSizeInGB= "256"
+  # supported data Size:
+  # - For LVM: 256, 512, 1024, 2048, 4096 or 8192
+  # - For ASM: 256, 512, 1024, 2048, 4096, 6144, 8192, 10240, 12288, 14336, 16384, 18432, 20480, 22528, 24576, 26624, 28672, 30720, 32768, 34816, 36864, 38912, 40960
 VM-LicenseModel       = "LICENSE_INCLUDED"
 VM-NodeCount          = "1"
 
