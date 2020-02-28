@@ -157,6 +157,20 @@ Details:
 Last update: January 28, 2020
 ```
 
+### 10b_OCI_demo_vcn_win2016_instance_pwd_changed_simple
+
+```
+Summary: basic VCN + basic Microsoft Windows Server 2016 compute instance 
+
+Details:
+- Same as 10_OCI_demo_vcn_win2016_instance except the fast that a new random password is set with cloud-init,
+  replacing the temporary password
+- Please note that the generated password is passed to cloud-init script using metadata which is simple but NOT SECURE.
+  If you plan to keep the compute instance, you need to change the password for user opc and opc2 
+
+Last update: February 28, 2020
+```
+
 ### 11_OCI_demo_vcn_win2016_block_volumes_pv
 
 ```
