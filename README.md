@@ -185,6 +185,21 @@ Details:
 Last update: January 28, 2020
 ```
 
+### 11b_OCI_demo_vcn_win2016_instance_block_volume_iscsi_winrm
+
+```
+Summary: basic VCN + 1 compute instance Microsoft Windows Server 2016 with block volumes (iscsi attachment) + WinRM post-provisioning
+
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- 1 VM compute instance Microsoft Windows Server 2016 with public IP with 1 block volume (attached in iscsi mode)
+- post provisioning tasks with cloud-init, passing arguments to cloud-init script.
+- post provisioning tasks also with winrm, passing arguments to winrm script.
+- after provisioning, print instructions to connect to the compute instance (RDP)
+
+Last update: March  2, 2020
+```
+
 ### 12_OCI_demo_vcn_peering_local
 
 ```
