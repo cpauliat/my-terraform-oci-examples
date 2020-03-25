@@ -1,0 +1,17 @@
+# simple demo Ansible playbook 
+- hosts: hosts_grp_1
+  tasks:
+
+  - name: Install python3 rpm
+    yum:
+      name: python3
+      state: latest
+    become: yes
+
+  - name: Create cpauliat directory
+    file:
+      path: /home/opc/cpauliat
+      state: directory
+      owner: opc
+      group: opc
+      mode: 0755
