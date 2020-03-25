@@ -409,3 +409,16 @@ Details:
 
 Last update: January 9, 2020
 ```
+
+### 40_OCI_demo_vcn_OL7_instances_ansible
+
+```
+Summary: basic VCN + 2 compute instances: 1 Ansible server used to do post-provisioning on a second instance
+
+Details:
+- 1 VCN with 1 internet gateway + 1 route table + 1 security list and n subnets
+- 1 first Oracle Linux 7 compute instance with Ansible installed, configured and executed with cloud-init
+- 1 second Oracle Linux 7 compute instance with post-provisioning done by Ansible playbook from first instance
+
+Last update: March 25, 2020
+```
