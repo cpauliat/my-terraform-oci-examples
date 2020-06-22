@@ -63,9 +63,8 @@ resource "oci_core_security_list" "tf-demo02b-subnet1-sl" {
   }
 }
 
-# ------ Create a public subnet (AD specific) in the new VCN
+# ------ Create a public subnet (regional) in the new VCN
 resource "oci_core_subnet" "tf-demo02b-public-subnet1" {
-  availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   cidr_block          = var.cidr_subnet1
   display_name        = "tf-demo02b-public-subnet1"
   dns_label           = "subnet1"
