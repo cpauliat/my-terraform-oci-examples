@@ -57,6 +57,21 @@ Details:
 Last update: November 12, 2019
 ```
 
+### 02b_OCI_demo_vcn_OL7_block_volumes_iscsi_remote_exec
+
+```
+Summary: basic VCN + 1 compute instance Oracle Linux 7 with block volumes (iscsi attachment)
+
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- 1 VM compute instance Oracle Linux 7 with public IP with 1 block volume (attached in iscsi mode)
+- post provisioning tasks with cloud-init, passing arguments to cloud-init script.
+- post provisioning tasks for iscsi commands to complete block volume attachementwith remote-exec
+- after provisioning, print instructions to connect to the Linux compute instance (SSH)
+
+Last update: June 22, 2020
+```
+
 ### 03_OCI_demo_vcn_OL7_count
 
 ```
