@@ -1,24 +1,19 @@
 # --------- Create an OKE cluster
 resource "oci_containerengine_cluster" "tf-demo17-oke" {
-  #Required
   compartment_id     = var.compartment_ocid
   kubernetes_version = var.oke_cluster_k8s_version
   name               = var.oke_cluster_name
   vcn_id             = oci_core_virtual_network.tf-demo17-vcn.id
 
-  #Optional
   options {
     service_lb_subnet_ids = [oci_core_subnet.tf-demo17-lb.id]
 
-    #Optional
     add_ons {
-      #Optional
       is_kubernetes_dashboard_enabled = var.oke_cluster_k8s_dashboard_enabled
       is_tiller_enabled               = var.oke_cluster_tiller_enabled
     }
 
     kubernetes_network_config {
-      #Optional
       pods_cidr     = var.oke_k8s_network_config_pods_cidr
       services_cidr = var.oke_k8s_network_config_services_cidr
     }
@@ -48,9 +43,17 @@ resource "oci_containerengine_node_pool" "tf-demo17-npool" {
         availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[1]["name"]
         subnet_id           = oci_core_subnet.tf-demo17-worker.id
       }
+      placement_configs {
+        availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[2]["name"]
+        subnet_id           = oci_core_subnet.tf-demo17-worker.id
+      }
   }
 
   ssh_public_key      = file(var.ssh_public_key_file)
+}
+
+data "oci_containerengine_node_pool" "tf-demo17-npool" {
+    node_pool_id = oci_containerengine_node_pool.tf-demo17-npool.id
 }
 
 # --------- Create a SSH config file to connect to worker nodes
@@ -65,20 +68,23 @@ resource "local_file" "sshconfig" {
   depends_on = [ null_resource.nodes_ready ]
   content = <<EOF
 Host oke-worker${substr(strrev(oci_containerengine_node_pool.tf-demo17-npool.nodes[0].name), 0, 1)}
-          Hostname ${oci_containerengine_node_pool.tf-demo17-npool.nodes[0].public_ip}
+          Hostname ${data.oci_containerengine_node_pool.tf-demo17-npool.nodes[0].public_ip}
           User opc
           IdentityFile ${var.ssh_private_key_file}
 Host oke-worker${substr(strrev(oci_containerengine_node_pool.tf-demo17-npool.nodes[1].name), 0, 1)}
-          Hostname ${oci_containerengine_node_pool.tf-demo17-npool.nodes[1].public_ip}
+          Hostname ${data.oci_containerengine_node_pool.tf-demo17-npool.nodes[1].public_ip}
           User opc
           IdentityFile ${var.ssh_private_key_file}
 Host oke-worker${substr(strrev(oci_containerengine_node_pool.tf-demo17-npool.nodes[2].name), 0, 1)}
-          Hostname ${oci_containerengine_node_pool.tf-demo17-npool.nodes[2].public_ip}
+          Hostname ${data.oci_containerengine_node_pool.tf-demo17-npool.nodes[2].public_ip}
           User opc
           IdentityFile ${var.ssh_private_key_file}
 EOF
   filename = "sshcfg"
 }
+
+#Host oke-worker${substr(strrev(oci_containerengine_node_pool.tf-demo17-npool.nodes[2].name), 0, 1)}
+
 
 # --------- Create the Kubeconfig file
 data "oci_containerengine_cluster_kube_config" "tf-demo17-oke" {

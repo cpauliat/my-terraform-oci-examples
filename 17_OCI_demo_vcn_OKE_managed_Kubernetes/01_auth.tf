@@ -21,11 +21,11 @@ variable "oke_k8s_network_config_pods_cidr" {}
 variable "oke_k8s_network_config_services_cidr" {}
 variable "oke_node_pool_kubernetes_version" {}
 variable "oke_node_pool_name" {}
-variable "oke_node_pool_node_image_name" {}
 variable "oke_node_pool_node_shape" {}
 variable "oke_node_pool_initial_node_labels_key" {}
 variable "oke_node_pool_initial_node_labels_value" {}
 variable "oke_node_pool_nb_worker_nodes" {}
+variable "oke_oracle_linux_version" {}
 
 # ---- provider
 provider "oci" {
