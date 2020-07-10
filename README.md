@@ -183,8 +183,9 @@ Details:
   replacing the temporary password
 - Please note that the generated password is passed to cloud-init script using metadata which is simple but NOT SECURE.
   If you plan to keep the compute instance, you need to change the password for user opc and opc2 
+- Provisioning: install Firefox, Filezilla, Notepad++ and OCI CLI, and display file extensions in File explorer.
 
-Last update: February 28, 2020
+Last update: July 10, 2020
 ```
 
 ### 10c_OCI_demo_vcn_win2016_instance_pwd_changed_secure
