@@ -24,4 +24,5 @@ cidr_vcn         = "10.0.0.0/16"
 cidr_subnet1     = "10.0.0.0/24"
 
 # ---- Compute instances
-BootStrapFile_win2016   = "userdata/bootstrap_win2016.ps1"
+os_version              = "2019"    # or "2016"
+BootStrapFile_win201x   = "userdata/bootstrap_win2016_or_win2019.ps1"
