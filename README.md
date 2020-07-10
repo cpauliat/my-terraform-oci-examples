@@ -160,7 +160,7 @@ Note: As VNC traffic is not encrypted, use a SSH tunnel to access the remote Des
 Last update: December 18, 2019
 ```
 
-### 10_OCI_demo_vcn_win2016_win2019_instance
+### 10_OCI_demo_vcn_win2016_instance
 
 ```
 Summary: basic VCN + basic Microsoft Windows Server 2016/2019 compute instance 
