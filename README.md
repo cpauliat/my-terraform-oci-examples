@@ -160,17 +160,17 @@ Note: As VNC traffic is not encrypted, use a SSH tunnel to access the remote Des
 Last update: December 18, 2019
 ```
 
-### 10_OCI_demo_vcn_win2016_instance
+### 10_OCI_demo_vcn_win2016_win2019_instance
 
 ```
-Summary: basic VCN + basic Microsoft Windows Server 2016 compute instance 
+Summary: basic VCN + basic Microsoft Windows Server 2016/2019 compute instance 
 
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
-- 1 compute instance MS Windows 2016 with public IP and Cloud-init post provisioning
+- 1 compute instance MS Windows 2016/2019 with public IP and Cloud-init post provisioning
 - after provisioning, print instructions to connect to the compute instance
 
-Last update: January 28, 2020
+Last update: July 10, 2020
 ```
 
 ### 10b_OCI_demo_vcn_win2016_instance_pwd_changed_simple
