@@ -4,10 +4,10 @@ data "oci_core_images" "ImageOCID-win2016" {
   operating_system         = "Windows"
   operating_system_version = "Server 2016 Standard"
 
-  # filter to remove E2 images
+  # filter to remove E2, E3 and B1 images
   filter {
       name   = "display_name"
-      values = ["Windows-Server-2016-Standard-Edition-VM-Gen2-2019"]
+      values = ["Windows-Server-2016-Standard-Edition-VM-Gen2-2020"]
       regex  = true
   }
 }
@@ -42,7 +42,7 @@ resource "oci_core_instance" "tf-demo10b-win2016" {
 
   create_vnic_details {
     subnet_id      = oci_core_subnet.tf-demo10b-public-subnet1.id
-    hostname_label = "tf-demo10b-win2016"
+    hostname_label = "d10b"
   }
 
   metadata = {
