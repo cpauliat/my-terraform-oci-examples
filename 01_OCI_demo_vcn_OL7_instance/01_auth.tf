@@ -1,10 +1,10 @@
 # ---- use variables defined in terraform.tfvars file
 variable "tenancy_ocid" {}
 variable "user_ocid" {}
+variable "region" { default = "eu-frankfurt-1" }
 variable "fingerprint" {}
 variable "private_key_path" {}
 variable "compartment_ocid" {}
-variable "region" {}
 variable "AD" {}
 variable "BootStrapFile_ol7" {}
 variable "ssh_public_key_file_ol7" {}
