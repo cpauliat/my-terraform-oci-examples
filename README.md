@@ -143,6 +143,21 @@ Note: see https://console.eu-frankfurt-1.oraclecloud.com/marketplace/application
 Last update: November 27, 2019
 ```
 
+### 07a_OCI_demo_vcn_LB_public
+
+```
+Summary: 1 VCN + 3 compute instances (2 web servers + 1 bastion) + 1 public load balancer for HTTP
+
+Details:
+- 1 VCN with 1 public regional subnet and 1 private regional subnet
+- 2 compute instances for web servers in private subnet with HTTP web server 
+- 1 compute instance for bastion host
+- 1 public load balancer with HTTP listener on port 80
+- after provisioning, print instructions for connections (HTTP and SSH connections)
+
+Last update: July 16, 2020
+```
+
 ### 09_OCI_demo_vcn_VirtualBox_VNC
 
 ```
