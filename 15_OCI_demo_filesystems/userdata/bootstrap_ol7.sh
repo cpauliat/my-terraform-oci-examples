@@ -14,6 +14,10 @@ mount -t nfs $NFS_IP:/$EXPORT_PATH $MOUNT_PT
 echo "$NFS_IP:/$EXPORT_PATH    $MOUNT_PT    nfs    defaults,noatime,_netdev,nofail" >> /etc/fstab
 chown opc:opc $MOUNT_PT
 
+echo "========== Create a test file in filesystem"
+echo "Created on Linux instance in cloud-init post-provisioning" > $MOUNT_PT/file_linux.txt
+chown opc:opc $MOUNT_PT/file_linux.txt
+
 echo "========== Install additional packages"
 yum install zsh -y
 
