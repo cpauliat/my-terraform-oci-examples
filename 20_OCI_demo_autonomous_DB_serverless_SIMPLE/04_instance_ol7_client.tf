@@ -57,6 +57,8 @@ EOF
 output "DB_client" {
   value = <<EOF
 
+  WAIT FOR A FEW MINUTES FOR POST_PROVISIONING ACTIONS TO TAKE PLACE
+
   Connection to Database client (Oracle Linux 7 instance with Oracle Instant Client 18.3)
 
   as user opc   :   ssh -F sshcfg dbclient-opc
@@ -69,6 +71,10 @@ output "DB_client" {
   scp -F sshcfg <Wallet_xxx>.zip dbclient-oracle:/home/oracle/wallet.zip
   ssh -F sshcfg dbclient-oracle "cd /home/oracle/credentials_adb; unzip ../wallet.zip"
   ssh -F sshcfg dbclient-oracle "sed -i.bak 's#?/network/admin#/home/oracle/credentials_adb#' /home/oracle/credentials_adb/sqlnet.ora"
+
+  After running those commands, you can connect from the Oracle Linux 7 instance:
+  ssh -F sshcfg dbclient-oracle
+  sqlplus admin/${random_string.tf-demo20-adb-password.result}@${var.adb_db_name}_medium
 
 EOF
 
