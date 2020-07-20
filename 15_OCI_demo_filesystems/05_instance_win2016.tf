@@ -7,7 +7,7 @@ data "oci_core_images" "ImageOCID-win2016" {
   # filter to remove E2 images
   filter {
       name   = "display_name"
-      values = ["Windows-Server-2016-Standard-Edition-VM-Gen2-2019"]
+      values = ["Windows-Server-2016-Standard-Edition-VM-Gen2"]
       regex  = true
   }
 }
