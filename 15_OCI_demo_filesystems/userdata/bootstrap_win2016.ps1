@@ -27,3 +27,9 @@ net accounts /maxpwage:unlimited
 Write-Output "======== Install NFS client"
 Install-WindowsFeature NFS-Client,RSAT-NFS-Admin
 # To check if NFS client installed, type: Get-WindowsFeature -Name NFS*
+
+# TO DO: Map NFS network drive for user opc
+
+#$user = "opc"
+#$pwd = ConvertTo-SecureString "-k_y74TUClKe" -AsPlainText -Force
+#$cred = New-Object System.Management.Automation.PSCredential -ArgumentList ($user, $pwd)

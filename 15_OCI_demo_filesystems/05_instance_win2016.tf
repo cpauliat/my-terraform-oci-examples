@@ -84,6 +84,7 @@ resource "local_file" "rdpfile" {
 auto connect:i:1
 full address:s:${oci_core_instance.tf-demo15-win2016.public_ip}
 username:s:${data.oci_core_instance_credentials.tf-demo15-win2016.username}
+prompt for credentials:i:0
 EOF
 
     filename = var.rdp_file_win2016
