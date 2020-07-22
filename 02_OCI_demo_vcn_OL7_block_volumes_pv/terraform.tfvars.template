@@ -32,4 +32,5 @@ BootStrapFile_ol7   = "userdata/bootstrap_ol7.sh"
 # -- Storage
 bkvol_attachment_name = "/dev/oracleoci/oraclevdb"          # set a permanent name for device in Linux (don't change after reboots)
 bkvol_mount_point     = "/mnt/vol1"
-
+bkvol_size_gb         = "50"
+bkvol_vpus_per_gb     = "0"   # 0=Lower cost, 10=Balanced, 20=Higher Performance

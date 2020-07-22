@@ -12,12 +12,13 @@ data "oci_core_images" "ImageOCID-ol7" {
   }
 }
 
-# ------ Create a 500GB block volume
+# ------ Create a block volume
 resource "oci_core_volume" "tf-demo02-ol7-vol1" {
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "tf-demo02-ol7-vol1"
-  size_in_gbs         = "500"
+  size_in_gbs         = var.bkvol_size_gb
+  vpus_per_gb         = var.bkvol_vpus_per_gb
 }
 
 # ------ Attach the new block volume to the ol7 compute instance after it is created

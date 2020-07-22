@@ -14,6 +14,8 @@ variable "cidr_vcn" {}
 variable "cidr_subnet1" {}
 variable "bkvol_attachment_name" {}
 variable "bkvol_mount_point" {}
+variable "bkvol_size_gb" {}
+variable "bkvol_vpus_per_gb" {}
 
 # ---- provider
 provider "oci" {
