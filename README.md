@@ -484,3 +484,17 @@ Details:
 
 Last update: March 25, 2020
 ```
+
+### 41_OCI_demo_vcn_OL7_instance_2_vnics
+
+```
+Summary: VCN + 1 compute instance with 2 VNICs
+
+Details:
+- 1 VCN with 1 public regional subnet and 1 private regional subnet
+- 1 Oracle Linux 7 compute instance with 2 VNICs (primary/default VNIC + additional secondary VNIC)
+
+Last update: July 23, 2020
+```
+
+
