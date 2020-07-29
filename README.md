@@ -402,6 +402,23 @@ Prerequisite:
 Last update: October 22, 2019
 ```
 
+### 27_OCI_demo_DNS_failover_http
+
+```
+Summary: Automatic DNS change using DNS Traffic mgt steering policy (failover mode)
+
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- 2 compute instances Oracle Linux 7 with public IP acting as primary and secondary web servers
+  ngnix installed and welcome page configured using cloud-init and remote-exec post-provisioning tasks
+- 1 DNS zone with 1 traffic management steering policy (FAILOVER mode) for DNS hostname 
+
+Prerequisite: 
+- Register a public DNS domain (in my case, I use freenom.com with free domain) and delegate name resolution to OCI DNS zone.
+
+Last update: July 29, 2020
+```
+
 ### 34_OCI_demo_SGD_marketplace
 
 ```
