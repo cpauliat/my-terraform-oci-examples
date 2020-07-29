@@ -51,7 +51,7 @@ resource oci_core_security_list tf-demo27-subnet1-sl {
   }
   ingress_security_rules {
     protocol = "6" # tcp
-    source   = var.authorized_ips
+    source   = "0.0.0.0/0"
 
     tcp_options {
       min = 80 # to allow access to Web Server with HTTP

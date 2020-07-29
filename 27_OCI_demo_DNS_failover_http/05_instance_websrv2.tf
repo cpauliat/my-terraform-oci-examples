@@ -46,7 +46,7 @@ resource oci_core_instance tf-demo27-ws2 {
       "sleep 60",
       "sudo rm -f /usr/share/nginx/html/*",
       "sudo unzip -d /usr/share/nginx/html ${var.web_page_zip}",
-      "sudo sed -i.bak -e \"s#XXXXXXXX#`hostname` (`curl ifconfig.co`)#g\" /usr/share/nginx/html/index.html",
-      "sudo sed -i     -e \"s#YYYYYYYY#${var.dns_hostname}#g\"             /usr/share/nginx/html/index.html"    ]
+      "sudo sed -i.bak -e \"s#XXXXXXXX# `hostname` (`curl ifconfig.co`)#g\" /usr/share/nginx/html/index.html",
+      "sudo sed -i     -e \"s#YYYYYYYY# ${var.dns_hostname}#g\"             /usr/share/nginx/html/index.html"    ]
   }
 }
