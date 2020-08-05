@@ -111,7 +111,7 @@ Details
 - 1 filesystem (File Storage) that will be used on the DB system to store staging files, backups...
 - Filesystem NFS-mounted automatically on the DB system using remote-exec provisioner
 
-Last update: December 30, 2019
+Last update: August 5, 2020
 ```
 
 ### 05b_OCI_demo_vcn_DB_BM_dataguard
@@ -125,7 +125,20 @@ Details
 - Data Guard enabled on DB1 (creates DB1 standby instance in DB system #2)
 - Copy local file to remote DB system using file provisioner
 
-Last update: January 15, 2020
+Last update: August 5, 2020
+```
+
+## 05c_OCI_demo_vcn_DB_VM_dataguard
+
+```
+Summary: basic VCN + public subnet + DB SYSTEM (VM shape) in same region
+
+Details
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- 1 DB system on VM.Standard* shape with 1 DB instance
+- Dataguard enabled on DB system (creates second VM DB system in SAME REGION, SAME VCN and SAME SUBNET)
+
+Last update: August 05, 2020
 ```
 
 ### 06_OCI_demo_vcn_OL7_dev_image_pv
