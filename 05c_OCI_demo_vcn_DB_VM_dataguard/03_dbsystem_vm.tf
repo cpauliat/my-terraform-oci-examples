@@ -98,7 +98,7 @@ output "PRIMARY_DB_SYSTEM" {
   . oraenv            (database name is ${var.VM-DBName})
   sqlplus / as sysdba
 
-  Note: password for SYS and SYSTEM accounts is ${random_string.tf-demo05c-dbs-passwd.result}
+  Note: password for PDBUSER (in PDB only), SYS and SYSTEM accounts is ${random_string.tf-demo05c-dbs-passwd.result}
 
   ---- Check Data Guard database role in SQLPLUS (should be PRIMARY)
   select database_role from v$database;
@@ -142,7 +142,7 @@ output "STANDBY_DB_SYSTEM" {
   . oraenv            (database name is ${var.VM-DBName})
   sqlplus / as sysdba
 
-  Note: password for SYS and SYSTEM accounts is ${random_string.tf-demo05c-dbs-passwd.result}
+  Note: password for PDBUSER (in PDB only), SYS and SYSTEM accounts is ${random_string.tf-demo05c-dbs-passwd.result}
 
   ---- Check Data Guard database role in SQLPLUS (should be PHYSICAL STANDBY)
   select database_role from v$database;
