@@ -44,30 +44,34 @@ resource "oci_core_security_list" "tf-demo05-subnet1-sl" {
   ingress_security_rules {
     protocol = "all"
     source   = var.cidr_vcn
+    description = "Allow all traffic within VCN"
   }
+
   ingress_security_rules {
     protocol = "6" # tcp
     source   = var.authorized_ips
-
+    description = "Allow SSH access from authorised public IP"
     tcp_options {
       min = 22
       max = 22
     }
   }
+
   ingress_security_rules {
     protocol = "6" # tcp
     source   = var.authorized_ips
-
+    description = "Allow SQLNET access from authorised public IP"
     tcp_options {
       min = 1521
       max = 1521
     }
   }
+
   # needed. See https://docs.cloud.oracle.com/iaas/Content/Network/Troubleshoot/connectionhang.htm?Highlight=MTU#Path
   ingress_security_rules {
     protocol = "1" # icmp
     source   = var.authorized_ips
-
+    description = "Enable MTU negotiation for communication from authorised public IP"
     icmp_options {
       type = 3
       code = 4
