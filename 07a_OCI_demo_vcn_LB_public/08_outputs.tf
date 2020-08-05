@@ -14,7 +14,7 @@ Host d07a-ws1
           proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07a-bastion
 Host d07a-ws2
           Hostname ${oci_core_instance.tf-demo07a-ws2.private_ip}
-          User oracle
+          User opc
           IdentityFile ${var.ssh_private_key_file_websrv}
           StrictHostKeyChecking no
           proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07a-bastion
