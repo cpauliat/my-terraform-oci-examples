@@ -171,6 +171,22 @@ Details:
 Last update: August 6, 2020
 ```
 
+### 07b_OCI_demo_vcn_LB_public_path_routing
+
+```
+Summary: 1 VCN + 3 compute instances (2 web servers + 1 bastion) + 1 public load balancer for HTTP with path route set
+
+Details:
+- 1 VCN with 1 public regional subnet and 1 private regional subnet
+- 2 compute instances for web servers in private subnet with HTTP web server 
+- 1 compute instance for bastion host
+- 1 public load balancer with HTTP listener on port 80 with path route set 
+  (/app1 directed to web server 1 and /app2 directed to web server 2)
+- after provisioning, print instructions for connections (HTTP and SSH connections)
+
+Last update: August 6, 2020
+```
+
 ### 09_OCI_demo_vcn_VirtualBox_VNC
 
 ```
