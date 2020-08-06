@@ -168,7 +168,7 @@ Details:
 - 1 public load balancer with HTTP listener on port 80
 - after provisioning, print instructions for connections (HTTP and SSH connections)
 
-Last update: July 16, 2020
+Last update: August 6, 2020
 ```
 
 ### 09_OCI_demo_vcn_VirtualBox_VNC

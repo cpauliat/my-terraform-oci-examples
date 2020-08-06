@@ -34,8 +34,8 @@ output "CONNECTIONS" {
      Run one of following commands on your Linux/MacOS desktop/laptop
 
      ssh -F sshcfg d07a-bastion             to connect to bastion host
-     ssh -F sshcfg d07a-ws1                 to connect to Web Server #1
-     ssh -F sshcfg d07a-ws2                 to connect to Web Server #2
+     ssh -F sshcfg d07a-ws1                 to connect to Web server #1
+     ssh -F sshcfg d07a-ws2                 to connect to Web server #2
 
   2) ---- HTTP connection to public load balancer
      Open the following URL in your Web browser:

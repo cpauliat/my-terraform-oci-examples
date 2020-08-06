@@ -3,7 +3,7 @@ resource "oci_core_virtual_network" "tf-demo07a-vcn" {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo07a-vcn"
-  dns_label      = "tfdemovcn"
+  dns_label      = "demo07a"
 }
 
 # ========== Objects for public subnet
@@ -24,6 +24,7 @@ resource "oci_core_route_table" "tf-demo07a-rt-public" {
   route_rules {
     destination       = "0.0.0.0/0"
     network_entity_id = oci_core_internet_gateway.tf-demo07a-ig.id
+    description       = "Default route to Internet Gateway"
   }
 }
 
@@ -36,17 +37,13 @@ resource "oci_core_security_list" "tf-demo07a-subnet-sl-public" {
   egress_security_rules {
     protocol    = "all"
     destination = "0.0.0.0/0"
+    description = "Allow all outgoing traffic"
   }
 
   ingress_security_rules {
-    protocol = "all"
-    source   = var.cidr_vcn
-  }
-
-  ingress_security_rules {
-    protocol = "6" # tcp
-    source   = var.authorized_ips
-
+    protocol    = "6" # tcp
+    source      = var.authorized_ips
+    description = "Allow SSH from authorized public IP address"
     tcp_options {
       min = 22
       max = 22
@@ -54,9 +51,9 @@ resource "oci_core_security_list" "tf-demo07a-subnet-sl-public" {
   }
 
   ingress_security_rules {
-    protocol = "6" # tcp
-    source = "0.0.0.0/0"
-
+    protocol    = "6" # tcp
+    source      = "0.0.0.0/0"
+    description = "Allow HTTP from authorized public IP address"
     tcp_options {
       min = 80
       max = 80
@@ -94,6 +91,7 @@ resource "oci_core_route_table" "tf-demo07a-rt-private" {
   route_rules {
     destination       = "0.0.0.0/0"
     network_entity_id = oci_core_nat_gateway.tf-demo07a-natgw.id
+    description       = "Default route to NAT Gateway"
   }
 }
 
@@ -106,25 +104,23 @@ resource "oci_core_security_list" "tf-demo07a-subnet-sl-private" {
   egress_security_rules {
     protocol    = "all"
     destination = "0.0.0.0/0"
+    description = "Allow all outgoing traffic"
   }
 
-  ingress_security_rules {
-    protocol = "all"
-    source   = var.cidr_vcn
-  }
   ingress_security_rules {
     protocol = "6" # tcp
-    source   = var.cidr_vcn
-
+    source   = var.cidr_public_subnet
+    description = "Allow HTTP access from public load balancer"
     tcp_options {
       min = 80
       max = 80
     }
   }
-  ingress_security_rules {
-    protocol = "6" # tcp
-    source   = var.cidr_vcn
 
+  ingress_security_rules {
+    protocol    = "6" # tcp
+    source      = var.cidr_public_subnet
+    description = "Allow SSH access from bastion host"
     tcp_options {
       min = 22
       max = 22

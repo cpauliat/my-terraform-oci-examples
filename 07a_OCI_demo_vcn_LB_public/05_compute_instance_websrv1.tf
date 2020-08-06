@@ -11,8 +11,9 @@ resource "oci_core_instance" "tf-demo07a-ws1" {
   }
 
   create_vnic_details {
-    subnet_id      = oci_core_subnet.tf-demo07a-public-subnet.id
-    hostname_label = "websrv1"
+    subnet_id        = oci_core_subnet.tf-demo07a-private-subnet.id
+    hostname_label   = "websrv1"
+    assign_public_ip = false
   }
 
   metadata = {
