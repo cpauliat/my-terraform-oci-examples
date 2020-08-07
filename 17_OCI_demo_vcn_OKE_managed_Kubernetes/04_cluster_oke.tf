@@ -60,7 +60,7 @@ data "oci_containerengine_node_pool" "tf-demo17-npool" {
 resource "null_resource" "nodes_ready" {
   depends_on = [ oci_containerengine_node_pool.tf-demo17-npool ]
   provisioner "local-exec" {
-    command = "echo 'Wait 6 minutes for the worker nodes to be ready'; sleep 360"
+    command = "echo 'Wait 10 minutes for the worker nodes to be ready'; sleep 600"
   }
 }
 
