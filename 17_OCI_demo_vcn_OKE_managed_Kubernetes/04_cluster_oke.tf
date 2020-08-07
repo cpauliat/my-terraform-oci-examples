@@ -154,9 +154,9 @@ output "INSTRUCTIONS" {
     Wait for worker nodes to be ready before using the cluster
     
     Optionally, you can SSH to the workers nodes with following commands:
+        $ ssh -F sshcfg oke-worker0
         $ ssh -F sshcfg oke-worker1
         $ ssh -F sshcfg oke-worker2
-        $ ssh -F sshcfg oke-worker3
 
 EOF
 
