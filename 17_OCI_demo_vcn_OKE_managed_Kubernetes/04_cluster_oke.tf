@@ -67,24 +67,21 @@ resource "null_resource" "nodes_ready" {
 resource "local_file" "sshconfig" {
   depends_on = [ null_resource.nodes_ready ]
   content = <<EOF
-Host oke-worker${substr(strrev(oci_containerengine_node_pool.tf-demo17-npool.nodes[0].name), 0, 1)}
+Host oke-worker${substr(strrev(data.oci_containerengine_node_pool.tf-demo17-npool.nodes[0].name), 0, 1)}
           Hostname ${data.oci_containerengine_node_pool.tf-demo17-npool.nodes[0].public_ip}
           User opc
           IdentityFile ${var.ssh_private_key_file}
-Host oke-worker${substr(strrev(oci_containerengine_node_pool.tf-demo17-npool.nodes[1].name), 0, 1)}
+Host oke-worker${substr(strrev(data.oci_containerengine_node_pool.tf-demo17-npool.nodes[1].name), 0, 1)}
           Hostname ${data.oci_containerengine_node_pool.tf-demo17-npool.nodes[1].public_ip}
           User opc
           IdentityFile ${var.ssh_private_key_file}
-Host oke-worker${substr(strrev(oci_containerengine_node_pool.tf-demo17-npool.nodes[2].name), 0, 1)}
+Host oke-worker${substr(strrev(data.oci_containerengine_node_pool.tf-demo17-npool.nodes[2].name), 0, 1)}
           Hostname ${data.oci_containerengine_node_pool.tf-demo17-npool.nodes[2].public_ip}
           User opc
           IdentityFile ${var.ssh_private_key_file}
 EOF
   filename = "sshcfg"
 }
-
-#Host oke-worker${substr(strrev(oci_containerengine_node_pool.tf-demo17-npool.nodes[2].name), 0, 1)}
-
 
 # --------- Create the Kubeconfig file
 data "oci_containerengine_cluster_kube_config" "tf-demo17-oke" {
@@ -157,6 +154,7 @@ output "INSTRUCTIONS" {
         $ ssh -F sshcfg oke-worker0
         $ ssh -F sshcfg oke-worker1
         $ ssh -F sshcfg oke-worker2
+
 
 EOF
 
