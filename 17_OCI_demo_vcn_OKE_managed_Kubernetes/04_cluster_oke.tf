@@ -155,6 +155,14 @@ output "INSTRUCTIONS" {
         $ ssh -F sshcfg oke-worker1
         $ ssh -F sshcfg oke-worker2
 
+    If you have HELM installed on your machine, you can deploy NGNIX in a K8s pod using the following commands:
+        $ helm repo add nginx-stable https://helm.nginx.com/stable
+        $ helm repo update
+        $ helm install nginx-ingress nginx-stable/nginx-ingress
+
+    You can then list pods and display details for pod using the following commands: 
+        $ kubectl get pods
+        $ kubectl describe pods <pod_name>    
 
 EOF
 
