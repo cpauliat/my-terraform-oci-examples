@@ -3,12 +3,12 @@ data "oci_core_images" "OLImageOCID-ol7-r2" {
   provider                 = oci.r2
   compartment_id           = var.r2_compartment_ocid
   operating_system         = "Oracle Linux"
-  operating_system_version = "7.7"
+  operating_system_version = "7.9"
 
   # filter to avoid Oracle Linux 7.x images for GPU
   filter {
     name   = "display_name"
-    values = ["^.*Oracle-Linux-7.7-[^G].*$"]
+    values = ["^.*Oracle-Linux-7.9-[^G].*$"]
     regex  = true
   }
 }
