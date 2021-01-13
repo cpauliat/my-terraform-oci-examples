@@ -13,7 +13,7 @@ data "oci_core_images" "ImageOCID-ol7" {
 }
 
 # ------ Create a compute instance from the most recent Oracle Linux 7.x image
-resource "oci_core_instance" "tf-demo22-ol7" {
+resource "oci_core_instance" "tf-demo22-dbclient" {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo22-ol7-dbclient"
@@ -28,51 +28,63 @@ resource "oci_core_instance" "tf-demo22-ol7" {
   create_vnic_details {
     subnet_id      = oci_core_subnet.tf-demo22-public-subnet1.id
     hostname_label = "dbclient"
-    #  private_ip    = "10.0.0.3"
   }
 
   metadata = {
-    ssh_authorized_keys = file(var.ssh_public_key_file_ol7)
-    user_data           = base64encode(file(var.BootStrapFile_ol7))
+    ssh_authorized_keys   = file(var.ssh_public_key_file_dbclient)
+    user_data             = base64encode(file(var.BootStrapFile_dbclient))
+    myarg_db_name         = var.adb_db_name
+    myarg_db_password     = random_string.tf-demo22-adb-password.result
+    myarg_wallet_filename = var.adb_wallet_filename
   }
 }
 
 resource "local_file" "sshconfig" {
   content = <<EOF
-Host dbclient-opc
-          Hostname ${oci_core_instance.tf-demo22-ol7.public_ip}
+Host d22dbclient-opc
+          Hostname ${oci_core_instance.tf-demo22-dbclient.public_ip}
           User opc
-          IdentityFile ${var.ssh_private_key_file_ol7}
-Host dbclient-oracle
-          Hostname ${oci_core_instance.tf-demo22-ol7.public_ip}
+          IdentityFile ${var.ssh_private_key_file_dbclient}
+Host d22dbclient-oracle
+          Hostname ${oci_core_instance.tf-demo22-dbclient.public_ip}
           User oracle
-          IdentityFile ${var.ssh_private_key_file_ol7}
+          IdentityFile ${var.ssh_private_key_file_dbclient}
 EOF
 
 
   filename = "sshcfg"
 }
 
+# ------ Copy wallet file to dbclient compute instance thru bastion
+resource "null_resource" "tf-demo22-connect-dbclient" {
+
+  depends_on = [ local_file.tf-demo22-adb-wallet ]
+
+  provisioner "file" {
+
+    connection {
+        host                 = oci_core_instance.tf-demo22-dbclient.public_ip
+        user                 = "opc"
+        private_key          = file(var.ssh_private_key_file_dbclient)
+    }
+    source      = var.adb_wallet_filename
+    destination = "/tmp/${var.adb_wallet_filename}"
+  }
+}
+
 # ------ Display the complete ssh command needed to connect to the instance
 output "DB_client" {
   value = <<EOF
 
-  Connection to Database client (Oracle Linux 7 instance with Oracle Instant Client 19.5)
+  1) ---- Connection to Database client host (Oracle Linux 7 instance with Oracle Instant Client)
+     Run one of following commands on your Linux/MacOS desktop/laptop
 
-  as user opc   :   ssh -F sshcfg dbclient-opc
+     ssh -F sshcfg d22dbclient-opc          (to connect as user opc)
+     ssh -F sshcfg d22dbclient-oracle       (to connect as user oracle, after a few minutes wait)
 
-  as user oracle:   ssh -F sshcfg dbclient-oracle
-
-  You need to download the Client Credentials (instance Wallet or regional wallet) from ADB service Console
-  and then run the following commands to finish configuration
-
-  scp -F sshcfg Wallet_${var.adb_db_name}.zip dbclient-oracle:/home/oracle/wallet.zip
-  ssh -F sshcfg dbclient-oracle "cd /home/oracle/credentials_adb; unzip ../wallet.zip"
-  ssh -F sshcfg dbclient-oracle "sed -i.bak 's#?/network/admin#/home/oracle/credentials_adb#' /home/oracle/credentials_adb/sqlnet.ora"
- 
-  Once done:
-  1) connect to dbclient with user oracle:            ssh -F sshcfg dbclient-oracle
-  2) connect to Autonomous DB instance with sqlplus:  sqlplus admin/${random_string.tf-demo22-adb-password.result}@${var.adb_db_name}_medium
+  2) ---- Connection to ADB instance with sqlplus 
+     ssh -F sshcfg d22dbclient-oracle
+     ./sqlplus.sh
 
 EOF
 

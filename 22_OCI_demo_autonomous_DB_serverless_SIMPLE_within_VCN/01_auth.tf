@@ -6,9 +6,9 @@ variable "private_key_path" {}
 variable "compartment_ocid" {}
 variable "region" {}
 variable "AD" {}
-variable "BootStrapFile_ol7" {}
-variable "ssh_public_key_file_ol7" {}
-variable "ssh_private_key_file_ol7" {}
+variable "BootStrapFile_dbclient" {}
+variable "ssh_public_key_file_dbclient" {}
+variable "ssh_private_key_file_dbclient" {}
 variable "authorized_ips" {}
 variable "cidr_vcn" {}
 variable "cidr_subnet1" {}
@@ -22,6 +22,9 @@ variable "adb_display_name" {}
 variable "adb_license_model" {}
 variable "adb_autoscaling_enabled" {}
 variable "adb_data_safe_status" {}
+variable "adb_wallet_password" {}
+variable "adb_wallet_type" {}
+variable "adb_wallet_filename" {}
 
 # ---- provider
 provider "oci" {

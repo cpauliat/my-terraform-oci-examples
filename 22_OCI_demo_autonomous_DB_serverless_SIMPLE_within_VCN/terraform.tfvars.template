@@ -9,8 +9,8 @@ compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
 region           = "eu-frankfurt-1"
 
 # ---- SSH key pair (UPDATE INFORMATION HERE BEFORE USE)
-ssh_public_key_file_ol7 = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
-ssh_private_key_file_ol7= "/Users/cpauliat/.ssh/id_rsa"
+ssh_public_key_file_dbclient = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+ssh_private_key_file_dbclient= "/Users/cpauliat/.ssh/id_rsa"
 
 # ---- Authorized public IPs ingress for DB Client
 #authorized_ips         = "90.119.77.177/32"        # a specific public IP on Internet
@@ -23,11 +23,14 @@ adb_is_free_tier        = "true"
 adb_cpu_core_count      = "1"       # not used with free tier
 adb_data_storage_tbs    = "1"       # not used with free tier
 adb_db_name             = "atppdb1"
-#adb_password            = "OCI2019##atp"
+#adb_password            = "OCI2021##atp"
 adb_display_name        = "tf-demo22-atppdb1"
 adb_license_model       = "LICENSE_INCLUDED"        # LICENSE_INCLUDED or BRING_YOUR_OWN_LICENSE
 adb_autoscaling_enabled = "false"                   # or "true"
 adb_data_safe_status    = "REGISTERED"              # REGISTERED or NOT_REGISTERED
+adb_wallet_password     = "WAL#2021#let"            # Wallet password
+adb_wallet_type         = "SINGLE"                  # SINGLE for instance wallet or ALL for regional wallet
+adb_wallet_filename     = "wallet.zip"
 
 # ============== NO UPDATE NEEDED BELOW
 
@@ -38,5 +41,5 @@ AD                = "1"
 cidr_vcn          = "10.0.0.0/16"
 cidr_subnet1      = "10.0.0.0/24"
 
-# -- OL 7 VM
-BootStrapFile_ol7 = "userdata/bootstrap_ol7.sh"
+# ---- OL7 DB client
+BootStrapFile_dbclient = "userdata/bootstrap_dbclient.sh"
