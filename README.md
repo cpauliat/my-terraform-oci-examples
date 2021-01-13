@@ -392,7 +392,7 @@ Details:
 - 1 compute instance (BASTION HOST) Oracle Linux 7 (public IP) 
 - automatic download of wallet file and automatic configuration of sqlplus using cloud-init
 
-Last update: November 27, 2019
+Last update: January 13, 2021
 ```
 
 ### 22_OCI_demo_autonomous_DB_serverless_SIMPLE_within_VCN
@@ -405,10 +405,10 @@ Details:
 - 1 Serverless Autonomous Database instance (shared) with private endpoint in VCN
   ATP or ADW with password generated using random provider
   https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/adbsprivateaccess.htm
-- 1 compute instance Oracle Linux 7 (public IP) with Oracle Instant Client 19.5 installed by cloud-init
-- manual download of wallet file and manual guided configuration for sqlplus access
+- 1 compute instance (DB CLIENT) Oracle Linux 7 (public IP) with Oracle Instant Client 19.5 installed by cloud-init
+- automatic download of wallet file and automatic configuration of sqlplus using cloud-init
 
-Last update: March 31, 2020
+Last update: January 13, 2021
 ```
 
 https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/adbsprivateaccess.htm

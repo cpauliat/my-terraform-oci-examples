@@ -29,12 +29,12 @@ adb_is_free_tier        = "false"                   # true or false
 adb_cpu_core_count      = "1"                       # not used with free tier
 adb_data_storage_tbs    = "1"                       # not used with free tier
 adb_db_name             = "atppdb1"                 # lowercase
-adb_password            = "OCI2019##atp"
+adb_password            = "OCI2021##atp"
 adb_display_name        = "tf-demo21-atppdb1"
 adb_license_model       = "LICENSE_INCLUDED"        # LICENSE_INCLUDED or BRING_YOUR_OWN_LICENSE
 adb_autoscaling_enabled = "false"                   # or "true"
 adb_data_safe_status    = "REGISTERED"              # REGISTERED or NOT_REGISTERED
-adb_wallet_password     = "WAL#2019#let"            # Wallet password 
+adb_wallet_password     = "WAL#2021#let"            # Wallet password 
 adb_wallet_type         = "SINGLE"                  # SINGLE for instance wallet or ALL for regional wallet
 adb_wallet_filename     = "wallet.zip"
 

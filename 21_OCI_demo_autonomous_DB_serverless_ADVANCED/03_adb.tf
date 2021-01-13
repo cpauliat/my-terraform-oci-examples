@@ -45,7 +45,19 @@ resource "oci_database_autonomous_database" "tf-demo21-adb" {
 }
 
 # ---- Generate and download a Wallet 
-data "oci_database_autonomous_database_wallet" "tf-demo21-adb-wallet" {
+#data "oci_database_autonomous_database_wallet" "tf-demo21-adb-wallet" {
+#  autonomous_database_id = oci_database_autonomous_database.tf-demo21-adb.id
+#  password               = var.adb_wallet_password
+#  generate_type          = var.adb_wallet_type
+#  base64_encode_content  = "true"
+#}
+
+#resource "local_file" "tf-demo21-adb-wallet" {
+#  content_base64 = data.oci_database_autonomous_database_wallet.tf-demo21-adb-wallet.content
+#  filename       = var.adb_wallet_filename
+#}
+
+resource "oci_database_autonomous_database_wallet" "tf-demo21-adb-wallet" {
   autonomous_database_id = oci_database_autonomous_database.tf-demo21-adb.id
   password               = var.adb_wallet_password
   generate_type          = var.adb_wallet_type
@@ -53,7 +65,7 @@ data "oci_database_autonomous_database_wallet" "tf-demo21-adb-wallet" {
 }
 
 resource "local_file" "tf-demo21-adb-wallet" {
-  content_base64 = data.oci_database_autonomous_database_wallet.tf-demo21-adb-wallet.content
+  content_base64 = oci_database_autonomous_database_wallet.tf-demo21-adb-wallet.content
   filename       = var.adb_wallet_filename
 }
 
