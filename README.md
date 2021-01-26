@@ -372,10 +372,10 @@ Summary: Serverless Autonomous Database instance (ATP or ADW)
 Details:
 - 1 Serverless Autonomous Database instance (shared): ATP or ADW with password generated using random provider
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
-- 1 compute instance Oracle Linux 7 (public IP) with Oracle Instant Client 18.3 installed by cloud-init
+- 1 compute instance Oracle Linux 7 (public IP) with Oracle Instant Client 19.3 installed by cloud-init
 - manual download of wallet file and manual configuration for sqlplus access
 
-Last update: November 27, 2019
+Last update: January 26, 2021
 ```
 
 ### 21_OCI_demo_autonomous_DB_serverless_ADVANCED
