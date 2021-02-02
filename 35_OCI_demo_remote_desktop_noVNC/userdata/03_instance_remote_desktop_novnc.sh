@@ -13,7 +13,7 @@ yum install -y xorg-x11-xauth xorg-x11-fonts-* xorg-x11-utils tigervnc-server
 echo "========== Create a VNC server on desktop :1 (port 5901) for user opc"
 cd /lib/systemd/system
 cp -p vncserver@.service vncserver@:1.service
-sed -i -e 's#<USER>#opc#g' -e 's#ExecStart=/usr/bin/vncserver#ExecStart=/usr/bin/vncserver -geometry 1600x900#' vncserver@:1.service
+sed -i -e 's#<USER>#opc#g' vncserver@:1.service
 
 echo "========== Create the VNC password for user opc"
 mkdir -p /home/opc/.vnc
