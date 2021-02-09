@@ -31,6 +31,7 @@ systemctl enable vncserver@:1.service
 systemctl start vncserver@:1.service
 
 echo "========== Install noVNC (HTML5 Web interface for VNC)"
+yum-config-manager --enable ol7_developer_EPEL
 yum install -y novnc python-websockify numpy
 
 echo "========== Create Self-Signed certificates for HTTPS" 
