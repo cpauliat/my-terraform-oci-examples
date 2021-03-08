@@ -3,9 +3,15 @@
 ### Send stdout and stderr to /var/log/cloud-init.log
 exec 1> /var/log/cloud-init.log 2>&1
 
-echo "========== Install and configure Web server"
-yum -y install httpd
-echo "WebServer IP `hostname`" >>/var/www/html/index.html
+echo "========== Install and configure Apache Web server with PHP support"
+yum -y install httpd php
+cat >/var/www/html/index.php << EOF
+<html>
+<body>
+This web page is served by server <?php echo gethostname(); ?>
+</body>
+</html>
+EOF
 systemctl start httpd
 systemctl enable httpd
 
