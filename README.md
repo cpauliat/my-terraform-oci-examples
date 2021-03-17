@@ -3,19 +3,20 @@
 Prequisites: Terraform 0.12 or later
 
 To use the demos:
-1) Get a copy of the Terraform files by downloading then unzipping file
+
+1. Get a copy of the Terraform files by downloading then unzipping file
    https://github.com/cpauliat/my-terraform-oci-examples/archive/master.zip
-2) Install Terraform on your machine
-3) Create an API key for your user in the CloudUI/console of your OCI tenancy
-(see https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm)
-You can use my script available at https://github.com/cpauliat/my-oci-scripts/blob/master/generate_api_keys.sh)
-4) Cd to one of the demo folders
-5) Copy file **terraform.tfvars.template** to **terraform.tfvars**
-6) Edit and update file terraform.tfvars for this demo
-7) run `terraform init` command in the folder containing .tf files (only needed once before first test)
-8) run `terraform plan` to see what actions will be done (dry run)
-9) run `terraform apply` to execute those actions and provision the infrastructure
-10) Finally, run `terraform destroy` to delete objects created previously with `terraform apply`
+2. Install Terraform on your machine
+3. Create an API key for your user in the CloudUI/console of your OCI tenancy
+   (see https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm)
+   You can use my script available at https://github.com/cpauliat/my-oci-scripts/blob/master/generate_api_keys.sh)
+4. Cd to one of the demo folders
+5. Copy file **terraform.tfvars.template** to **terraform.tfvars**
+6. Edit and update file terraform.tfvars for this demo
+7. run `terraform init` command in the folder containing .tf files (only needed once before first test)
+8. run `terraform plan` to see what actions will be done (dry run)
+9. run `terraform apply` to execute those actions and provision the infrastructure
+10. Finally, run `terraform destroy` to delete objects created previously with `terraform apply`
 
 ### 01_OCI_demo_vcn_OL7_instance
 
@@ -24,7 +25,7 @@ Summary: basic VCN + basic Oracle Linux 7 compute instance for Oracle Linux 7
 
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
-- 1 compute instance Oracle Linux 7 with public IP and Cloud-init post provisioning actions 
+- 1 compute instance Oracle Linux 7 with public IP and Cloud-init post provisioning actions
 - after provisioning, print instructions to connect to the compute instance
 
 Last update: January 28, 2020
@@ -37,7 +38,7 @@ Summary: basic VCN + basic compute instance for Oracle Linux 7 with SSH keys gen
 
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
-- 1 compute instance Oracle Linux 7 with public IP and Cloud-init post provisioning actions 
+- 1 compute instance Oracle Linux 7 with public IP and Cloud-init post provisioning actions
 - after provisioning, print instructions to connect to the compute instances (SSH for Linux)
 
 Last update: January 20, 2020
@@ -80,7 +81,7 @@ Summary: basic VCN + several identical compute instances for Oracle Linux 7 usin
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
 - several compute instances Oracle Linux 7 with public IP and Cloud-init post provisioning actions (without block volume)
-- get name, shape, hostname and post-provisioning from array variables 
+- get name, shape, hostname and post-provisioning from array variables
 - after provisioning, print instructions to connect to the compute instances (SSH for Linux, RDP for Windows)
 
 Last update: January 9, 2020
@@ -144,7 +145,7 @@ Last update: August 05, 2020
 ### 06_OCI_demo_vcn_OL7_dev_image_pv
 
 ```
-Summary: basic VCN + 1 compute instance from Oracle Linux Cloud developer image 19.11 
+Summary: basic VCN + 1 compute instance from Oracle Linux Cloud developer image 19.11
 
 Details:
 - 1 VCN with 1 public AD-specific subnet + 1 internet gateway + 1 route table + 1 security list
@@ -163,7 +164,7 @@ Summary: 1 VCN + 3 compute instances (2 web servers + 1 bastion) + 1 public load
 
 Details:
 - 1 VCN with 1 public regional subnet and 1 private regional subnet
-- 2 compute instances for web servers in private subnet with HTTP web server 
+- 2 compute instances for web servers in private subnet with HTTP web server
 - 1 compute instance for bastion host
 - 1 public load balancer with HTTP listener on port 80
 - after provisioning, print instructions for connections (HTTP and SSH connections)
@@ -178,13 +179,29 @@ Summary: 1 VCN + 3 compute instances (2 web servers + 1 bastion) + 1 public load
 
 Details:
 - 1 VCN with 1 public regional subnet and 1 private regional subnet
-- 2 compute instances for web servers in private subnet with HTTP web server 
+- 2 compute instances for web servers in private subnet with HTTP web server
 - 1 compute instance for bastion host
-- 1 public load balancer with HTTP listener on port 80 with path route set 
+- 1 public load balancer with HTTP listener on port 80 with path route set
   (/app1 directed to web server 1 and /app2 directed to web server 2)
 - after provisioning, print instructions for connections (HTTP and SSH connections)
 
 Last update: August 6, 2020
+```
+
+### 07c_OCI_demo_vcn_LB_public_HTTPS
+
+```
+Summary: 1 VCN + 3 compute instances (2 web servers + 1 bastion) + 1 public load balancer with HTTPS enabled for the load balancer
+
+Details:
+- 1 VCN with 1 public regional subnet and 1 private regional subnet
+  Note: using Terraform dynamic blocks for the ingress rules in security list
+- 2 compute instances for web servers in private subnet with HTTP web server
+- 1 compute instance for bastion host
+- 1 public load balancer with HTTPS listener on port 443 with official certificate
+- after provisioning, print instructions for connections (HTTP and SSH connections)
+
+Last update: March 16, 2021
 ```
 
 ### 09_OCI_demo_vcn_VirtualBox_VNC
@@ -207,7 +224,7 @@ Last update: December 18, 2019
 ### 10_OCI_demo_vcn_win2016_instance
 
 ```
-Summary: basic VCN + basic Microsoft Windows Server 2016/2019 compute instance 
+Summary: basic VCN + basic Microsoft Windows Server 2016/2019 compute instance
 
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
@@ -226,7 +243,7 @@ Details:
 - Same as 10_OCI_demo_vcn_win2016_instance except the fact that a new random password is set with cloud-init,
   replacing the temporary password
 - Please note that the generated password is passed to cloud-init script using metadata which is simple but NOT SECURE.
-  If you plan to keep the compute instance, you need to change the password for user opc and opc2 
+  If you plan to keep the compute instance, you need to change the password for user opc and opc2
 - Provisioning: install Firefox, Filezilla, Notepad++ and OCI CLI, and display file extensions in File explorer.
 
 Last update: July 10, 2020
@@ -314,7 +331,7 @@ Last update: September 9, 2019
 Summary: basic example showing how to use Terraform modules
 
 Details:
-- 2 basics VCNs 
+- 2 basics VCNs
 - 1 compute instance Oracle Linux 7 (public IP) in 1st VCN
 
 Last update: December 5, 2019
@@ -381,7 +398,7 @@ Last update: January 26, 2021
 ### 21_OCI_demo_autonomous_DB_serverless_ADVANCED
 
 ```
-Summary: Serverless Autonomous Database instance (ATP or ADW) with ACL for VCN and automatic SQLplus configuration  
+Summary: Serverless Autonomous Database instance (ATP or ADW) with ACL for VCN and automatic SQLplus configuration
 
 Details:
 - 1 Serverless Autonomous Database instance (shared): ATP or ADW with password generated using random provider
@@ -389,7 +406,7 @@ Details:
   - 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list for BASTION HOST
   - 1 private regional subnet + 1 NAT gateway + 1 service gateway + 1 route table + 1 security list for DB CLIENT HOST
 - 1 compute instance (DB CLIENT) Oracle Linux 7 (private IP) with Oracle Instant Client 18.5 or 19.3 installed by cloud-init
-- 1 compute instance (BASTION HOST) Oracle Linux 7 (public IP) 
+- 1 compute instance (BASTION HOST) Oracle Linux 7 (public IP)
 - automatic download of wallet file and automatic configuration of sqlplus using cloud-init
 
 Last update: January 13, 2021
@@ -425,7 +442,7 @@ Details:
 - NGINX Web server automatically configured with SSL certificate (HTTPS) using certbot from letsencrypt.org
 - New NGINX welcome page (zip file pushed by Terraform file provisioner and extract by remote-exec provisioner)
 
-Prerequisite: 
+Prerequisite:
 - Register a public DNS domain (in my case, I use freenom.com with free domain) and delegate name resolution to OCI DNS zone.
 
 Last update: October 22, 2019
@@ -440,9 +457,9 @@ Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
 - 2 compute instances Oracle Linux 7 with public IP acting as primary and secondary web servers
   ngnix installed and welcome page configured using cloud-init and remote-exec post-provisioning tasks
-- 1 DNS zone with 1 traffic management steering policy (FAILOVER mode) for DNS hostname 
+- 1 DNS zone with 1 traffic management steering policy (FAILOVER mode) for DNS hostname
 
-Prerequisite: 
+Prerequisite:
 - Register a public DNS domain (in my case, I use freenom.com with free domain) and delegate name resolution to OCI DNS zone.
 
 Last update: July 29, 2020
@@ -455,8 +472,8 @@ Summary: HTTPS Remote Desktop using Oracle Secure Global Desktop from OCI Market
 
 Details:
 - 1 VCN with:
-  - 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list 
-  - 1 private regional subnet + 1 NAT gateway + 1 service gateway + 1 route table + 1 security list 
+  - 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+  - 1 private regional subnet + 1 NAT gateway + 1 service gateway + 1 route table + 1 security list
 - 1 compute instance (DESKTOP) Oracle Linux 7 (private IP) with cloud-init post-provisioning tasks
 - 1 compute instance (SGD HOST) Oracle Linux 7 (public IP) with cloud-init post-provisioning tasks
   including creation and publishing of new SGD applications for the DESKTOP instance
@@ -467,10 +484,10 @@ Last update: December 12, 2019
 ### 35_OCI_demo_remote_desktop_noVNC
 
 ```
-Summary: HTTPS Remote Desktop Oracle Linux 7 using noVNC WebUI (no VNC client needed) 
+Summary: HTTPS Remote Desktop Oracle Linux 7 using noVNC WebUI (no VNC client needed)
 
 Details:
-- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list 
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
 - 1 compute instance (DESKTOP) Oracle Linux 7 with cloud-init post-provisioning tasks:
   + install and configure VNC server (including VNC password from random string)
   + install and configure noVNC with HTTPS self signed certificate
@@ -484,7 +501,7 @@ Last update: December 18, 2019
 Summary: HTTPS Cockpit Web interface on Oracle Linux 8
 
 Details:
-- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list 
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
 - 1 compute instance Oracle Linux 8 with cloud-init post-provisioning tasks:
   + install and configure Cockpit Web Interface
   + create a new Linux user (with random password) to connect to Cockpit Web Interface
@@ -499,7 +516,7 @@ Summary: basic VCN + basic compute instance Oracle Linux 7 + reserved public IP
 
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
-- 1 compute instance Oracle Linux 7  
+- 1 compute instance Oracle Linux 7
 - 1 reserved public IP assigned to compute instance and protected against destruction (prevent_destroy = true)
 - after provisioning, print instructions to connect to the compute instance
 
@@ -513,7 +530,7 @@ Summary: basic VCN + several subnets using count
 
 Details:
 - 1 VCN with 1 internet gateway + 1 route table + 1 security list and n subnets
-- get name, cidr, dnslabem of subnets from array variables 
+- get name, cidr, dnslabem of subnets from array variables
 
 Last update: January 9, 2020
 ```
@@ -542,5 +559,3 @@ Details:
 
 Last update: July 23, 2020
 ```
-
-
