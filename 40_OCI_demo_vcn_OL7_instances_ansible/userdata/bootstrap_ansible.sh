@@ -1,10 +1,10 @@
 #!/bin/bash
 
-### Send stdout and stderr to /var/log/cloud-init.log
-exec 1> /var/log/cloud-init.log 2>&1
+### Send stdout and stderr to /var/log/cloud-init2.log
+exec 1> /var/log/cloud-init2.log 2>&1
 
 echo "========== Get argument(s) passed thru metadata"
-HOST1_HOSTNAME=`curl -L http://169.254.169.254/opc/v1/instance/metadata | jq -j ".myarg_host1_hostname"`
+HOST1_HOSTNAME=`curl -L http://169.254.169.254/opc/v1/instance/metadata/myarg_host1_hostname`
 
 echo "========== Create SSH config file for user opc"
 cat >> /home/opc/.ssh/config << EOF

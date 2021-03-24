@@ -1,7 +1,7 @@
 #!/bin/bash
 
-### Send stdout and stderr to /var/log/cloud-init.log
-exec 1> /var/log/cloud-init.log 2>&1
+### Send stdout and stderr to /var/log/cloud-init2.log
+exec 1> /var/log/cloud-init2.log 2>&1
 
 install_oracle_instant_client_18.5()
 {
@@ -52,7 +52,7 @@ EOF
 }
 
 echo "========== Get argument(s) passed thru metadata"
-DB_CLIENT_VERSION=`curl -L http://169.254.169.254/opc/v1/instance/metadata | jq -j ".myarg_db_client_version"`
+DB_CLIENT_VERSION=`curl -L http://169.254.169.254/opc/v1/instance/metadata/myarg_db_client_version`
 
 echo "========== Install and configure Oracle Instant client (including oracle user creation)"
 case $DB_CLIENT_VERSION in

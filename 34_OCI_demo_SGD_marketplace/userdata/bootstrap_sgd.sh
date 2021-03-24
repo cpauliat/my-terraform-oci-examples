@@ -1,11 +1,11 @@
 #!/bin/bash
 
-### Send stdout and stderr to /var/log/cloud-init.log
-exec 1> /var/log/cloud-init.log 2>&1
+### Send stdout and stderr to /var/log/cloud-init2.log
+exec 1> /var/log/cloud-init2.log 2>&1
 
 echo "========== Get argument(s) passed thru metadata"
-OPC_PASSWORD=`curl -L http://169.254.169.254/opc/v1/instance/metadata | jq -j ".myarg_opc_password"`
-OL7_PRIVATE_IP=`curl -L http://169.254.169.254/opc/v1/instance/metadata | jq -j ".myarg_ol7_private_ip"`
+OPC_PASSWORD=`curl -L http://169.254.169.254/opc/v1/instance/metadata/myarg_opc_password`
+OL7_PRIVATE_IP=`curl -L http://169.254.169.254/opc/v1/instance/metadata/myarg_ol7_private_ip`
 
 echo "========== Set opc password"
 echo $OPC_PASSWORD | passwd --stdin -f opc

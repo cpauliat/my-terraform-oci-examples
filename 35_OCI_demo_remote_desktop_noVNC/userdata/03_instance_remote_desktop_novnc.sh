@@ -1,10 +1,10 @@
 #!/bin/bash
 
-### Send stdout and stderr to /var/log/cloud-init.log
-exec 1> /var/log/cloud-init.log 2>&1
+### Send stdout and stderr to /var/log/cloud-init2.log
+exec 1> /var/log/cloud-init2.log 2>&1
 
 echo "========== Get argument(s) passed thru metadata"
-VNC_PASSWORD=`curl -L http://169.254.169.254/opc/v1/instance/metadata | jq -j ".myarg_vnc_password"`
+VNC_PASSWORD=`curl -L http://169.254.169.254/opc/v1/instance/metadata/myarg_vnc_password`
 
 echo "========== Install VNC"
 yum groupinstall "Server with GUI" -y

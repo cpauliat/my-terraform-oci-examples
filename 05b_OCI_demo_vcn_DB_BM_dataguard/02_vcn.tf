@@ -43,11 +43,13 @@ resource "oci_core_security_list" "tf-demo05b-subnet1-sl" {
   ingress_security_rules {
     protocol = "all"
     source   = var.cidr_vcn
+    description = "Allow all traffic within VCN"
   }
   
   ingress_security_rules {
     protocol = "6" # tcp
     source   = var.authorized_ips
+    description = "Allow SSH access from authorised public IP"
     tcp_options {
       min = 22
       max = 22
@@ -56,6 +58,7 @@ resource "oci_core_security_list" "tf-demo05b-subnet1-sl" {
   ingress_security_rules {
     protocol = "6" # tcp
     source   = var.authorized_ips
+    description = "Allow SQLNET access from authorised public IP"
     tcp_options {
       min = 1521
       max = 1521
