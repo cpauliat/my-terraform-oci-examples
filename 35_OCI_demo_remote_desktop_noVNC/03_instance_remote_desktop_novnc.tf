@@ -100,9 +100,11 @@ output "demo35" {
 
   ---- Connection to noVNC HTTP WebUI
   Open https://${oci_core_instance.demo35.public_ip} in your web browser  (Self signed certificate)
-  then use
-  opc password = ${random_string.vnc_password_opc.result}
+    then use
+    opc password = ${random_string.vnc_password_opc.result}
 
-
+  OR (LESS SECURE)
+    just open https://${oci_core_instance.demo35.public_ip}/vnc.html?password=${random_string.vnc_password_opc.result}
+    then click Connect
   EOF
 }
