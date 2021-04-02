@@ -1,5 +1,5 @@
 # ------ Create a compute instance for revproxy/reverse proxy host
-resource "oci_core_instance" "tf-demo08-revproxy" {
+resource oci_core_instance tf-demo08-revproxy {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD_revproxy - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "tf-demo08-revproxy"

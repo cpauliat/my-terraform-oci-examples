@@ -1,5 +1,5 @@
 # ------ Create a compute instance from the most recent Oracle Linux 7.x image
-resource "oci_core_instance" "tf-demo41-ol7" {
+resource oci_core_instance tf-demo41-ol7 {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo41-ol7"

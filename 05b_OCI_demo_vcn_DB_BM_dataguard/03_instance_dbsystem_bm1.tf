@@ -1,5 +1,5 @@
 # ------ Create a DB System on Bare Metal shape
-resource "oci_database_db_system" "tf-demo05b-db-bm1" {
+resource oci_database_db_system tf-demo05b-db-bm1 {
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD1 - 1]["name"]
   compartment_id      = var.compartment_ocid
   cpu_core_count      = var.BM1-CPUCoreCount
@@ -31,7 +31,7 @@ resource "oci_database_db_system" "tf-demo05b-db-bm1" {
 
 # ------ Enable data guard for the DB instance in DBS #1
 # ------ (this will create another DB instance with same name in DBS #2)
-resource "oci_database_data_guard_association" "tf-demo05b-db1" {
+resource oci_database_data_guard_association tf-demo05b-db1 {
     creation_type           = "ExistingDbSystem"         # For Bare Metal DB system, destination DB system must already exist
     database_admin_password = var.BM1-DBAdminPassword
     database_id             = oci_database_db_system.tf-demo05b-db-bm1.db_home[0].database[0].id
@@ -44,22 +44,22 @@ resource "oci_database_data_guard_association" "tf-demo05b-db1" {
 # ------ Post-provisioning and outputs
 
 # Get DB node list
-data "oci_database_db_nodes" "tf-demo05b-bm1" {
+data oci_database_db_nodes tf-demo05b-bm1 {
   compartment_id = var.compartment_ocid
   db_system_id   = oci_database_db_system.tf-demo05b-db-bm1.id
 }
 
 # Get DB node details
-data "oci_database_db_node" "tf-demo05b-bm1" {
+data oci_database_db_node tf-demo05b-bm1 {
   db_node_id = data.oci_database_db_nodes.tf-demo05b-bm1.db_nodes[0]["id"]
 }
 
 # Gets the OCID of the first (default) vNIC
-data "oci_core_vnic" "tf-demo05b-bm1" {
+data oci_core_vnic tf-demo05b-bm1 {
   vnic_id = data.oci_database_db_node.tf-demo05b-bm1.vnic_id
 }
 
-resource "null_resource" "tf-demo05b-bm1" {
+resource null_resource tf-demo05b-bm1 {
   provisioner "file" {
     connection {
       agent       = false

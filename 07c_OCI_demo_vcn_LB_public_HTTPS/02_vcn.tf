@@ -1,5 +1,5 @@
 # ------ Create a new VCN
-resource "oci_core_virtual_network" "tf-demo07c-vcn" {
+resource oci_core_virtual_network tf-demo07c-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo07c-vcn"
@@ -9,14 +9,14 @@ resource "oci_core_virtual_network" "tf-demo07c-vcn" {
 # ========== Objects for public subnet
 
 # ------ Create a new Internet Gategay
-resource "oci_core_internet_gateway" "tf-demo07c-ig" {
+resource oci_core_internet_gateway tf-demo07c-ig {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo07c-internet-gateway"
   vcn_id         = oci_core_virtual_network.tf-demo07c-vcn.id
 }
 
 # ------ Create a new Route Table to be used in the new public subnet
-resource "oci_core_route_table" "tf-demo07c-rt-public" {
+resource oci_core_route_table tf-demo07c-rt-public {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo07c-vcn.id
   display_name   = "tf-demo07c-rt-public"
@@ -29,7 +29,7 @@ resource "oci_core_route_table" "tf-demo07c-rt-public" {
 }
 
 # ------ Create a new security list to be used in the new public subnet
-resource "oci_core_security_list" "tf-demo07c-subnet-sl-public" {
+resource oci_core_security_list tf-demo07c-subnet-sl-public {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo07c-sl-public"
   vcn_id         = oci_core_virtual_network.tf-demo07c-vcn.id
@@ -76,7 +76,7 @@ resource "oci_core_security_list" "tf-demo07c-subnet-sl-public" {
 }
 
 # ------ Create a region public subnet (for bastion host and public load balancer)
-resource "oci_core_subnet" "tf-demo07c-public-subnet" {
+resource oci_core_subnet tf-demo07c-public-subnet {
   cidr_block          = var.cidr_public_subnet
   display_name        = "tf-demo07c-public-subnet"
   dns_label           = "public"
@@ -90,14 +90,14 @@ resource "oci_core_subnet" "tf-demo07c-public-subnet" {
 # ========== Objects for private subnet
 
 # ------ Create a NAT gateway
-resource "oci_core_nat_gateway" "tf-demo07c-natgw" {
+resource oci_core_nat_gateway tf-demo07c-natgw {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo07c-vcn.id
   display_name   = "tf-demo07c-nat-gateway"
 }
 
 # ------ Create a new Route Table to be used in the new private subnet
-resource "oci_core_route_table" "tf-demo07c-rt-private" {
+resource oci_core_route_table tf-demo07c-rt-private {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo07c-vcn.id
   display_name   = "tf-demo07c-rt-private"
@@ -110,7 +110,7 @@ resource "oci_core_route_table" "tf-demo07c-rt-private" {
 }
 
 # ------ Create a new security list to be used in the new private subnet
-resource "oci_core_security_list" "tf-demo07c-subnet-sl-private" {
+resource oci_core_security_list tf-demo07c-subnet-sl-private {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo07c-sl-private"
   vcn_id         = oci_core_virtual_network.tf-demo07c-vcn.id
@@ -149,7 +149,7 @@ resource "oci_core_security_list" "tf-demo07c-subnet-sl-private" {
 }
 
 # ------ Create a regional private subnet (for the web servers)
-resource "oci_core_subnet" "tf-demo07c-private-subnet" {
+resource oci_core_subnet tf-demo07c-private-subnet {
   cidr_block                 = var.cidr_private_subnet
   display_name               = "tf-demo07c-private-subnet"
   dns_label                  = "private"

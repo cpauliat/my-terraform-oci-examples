@@ -1,5 +1,5 @@
 # --------- Get the OCID for the more recent for Oracle Linux 7.x disk image
-data "oci_core_images" "OLImageOCID-ol7" {
+data oci_core_images OLImageOCID-ol7 {
   compartment_id           = var.compartment_ocid
   operating_system         = "Oracle Linux"
   operating_system_version = "7.9"
@@ -13,7 +13,7 @@ data "oci_core_images" "OLImageOCID-ol7" {
 }
 
 # ------ Create a 500GB block volume
-resource "oci_core_volume" "tf-demo09-vbox-vol1" {
+resource oci_core_volume tf-demo09-vbox-vol1 {
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "tf-demo09-vbox-vol1"
@@ -21,7 +21,7 @@ resource "oci_core_volume" "tf-demo09-vbox-vol1" {
 }
 
 # ------ Attach the new block volume to the ol7 compute instance
-resource "oci_core_volume_attachment" "tf-demo09-vbox-vol1" {
+resource oci_core_volume_attachment tf-demo09-vbox-vol1 {
   attachment_type = "iscsi"
   instance_id     = oci_core_instance.tf-demo09-vbox.id
   volume_id       = oci_core_volume.tf-demo09-vbox-vol1.id
@@ -44,7 +44,7 @@ resource "oci_core_volume_attachment" "tf-demo09-vbox-vol1" {
 }
 
 # ------ Generate a random password for VNC user opc
-resource "random_string" "vnc_password_opc" {
+resource random_string vnc_password_opc {
   # must contains at least 2 upper case letters, 2 lower case letters, 2 numbers and 2 special characters
   length      = 12
   upper       = true
@@ -59,7 +59,7 @@ resource "random_string" "vnc_password_opc" {
 }
 
 # ------ Create a compute instance from the more recent Oracle Linux 7.x image
-resource "oci_core_instance" "tf-demo09-vbox" {
+resource oci_core_instance tf-demo09-vbox {
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "tf-demo09-vbox"
@@ -89,7 +89,7 @@ resource "oci_core_instance" "tf-demo09-vbox" {
 }
 
 # ------ Create a secondary VNIC (to be used by a VBox Guest)
-resource "oci_core_vnic_attachment" "tf-demo09-guestvnic1" {
+resource oci_core_vnic_attachment tf-demo09-guestvnic1 {
   instance_id = oci_core_instance.tf-demo09-vbox.id
 
   create_vnic_details {
@@ -101,7 +101,7 @@ resource "oci_core_vnic_attachment" "tf-demo09-guestvnic1" {
 }
 
 # ------ Create a Linux/MacOS script for VNC SSH tunnel
-resource "local_file" "sshtunnel" {
+resource local_file sshtunnel {
   content = <<EOF
 ssh -i ${var.ssh_private_key_file} -4 -NL 5901:localhost:5901 opc@${oci_core_instance.tf-demo09-vbox.public_ip}
 EOF

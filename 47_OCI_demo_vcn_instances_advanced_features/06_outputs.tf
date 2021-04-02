@@ -1,6 +1,6 @@
 
 # ------ Create a SSH config file
-resource "local_file" "sshconfig" {
+resource local_file sshconfig {
   content = templatefile("templates/sshcfg.tpl", {
     bastion_public_ip               = oci_core_instance.demo47-bastion.public_ip,
     linux_instances                 = var.linux_instances,

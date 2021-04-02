@@ -1,5 +1,5 @@
 # ------ Create a SSH config file
-resource "local_file" "sshconfig" {
+resource local_file sshconfig {
   content = <<EOF
 Host d08-revproxy
           Hostname ${oci_core_instance.tf-demo08-revproxy.public_ip}

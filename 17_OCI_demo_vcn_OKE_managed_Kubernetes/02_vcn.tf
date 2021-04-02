@@ -1,5 +1,5 @@
 # ------ Create a new VCN
-resource "oci_core_virtual_network" "tf-demo17-vcn" {
+resource oci_core_virtual_network tf-demo17-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo17-oke-vcn"
@@ -9,14 +9,14 @@ resource "oci_core_virtual_network" "tf-demo17-vcn" {
 # ========== Common resources in the VCN
 
 # ------ Create a new Internet Gategay
-resource "oci_core_internet_gateway" "tf-demo17-ig" {
+resource oci_core_internet_gateway tf-demo17-ig {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo17-internet-gateway"
   vcn_id         = oci_core_virtual_network.tf-demo17-vcn.id
 }
 
 # ------ Create a new Route Table
-resource "oci_core_route_table" "tf-demo17-rt" {
+resource oci_core_route_table tf-demo17-rt {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo17-vcn.id
   display_name   = "tf-demo17-route-table"
@@ -30,7 +30,7 @@ resource "oci_core_route_table" "tf-demo17-rt" {
 # ============ WORKER NODES subnet and related resources
 
 # ------ Create a new security list for worker subnets
-resource "oci_core_security_list" "tf-demo17-sl-worker" {
+resource oci_core_security_list tf-demo17-sl-worker {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo17-sl-worker"
   vcn_id         = oci_core_virtual_network.tf-demo17-vcn.id
@@ -132,7 +132,7 @@ resource "oci_core_security_list" "tf-demo17-sl-worker" {
 
 # ------ Create a regional public subnet for worker nodes
 # ------ (also possible to use a private network with NAT and services gateways)
-resource "oci_core_subnet" "tf-demo17-worker" {
+resource oci_core_subnet tf-demo17-worker {
   cidr_block          = var.cidr_worker
   display_name        = "tf-demo17-worker"
   dns_label           = "worker"
@@ -146,7 +146,7 @@ resource "oci_core_subnet" "tf-demo17-worker" {
 # ============ LOAD BALANCER subnet and related resources
 
 # ------ Create a new security list for load balancer subnet
-resource "oci_core_security_list" "tf-demo17-sl-loadbalancers" {
+resource oci_core_security_list tf-demo17-sl-loadbalancers {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo17-sl-loadbalancers"
   vcn_id         = oci_core_virtual_network.tf-demo17-vcn.id
@@ -163,7 +163,7 @@ resource "oci_core_security_list" "tf-demo17-sl-loadbalancers" {
 }
 
 # ------ Create a regional public subnet for load balancer
-resource "oci_core_subnet" "tf-demo17-lb" {
+resource oci_core_subnet tf-demo17-lb {
   cidr_block          = var.cidr_lb
   display_name        = "tf-demo17-lb"
   dns_label           = "lb"

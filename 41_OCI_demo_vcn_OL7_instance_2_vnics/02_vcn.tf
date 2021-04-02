@@ -1,5 +1,5 @@
 # ------ Create a new VCN
-resource "oci_core_virtual_network" "tf-demo41-vcn" {
+resource oci_core_virtual_network tf-demo41-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo41-vcn"
@@ -9,14 +9,14 @@ resource "oci_core_virtual_network" "tf-demo41-vcn" {
 # ============ Public subnet and related objects
 
 # ------ Create a new Internet Gategay
-resource "oci_core_internet_gateway" "tf-demo41-ig" {
+resource oci_core_internet_gateway tf-demo41-ig {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo41-internet-gateway"
   vcn_id         = oci_core_virtual_network.tf-demo41-vcn.id
 }
 
 # ------ Create a new Route Table
-resource "oci_core_route_table" "tf-demo41-rt" {
+resource oci_core_route_table tf-demo41-rt {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo41-vcn.id
   display_name   = "tf-demo41-route-table"
@@ -29,7 +29,7 @@ resource "oci_core_route_table" "tf-demo41-rt" {
 }
 
 # ------ Create a new security list to be used in the new subnet
-resource "oci_core_security_list" "tf-demo41-subnet1-sl" {
+resource oci_core_security_list tf-demo41-subnet1-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo41-subnet1-security-list"
   vcn_id         = oci_core_virtual_network.tf-demo41-vcn.id
@@ -65,7 +65,7 @@ resource "oci_core_security_list" "tf-demo41-subnet1-sl" {
 }
 
 # ------ Create a regional public subnet
-resource "oci_core_subnet" "tf-demo41-public-subnet1" {
+resource oci_core_subnet tf-demo41-public-subnet1 {
   cidr_block          = var.cidr_subnet1
   display_name        = "tf-demo41-subnet1-public"
   dns_label           = "subnet1"
@@ -79,7 +79,7 @@ resource "oci_core_subnet" "tf-demo41-public-subnet1" {
 # ============ Private subnet and related objects
 
 # ------ Create a new Services Gategay
-data "oci_core_services" "services" {
+data oci_core_services services {
   filter {
     name   = "name"
     values = ["All .* Services In Oracle Services Network"]
@@ -87,7 +87,7 @@ data "oci_core_services" "services" {
   }
 }
 
-resource "oci_core_service_gateway" "tf-demo41-private-sgw" {
+resource oci_core_service_gateway tf-demo41-private-sgw {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo41-vcn.id
   services {
@@ -97,14 +97,14 @@ resource "oci_core_service_gateway" "tf-demo41-private-sgw" {
 }
 
 # ------ Create a NAT gateway
-resource "oci_core_nat_gateway" "tf-demo41-private-natgw" {
+resource oci_core_nat_gateway tf-demo41-private-natgw {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo41-vcn.id
   display_name   = "tf-demo41-private-natgw"
 }
 
 # ------ Create a new Route Table
-resource "oci_core_route_table" "tf-demo41-private-rt" {
+resource oci_core_route_table tf-demo41-private-rt {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo41-vcn.id
   display_name   = "tf-demo41-private-rt"
@@ -122,7 +122,7 @@ resource "oci_core_route_table" "tf-demo41-private-rt" {
 }
 
 # ------ Create a new security list to be used in the new subnet
-resource "oci_core_security_list" "tf-demo41-private-subnet-sl" {
+resource oci_core_security_list tf-demo41-private-subnet-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo41-private-subnet-seclist"
   vcn_id         = oci_core_virtual_network.tf-demo41-vcn.id
@@ -139,7 +139,7 @@ resource "oci_core_security_list" "tf-demo41-private-subnet-sl" {
 }
 
 # ------ Create a private regional subnet in the new VCN
-resource "oci_core_subnet" "tf-demo41-private-subnet" {
+resource oci_core_subnet tf-demo41-private-subnet {
   cidr_block          = var.cidr_subnet2
   display_name        = "tf-demo41-subnet2-private"
   dns_label           = "subnet2"

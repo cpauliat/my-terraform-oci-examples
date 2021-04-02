@@ -1,5 +1,5 @@
 # --------- Get the OCID for the most recent for Oracle Linux 7.x disk image
-data "oci_core_images" "ImageOCID-ol7" {
+data oci_core_images ImageOCID-ol7 {
   compartment_id           = var.compartment_ocid
   operating_system         = "Oracle Linux"
   operating_system_version = "7.6"
@@ -13,7 +13,7 @@ data "oci_core_images" "ImageOCID-ol7" {
 }
 
 # ------ Create a compute instance from the most recent Oracle Linux 7.x image
-resource "oci_core_instance" "tf-oow2019-hol1512-ol7" {
+resource oci_core_instance tf-oow2019-hol1512-ol7 {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "HOL1512 Oracle Linux 7"
@@ -42,7 +42,7 @@ resource "oci_core_instance" "tf-oow2019-hol1512-ol7" {
   }
 }
 
-resource "local_file" "sshconfig" {
+resource local_file sshconfig {
   content = <<EOF
 Host ol7
     Hostname ${oci_core_instance.tf-oow2019-hol1512-ol7.public_ip}

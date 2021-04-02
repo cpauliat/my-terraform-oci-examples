@@ -1,12 +1,13 @@
 # ------ Create a compute instance from the most recent Oracle Linux 7.x image
-resource "oci_core_instance" "tf-demo01c-ol7" {
+resource oci_core_instance tf-demo01c-ol7 {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo01c-ol7"
   preserve_boot_volume = "false"
   fault_domain         = "FAULT-DOMAIN-${var.FD}"
   shape                = "VM.Standard.E3.Flex"
-  # shape_config needed for VM.Standard.E3.Flex shape
+
+  # shape_config needed for VM.Standard.E3.Flex and VM.Standard.E4.Flex shapes
   shape_config {
     ocpus         = "2"
     memory_in_gbs = "17"  # total amount of memory for the instance

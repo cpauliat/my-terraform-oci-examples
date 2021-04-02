@@ -1,5 +1,5 @@
 # ------ Create a compute instance for web server #2
-resource "oci_core_instance" "tf-demo07c-ws2" {
+resource oci_core_instance tf-demo07c-ws2 {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD_ws2 - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "tf-demo07c-websrv2"

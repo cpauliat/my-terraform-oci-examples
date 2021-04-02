@@ -1,5 +1,5 @@
 # ---- Create the public load balancer
-resource "oci_load_balancer" "tf-demo07b-lb" {
+resource oci_load_balancer tf-demo07b-lb {
   shape          = "100Mbps"
   compartment_id = var.compartment_ocid
 
@@ -11,7 +11,7 @@ resource "oci_load_balancer" "tf-demo07b-lb" {
 }
 
 # ---- Create a first backend set with 1 backend server
-resource "oci_load_balancer_backendset" "tf-demo07b-lb-bes1" {
+resource oci_load_balancer_backendset tf-demo07b-lb-bes1 {
   name             = "tf-demo07b-lb-bes1"
   load_balancer_id = oci_load_balancer.tf-demo07b-lb.id
   policy           = "ROUND_ROBIN"
@@ -24,7 +24,7 @@ resource "oci_load_balancer_backendset" "tf-demo07b-lb-bes1" {
   }
 }
 
-resource "oci_load_balancer_backend" "tf-demo07b-lb-be1" {
+resource oci_load_balancer_backend tf-demo07b-lb-be1 {
   load_balancer_id = oci_load_balancer.tf-demo07b-lb.id
   backendset_name  = oci_load_balancer_backendset.tf-demo07b-lb-bes1.name
   ip_address       = oci_core_instance.tf-demo07b-ws1.private_ip
@@ -36,7 +36,7 @@ resource "oci_load_balancer_backend" "tf-demo07b-lb-be1" {
 }
 
 # ---- Create a second backend set with 1 backend server
-resource "oci_load_balancer_backendset" "tf-demo07b-lb-bes2" {
+resource oci_load_balancer_backendset tf-demo07b-lb-bes2 {
   name             = "tf-demo07b-lb-bes2"
   load_balancer_id = oci_load_balancer.tf-demo07b-lb.id
   policy           = "ROUND_ROBIN"
@@ -49,7 +49,7 @@ resource "oci_load_balancer_backendset" "tf-demo07b-lb-bes2" {
   }
 }
 
-resource "oci_load_balancer_backend" "tf-demo07b-lb-be2" {
+resource oci_load_balancer_backend tf-demo07b-lb-be2 {
   load_balancer_id = oci_load_balancer.tf-demo07b-lb.id
   backendset_name  = oci_load_balancer_backendset.tf-demo07b-lb-bes2.name
   ip_address       = oci_core_instance.tf-demo07b-ws2.private_ip
@@ -61,7 +61,7 @@ resource "oci_load_balancer_backend" "tf-demo07b-lb-be2" {
 }
 
 # ---- Create a listener with a path route set
-resource "oci_load_balancer_path_route_set" "tf-demo07b-lb-prs" {
+resource oci_load_balancer_path_route_set tf-demo07b-lb-prs {
   load_balancer_id         = oci_load_balancer.tf-demo07b-lb.id
   name                     = "tf-demo07b-lb-path-route-set"
 
@@ -84,7 +84,7 @@ resource "oci_load_balancer_path_route_set" "tf-demo07b-lb-prs" {
   }
 }
 
-resource "oci_load_balancer_listener" "tf-demo07b-lb-listener" {
+resource oci_load_balancer_listener tf-demo07b-lb-listener {
   load_balancer_id         = oci_load_balancer.tf-demo07b-lb.id
   name                     = "tf-demo07b-lb-listener"
   port                     = 80

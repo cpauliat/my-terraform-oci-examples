@@ -20,7 +20,7 @@ provider "oci" {
 
 # ---- Terraform State file stored in an existing OCI object storage bucket
 # ---- accessed using S3 compatible API (Customer secret key needed)
-# ---- Use of variable not allowed here
+# ---- Use of variables not allowed here
 # ---- You can use a different tenant and/or different region
 terraform {
   backend "s3" {
@@ -28,12 +28,10 @@ terraform {
     key                         = "terraform.state.demo16"
     region                      = "eu-frankfurt-1"
     # format for endpoint is https://<namespace>.compat.objectstorage.<region>.oraclecloud.com
-    endpoint                    = "https://oci_core_emea_osc_pauliat.compat.objectstorage.eu-frankfurt-1.oraclecloud.com"
+    endpoint                    = "https://emeaosc.compat.objectstorage.eu-frankfurt-1.oraclecloud.com"
     shared_credentials_file     = "s3key"
     skip_region_validation      = true
     skip_credentials_validation = true
-    skip_requesting_account_id  = true
-    skip_get_ec2_platforms      = true
     skip_metadata_api_check     = true
     force_path_style            = true
   }

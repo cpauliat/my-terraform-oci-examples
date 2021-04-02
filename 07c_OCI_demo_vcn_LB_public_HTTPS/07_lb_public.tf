@@ -1,4 +1,4 @@
-resource "oci_load_balancer" "tf-demo07c-lb" {
+resource oci_load_balancer tf-demo07c-lb {
   shape          = "100Mbps"
   compartment_id = var.compartment_ocid
 
@@ -10,7 +10,7 @@ resource "oci_load_balancer" "tf-demo07c-lb" {
   reserved_ips { id = var.lb_reserved_public_ip_id }
 }
 
-resource "oci_load_balancer_backendset" "tf-demo07c-lb-bes" {
+resource oci_load_balancer_backendset tf-demo07c-lb-bes {
   name             = "tf-demo07c-lb-bes"
   load_balancer_id = oci_load_balancer.tf-demo07c-lb.id
   policy           = "ROUND_ROBIN"
@@ -23,7 +23,7 @@ resource "oci_load_balancer_backendset" "tf-demo07c-lb-bes" {
   }
 }
 
-resource "oci_load_balancer_backend" "tf-demo07c-lb-be1" {
+resource oci_load_balancer_backend tf-demo07c-lb-be1 {
   load_balancer_id = oci_load_balancer.tf-demo07c-lb.id
   backendset_name  = oci_load_balancer_backendset.tf-demo07c-lb-bes.name
   ip_address       = oci_core_instance.tf-demo07c-ws1.private_ip
@@ -34,7 +34,7 @@ resource "oci_load_balancer_backend" "tf-demo07c-lb-be1" {
   weight           = 1
 }
 
-resource "oci_load_balancer_backend" "tf-demo07c-lb-be2" {
+resource oci_load_balancer_backend tf-demo07c-lb-be2 {
   load_balancer_id = oci_load_balancer.tf-demo07c-lb.id
   backendset_name  = oci_load_balancer_backendset.tf-demo07c-lb-bes.name
   ip_address       = oci_core_instance.tf-demo07c-ws2.private_ip
@@ -45,7 +45,7 @@ resource "oci_load_balancer_backend" "tf-demo07c-lb-be2" {
   weight           = 1
 }
 
-resource "oci_load_balancer_certificate" "tf-demo07c-lb-certificate" {
+resource oci_load_balancer_certificate tf-demo07c-lb-certificate {
   certificate_name   = "tf-dmo07c-cert"
   load_balancer_id   = oci_load_balancer.tf-demo07c-lb.id
   ca_certificate     = file(var.file_ca_cert)
@@ -58,7 +58,7 @@ resource "oci_load_balancer_certificate" "tf-demo07c-lb-certificate" {
   }
 }
 
-resource "oci_load_balancer_listener" "tf-demo07c-lb-listener" {
+resource oci_load_balancer_listener tf-demo07c-lb-listener {
   depends_on = [ oci_load_balancer_certificate.tf-demo07c-lb-certificate ]
   load_balancer_id         = oci_load_balancer.tf-demo07c-lb.id
   name                     = "tf-demo07c-lb-listener"

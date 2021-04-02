@@ -1,5 +1,5 @@
 # ------ Create a SSH config file
-resource "local_file" "sshconfig" {
+resource local_file sshconfig {
   content = <<EOF
 Host d21bastion
           Hostname ${oci_core_instance.tf-demo21-bastion.public_ip}

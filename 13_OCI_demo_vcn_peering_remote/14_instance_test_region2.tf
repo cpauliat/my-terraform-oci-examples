@@ -1,5 +1,5 @@
 # --------- Get the OCID for the most recent for Oracle Linux 7.x disk image
-data "oci_core_images" "OLImageOCID-ol7-r2" {
+data oci_core_images OLImageOCID-ol7-r2 {
   provider                 = oci.r2
   compartment_id           = var.r2_compartment_ocid
   operating_system         = "Oracle Linux"
@@ -14,7 +14,7 @@ data "oci_core_images" "OLImageOCID-ol7-r2" {
 }
 
 # ------ Create a test compute instance (Oracle Linux 7) in region 1
-resource "oci_core_instance" "tf-demo13-r2" {
+resource oci_core_instance tf-demo13-r2 {
   provider            = oci.r2
   availability_domain = data.oci_identity_availability_domains.r2ADs.availability_domains[var.r2_AD - 1]["name"]
   compartment_id      = var.r2_compartment_ocid

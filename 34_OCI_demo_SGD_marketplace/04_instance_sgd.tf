@@ -1,5 +1,5 @@
 # ---- Generate a random string to be used as password for opc user on SGD
-resource "random_string" "tf-demo34-sgd-opc-password" {
+resource random_string tf-demo34-sgd-opc-password {
   # must contains at least 2 upper case letters,
   # 2 lower case letters, 2 numbers and 2 special characters
   length      = 16
@@ -15,7 +15,7 @@ resource "random_string" "tf-demo34-sgd-opc-password" {
 }
 
 # ---- Generate a random string to be used as password for sgdadmin user in SGD
-resource "random_string" "tf-demo34-sgdadmin-password" {
+resource random_string tf-demo34-sgdadmin-password {
   # must contains at least 2 upper case letters,
   # 2 lower case letters, 2 numbers and 2 special characters
   length      = 24
@@ -31,7 +31,7 @@ resource "random_string" "tf-demo34-sgdadmin-password" {
 }
 
 # ------ Create a compute instance for the sgd gateway
-resource "oci_core_instance" "tf-demo34-sgd" {
+resource oci_core_instance tf-demo34-sgd {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo34-sgd"
@@ -57,7 +57,7 @@ resource "oci_core_instance" "tf-demo34-sgd" {
 }
 
 # ------ Display temporary sgdadmin password
-resource "null_resource" "sgdadmin_pwd" {
+resource null_resource sgdadmin_pwd {
   provisioner "remote-exec" {
     connection {
       host        = oci_core_instance.tf-demo34-sgd.public_ip
@@ -71,7 +71,7 @@ resource "null_resource" "sgdadmin_pwd" {
 }
 
 # ------ Create a SSH config file
-resource "local_file" "sshconfig" {
+resource local_file sshconfig {
   content = <<EOF
 Host d34sgd
           Hostname ${oci_core_instance.tf-demo34-sgd.public_ip}

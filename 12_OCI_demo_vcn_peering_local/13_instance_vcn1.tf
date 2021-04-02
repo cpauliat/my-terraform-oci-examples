@@ -1,5 +1,5 @@
 # --------- Get the OCID for the most recent for Oracle Linux 7.x disk image
-data "oci_core_images" "OLImageOCID-ol7-vcn1" {
+data oci_core_images OLImageOCID-ol7-vcn1 {
   compartment_id           = var.compartment_ocid
   operating_system         = "Oracle Linux"
   operating_system_version = "7.9"
@@ -13,7 +13,7 @@ data "oci_core_images" "OLImageOCID-ol7-vcn1" {
 }
 
 # ------ Create a test compute instance (Oracle Linux 7) in VCN1
-resource "oci_core_instance" "demo12-vcn1" {
+resource oci_core_instance demo12-vcn1 {
   availability_domain = data.oci_identity_availability_domains.vcn1ADs.availability_domains[var.vcn1_AD - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "demo12-vcn1"

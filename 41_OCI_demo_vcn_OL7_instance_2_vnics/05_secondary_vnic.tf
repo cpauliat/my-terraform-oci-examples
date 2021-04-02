@@ -1,5 +1,5 @@
 # ------ Create a secondary VNIC
-resource "oci_core_vnic_attachment" "tf-demo41-ol7" {
+resource oci_core_vnic_attachment tf-demo41-ol7 {
   instance_id = oci_core_instance.tf-demo41-ol7.id
   nic_index   = length(regexall("^BM", var.instance_shape)) > 0 ? "1" : "0"
   # nic_index: 1 for BM shapes, 0 for VM shapes

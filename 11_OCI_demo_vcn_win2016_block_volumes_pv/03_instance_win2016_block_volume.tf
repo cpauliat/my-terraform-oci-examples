@@ -1,5 +1,5 @@
 # --------- Get the OCID for the more recent for Windows 2016 disk image
-data "oci_core_images" "ImageOCID-win2016" {
+data oci_core_images ImageOCID-win2016 {
   compartment_id           = var.compartment_ocid
   operating_system         = "Windows"
   operating_system_version = "Server 2016 Standard"
@@ -7,13 +7,13 @@ data "oci_core_images" "ImageOCID-win2016" {
   # filter to remove E2 images
   filter {
       name   = "display_name"
-      values = ["Windows-Server-2016-Standard-Edition-VM-Gen2-2019"]
+      values = ["Windows-Server-2016-Standard-Edition-VM-Gen2-20*"]
       regex  = true
   }
 }
 
 # ------ Create a block volume
-resource "oci_core_volume" "tf-demo11-win2016-vol1" {
+resource oci_core_volume tf-demo11-win2016-vol1 {
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "tf-demo11-win2016-vol1"
@@ -21,14 +21,14 @@ resource "oci_core_volume" "tf-demo11-win2016-vol1" {
 }
 
 # ------ Attach the new block volume to the Windows compute instance after it is created
-resource "oci_core_volume_attachment" "tf-demo11-win2016-vol1-attach" {
+resource oci_core_volume_attachment tf-demo11-win2016-vol1-attach {
   attachment_type = "paravirtualized"
   instance_id     = oci_core_instance.tf-demo11-win2016.id
   volume_id       = oci_core_volume.tf-demo11-win2016-vol1.id
 }
 
 # ------ Create a compute instance from the most recent Windows 2016 image
-resource "oci_core_instance" "tf-demo11-win2016" {
+resource oci_core_instance tf-demo11-win2016 {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo11-win2016"
@@ -52,7 +52,7 @@ resource "oci_core_instance" "tf-demo11-win2016" {
 }
 
 # ------ Display the complete ssh command needed to connect to the instance
-data "oci_core_instance_credentials" "tf-demo11-win2016" {
+data oci_core_instance_credentials tf-demo11-win2016 {
   instance_id = oci_core_instance.tf-demo11-win2016.id
 }
 

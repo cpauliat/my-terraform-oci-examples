@@ -1,5 +1,5 @@
 # --------- Get the OCID for the most recent for Oracle Linux 7.x disk image
-data "oci_core_images" "ImageOCID-ol7" {
+data oci_core_images ImageOCID-ol7 {
   compartment_id           = var.compartment_ocid
   operating_system         = "Oracle Linux"
   operating_system_version = "7.9"
@@ -13,7 +13,7 @@ data "oci_core_images" "ImageOCID-ol7" {
 }
 
 # ------ Create a compute instance from the most recent Oracle Linux 7.x image
-resource "oci_core_instance" "tf-demo21-dbclient" {
+resource oci_core_instance tf-demo21-dbclient {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo21-dbclient"
@@ -45,7 +45,7 @@ resource "oci_core_instance" "tf-demo21-dbclient" {
 }
 
 # ------ Copy wallet file to dbclient compute instance thru bastion
-resource "null_resource" "tf-demo21-connect-dbclient" {
+resource null_resource tf-demo21-connect-dbclient {
 
   depends_on = [ local_file.tf-demo21-adb-wallet, oci_core_instance.tf-demo21-bastion ]
 

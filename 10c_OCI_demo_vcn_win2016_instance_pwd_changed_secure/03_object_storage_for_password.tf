@@ -1,5 +1,5 @@
 # ------ generate a random password to replace the temporary password in the cloud-init post-provisioning task
-resource "random_string" "windows_password" {
+resource random_string windows_password {
   # must contains at least 2 upper case letters, 2 lower case letters, 2 numbers and 2 special characters
   length      = 12
   upper       = true
@@ -14,18 +14,18 @@ resource "random_string" "windows_password" {
 }
 
 # ------ OCI object storage bucket and related resources for password
-data "oci_objectstorage_namespace" "tf-demo10c" {
+data oci_objectstorage_namespace tf-demo10c {
   compartment_id = var.compartment_ocid
 }
 
-resource "oci_objectstorage_bucket" "tf-demo10c" {
+resource oci_objectstorage_bucket tf-demo10c {
   compartment_id = var.compartment_ocid
   name           = var.bucket_name
   namespace      = data.oci_objectstorage_namespace.tf-demo10c.namespace
   access_type    = "NoPublicAccess"     # private bucket
 }
 
-resource "oci_objectstorage_object" "tf-demo10c-pwd" {
+resource oci_objectstorage_object tf-demo10c-pwd {
   depends_on = [ oci_objectstorage_bucket.tf-demo10c ]
   namespace = data.oci_objectstorage_namespace.tf-demo10c.namespace
   bucket    = var.bucket_name
@@ -34,7 +34,7 @@ resource "oci_objectstorage_object" "tf-demo10c-pwd" {
 }
 
 # Automatically delete OCI object after 1 day
-resource "oci_objectstorage_object_lifecycle_policy" "tf-demo10c-pwd" {
+resource oci_objectstorage_object_lifecycle_policy tf-demo10c-pwd {
   namespace = data.oci_objectstorage_namespace.tf-demo10c.namespace
   bucket    = var.bucket_name
 
@@ -52,7 +52,7 @@ resource "oci_objectstorage_object_lifecycle_policy" "tf-demo10c-pwd" {
 }
 
 # Pre-auth requests valid for 30 minutes
-resource "oci_objectstorage_preauthrequest" "tf-demo10c-pwd" {
+resource oci_objectstorage_preauthrequest tf-demo10c-pwd {
   depends_on   = [ oci_objectstorage_object.tf-demo10c-pwd ]
   access_type  = "ObjectRead"
   namespace    = data.oci_objectstorage_namespace.tf-demo10c.namespace

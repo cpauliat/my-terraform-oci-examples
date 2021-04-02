@@ -1,10 +1,10 @@
 # -------- get the list of available ADs
-data "oci_identity_availability_domains" "ADs" {
+data oci_identity_availability_domains ADs {
   compartment_id = var.tenancy_ocid
 }
 
 # ------ Create a new VCN
-resource "oci_core_virtual_network" "tf-demo34-vcn" {
+resource oci_core_virtual_network tf-demo34-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo34-vcn"
@@ -14,14 +14,14 @@ resource "oci_core_virtual_network" "tf-demo34-vcn" {
 # ======== Objects for bastion subnet (public subnet)
 
 # ------ Create a new Internet Gategay
-resource "oci_core_internet_gateway" "tf-demo34-public-ig" {
+resource oci_core_internet_gateway tf-demo34-public-ig {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo34-public-ig"
   vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
 }
 
 # ------ Create a new Route Table
-resource "oci_core_route_table" "tf-demo34-public-rt" {
+resource oci_core_route_table tf-demo34-public-rt {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
   display_name   = "tf-demo34-public-rt"
@@ -33,7 +33,7 @@ resource "oci_core_route_table" "tf-demo34-public-rt" {
 }
 
 # ------ Create a new security list to be used in the new subnet
-resource "oci_core_security_list" "tf-demo34-bastion-subnet-sl" {
+resource oci_core_security_list tf-demo34-bastion-subnet-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo34-bastion-subnet-seclist"
   vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
@@ -94,7 +94,7 @@ resource "oci_core_security_list" "tf-demo34-bastion-subnet-sl" {
 }
 
 # ------ Create a public regional subnet in the new VCN
-resource "oci_core_subnet" "tf-demo34-bastion-subnet" {
+resource oci_core_subnet tf-demo34-bastion-subnet {
   cidr_block          = var.cidr_subnet_public
   display_name        = "tf-demo34-bastion-subnet"
   dns_label           = "bastion"
@@ -108,7 +108,7 @@ resource "oci_core_subnet" "tf-demo34-bastion-subnet" {
 # ======== Objects for private subnet
 
 # ------ Create a new Services Gategay
-data "oci_core_services" "services" {
+data oci_core_services services {
   filter {
     name   = "name"
     values = ["All .* Services In Oracle Services Network"]
@@ -116,7 +116,7 @@ data "oci_core_services" "services" {
   }
 }
 
-resource "oci_core_service_gateway" "tf-demo34-private-sgw" {
+resource oci_core_service_gateway tf-demo34-private-sgw {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
   services {
@@ -126,14 +126,14 @@ resource "oci_core_service_gateway" "tf-demo34-private-sgw" {
 }
 
 # ------ Create a NAT gateway
-resource "oci_core_nat_gateway" "tf-demo34-private-natgw" {
+resource oci_core_nat_gateway tf-demo34-private-natgw {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
   display_name   = "tf-demo34-private-natgw"
 }
 
 # ------ Create a new Route Table
-resource "oci_core_route_table" "tf-demo34-private-rt" {
+resource oci_core_route_table tf-demo34-private-rt {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
   display_name   = "tf-demo34-private-rt"
@@ -151,7 +151,7 @@ resource "oci_core_route_table" "tf-demo34-private-rt" {
 }
 
 # ------ Create a new security list to be used in the new subnet
-resource "oci_core_security_list" "tf-demo34-private-subnet-sl" {
+resource oci_core_security_list tf-demo34-private-subnet-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo34-private-subnet-seclist"
   vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
@@ -168,7 +168,7 @@ resource "oci_core_security_list" "tf-demo34-private-subnet-sl" {
 }
 
 # ------ Create a private regional subnet in the new VCN
-resource "oci_core_subnet" "tf-demo34-private-subnet" {
+resource oci_core_subnet tf-demo34-private-subnet {
   cidr_block          = var.cidr_subnet_private
   display_name        = "tf-demo34-private-subnet"
   dns_label           = "private"

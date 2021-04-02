@@ -1,5 +1,5 @@
 # ------ Create a 100GB block volume
-resource "oci_core_volume" "tf-demo02b-ol7-vol1" {
+resource oci_core_volume tf-demo02b-ol7-vol1 {
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "tf-demo02b-ol7-vol1"
@@ -7,7 +7,7 @@ resource "oci_core_volume" "tf-demo02b-ol7-vol1" {
 }
 
 # ------ Attach the new block volume to the ol7 compute instance after it is created
-resource "oci_core_volume_attachment" "tf-demo02b-ol7-vol1-attach" {
+resource oci_core_volume_attachment tf-demo02b-ol7-vol1-attach {
   attachment_type = "iscsi"
   instance_id     = oci_core_instance.tf-demo02b-ol7.id
   volume_id       = oci_core_volume.tf-demo02b-ol7-vol1.id
@@ -29,7 +29,7 @@ resource "oci_core_volume_attachment" "tf-demo02b-ol7-vol1-attach" {
 }
 
 # ------ Create a compute instance from the more recent Oracle Linux 7.x image
-resource "oci_core_instance" "tf-demo02b-ol7" {
+resource oci_core_instance tf-demo02b-ol7 {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo02b-ol7"

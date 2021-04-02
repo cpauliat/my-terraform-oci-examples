@@ -1,5 +1,5 @@
 # --------- Get the OCID for the most recent for Oracle Linux 7.x disk image
-data "oci_core_images" "ImageOCID-ol7" {
+data oci_core_images ImageOCID-ol7 {
   compartment_id           = var.compartment_ocid
   operating_system         = "Oracle Linux"
   operating_system_version = "7.9"
@@ -13,7 +13,7 @@ data "oci_core_images" "ImageOCID-ol7" {
 }
 
 # ------ Create a compute instance from the most recent Oracle Linux 7.x image
-resource "oci_core_instance" "tf-demo37-ol7" {
+resource oci_core_instance tf-demo37-ol7 {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo37-ol7"
@@ -39,12 +39,12 @@ resource "oci_core_instance" "tf-demo37-ol7" {
 }
 
 # ------ Create a reserved public IP and assigned it to the compute instance
-data "oci_core_private_ips" "demo37_ol7" {
+data oci_core_private_ips demo37_ol7 {
   subnet_id  = oci_core_subnet.tf-demo37-public-subnet1.id
   ip_address = oci_core_instance.tf-demo37-ol7.private_ip
 }
 
-resource "oci_core_public_ip" "demo37_reserved_public_ip" {
+resource oci_core_public_ip demo37_reserved_public_ip {
   # prevent destruction of the public IP by Terraform
   # true must be changed to false to be able to destroy this with Terraform
   lifecycle {

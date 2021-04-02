@@ -1,11 +1,11 @@
 # -------- get the list of available ADs
-data "oci_identity_availability_domains" "r1ADs" {
+data oci_identity_availability_domains r1ADs {
   provider       = oci.r1
   compartment_id = var.tenancy_ocid
 }
 
 # ------ Create a new VCN
-resource "oci_core_virtual_network" "r1-vcn" {
+resource oci_core_virtual_network r1-vcn {
   provider       = oci.r1
   cidr_block     = var.r1_cidr_vcn
   compartment_id = var.r1_compartment_ocid
@@ -14,7 +14,7 @@ resource "oci_core_virtual_network" "r1-vcn" {
 }
 
 # ------ Create a new Internet Gategay
-resource "oci_core_internet_gateway" "r1-ig" {
+resource oci_core_internet_gateway r1-ig {
   provider       = oci.r1
   compartment_id = var.r1_compartment_ocid
   display_name   = "demo13_r1_igw"
@@ -22,7 +22,7 @@ resource "oci_core_internet_gateway" "r1-ig" {
 }
 
 # ------ Create a new Route Table for the public subnet
-resource "oci_core_route_table" "r1-pubnet-rt" {
+resource oci_core_route_table r1-pubnet-rt {
   provider       = oci.r1
   compartment_id = var.r1_compartment_ocid
   vcn_id         = oci_core_virtual_network.r1-vcn.id
@@ -40,7 +40,7 @@ resource "oci_core_route_table" "r1-pubnet-rt" {
 }
 
 # ------ Create a new Route Table for the private subnet
-resource "oci_core_route_table" "r1-privnet-rt" {
+resource oci_core_route_table r1-privnet-rt {
   provider       = oci.r1
   compartment_id = var.r1_compartment_ocid
   vcn_id         = oci_core_virtual_network.r1-vcn.id
@@ -53,7 +53,7 @@ resource "oci_core_route_table" "r1-privnet-rt" {
 }
 
 # ------ Create a new security list to be used in the new public subnet
-resource "oci_core_security_list" "r1-pubnet-sl" {
+resource oci_core_security_list r1-pubnet-sl {
   provider       = oci.r1
   compartment_id = var.r1_compartment_ocid
   display_name   = "demo13_r1_pubnet_sl"
@@ -94,7 +94,7 @@ resource "oci_core_security_list" "r1-pubnet-sl" {
 }
 
 # ------ Create a new security list to be used in the new private subnet
-resource "oci_core_security_list" "r1-privnet-sl" {
+resource oci_core_security_list r1-privnet-sl {
   provider       = oci.r1
   compartment_id = var.r1_compartment_ocid
   display_name   = "demo13_r1_privnet_sl"
@@ -121,7 +121,7 @@ resource "oci_core_security_list" "r1-privnet-sl" {
 }
 
 # ------ Create a public subnet in the new VCN
-resource "oci_core_subnet" "r1-pubnet" {
+resource oci_core_subnet r1-pubnet {
   provider            = oci.r1
   cidr_block          = var.r1_cidr_pubnet
   display_name        = "demo13_r1_pubnet"
@@ -134,7 +134,7 @@ resource "oci_core_subnet" "r1-pubnet" {
 }
 
 # ------ Create a private subnet in the new VCN
-resource "oci_core_subnet" "r1-privnet" {
+resource oci_core_subnet r1-privnet {
   provider            = oci.r1
   cidr_block          = var.r1_cidr_privnet
   display_name        = "demo13_r1_privnet"
@@ -147,19 +147,19 @@ resource "oci_core_subnet" "r1-privnet" {
 }
 
 # ------ Create a Dynamic Routing Gateway (DRG) in the new VCN and attach it to the VCN
-resource "oci_core_drg" "r1_drg" {
+resource oci_core_drg r1_drg {
   provider       = oci.r1
   compartment_id = var.r1_compartment_ocid
 }
 
-resource "oci_core_drg_attachment" "r1_drg_attachment" {
+resource oci_core_drg_attachment r1_drg_attachment {
   provider = oci.r1
   drg_id   = oci_core_drg.r1_drg.id
   vcn_id   = oci_core_virtual_network.r1-vcn.id
 }
 
 # ------ Enable the remote VCN peering (region1 = acceptor)
-resource "oci_core_remote_peering_connection" "r1-acceptor" {
+resource oci_core_remote_peering_connection r1-acceptor {
   provider       = oci.r1
   compartment_id = var.r1_compartment_ocid
   drg_id         = oci_core_drg.r1_drg.id

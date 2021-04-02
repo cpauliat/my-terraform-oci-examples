@@ -1,5 +1,5 @@
 # ---- Generate a random string to be used as password for ADB admin user
-resource "random_string" "tf-demo20-adb-password" {
+resource random_string tf-demo20-adb-password {
   # must contains at least 2 upper case letters, 
   # 2 lower case letters, 2 numbers and 2 special characters
   length      = 16
@@ -14,7 +14,7 @@ resource "random_string" "tf-demo20-adb-password" {
   override_special = "#+-="   # use only special characters in this list
 }
 
-resource "oci_database_autonomous_database" "tf-demo20-adb" {
+resource oci_database_autonomous_database tf-demo20-adb {
   db_workload              = var.adb_type
   admin_password           = random_string.tf-demo20-adb-password.result
   #admin_password           = var.adb_password

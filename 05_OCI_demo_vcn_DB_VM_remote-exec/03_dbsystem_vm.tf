@@ -1,5 +1,5 @@
 # ------ Generate a random password for DB system
-resource "random_string" "tf-demo05-dbs-passwd" {
+resource random_string tf-demo05-dbs-passwd {
   # must contains at least 2 upper case letters, 2 lower case letters, 2 numbers and 2 special characters
   length      = 12
   upper       = true
@@ -14,7 +14,7 @@ resource "random_string" "tf-demo05-dbs-passwd" {
 }
 
 # ------ Create a DB System on shape VM.Standard.*
-resource "oci_database_db_system" "tf-demo05-db-vm" {
+resource oci_database_db_system tf-demo05-db-vm {
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id      = var.compartment_ocid
   cpu_core_count      = var.VM-CPUCoreCount
@@ -54,18 +54,18 @@ resource "oci_database_db_system" "tf-demo05-db-vm" {
 
 # ------ Get the public IP of the DBsystem and display it on screen
 # Get DB node list
-data "oci_database_db_nodes" "tf-demo05-vm" {
+data oci_database_db_nodes tf-demo05-vm {
   compartment_id = var.compartment_ocid
   db_system_id   = oci_database_db_system.tf-demo05-db-vm.id
 }
 
 # Get DB node details
-data "oci_database_db_node" "tf-demo05-vm" {
+data oci_database_db_node tf-demo05-vm {
   db_node_id = data.oci_database_db_nodes.tf-demo05-vm.db_nodes[0]["id"]
 }
 
 # Get the OCID of the first (default) vNIC
-data "oci_core_vnic" "tf-demo05-vm" {
+data oci_core_vnic tf-demo05-vm {
   vnic_id = data.oci_database_db_node.tf-demo05-vm.vnic_id
 }
 

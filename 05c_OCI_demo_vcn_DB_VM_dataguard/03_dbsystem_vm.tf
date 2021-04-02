@@ -1,5 +1,5 @@
 # ------ Generate a random password for DB system
-resource "random_string" "tf-demo05c-dbs-passwd" {
+resource random_string tf-demo05c-dbs-passwd {
   # must contains at least 2 upper case letters, 2 lower case letters, 2 numbers and 2 special characters
   length      = 12
   upper       = true
@@ -14,7 +14,7 @@ resource "random_string" "tf-demo05c-dbs-passwd" {
 }
 
 # ------ Create a DB System on shape VM.Standard.*
-resource "oci_database_db_system" "tf-demo05c-db-vm" {
+resource oci_database_db_system tf-demo05c-db-vm {
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id      = var.compartment_ocid
   cpu_core_count      = var.VM-CPUCoreCount
@@ -53,7 +53,7 @@ resource "oci_database_db_system" "tf-demo05c-db-vm" {
 }
 
 # ------ Configure Dataguard
-resource "oci_database_data_guard_association" "tf-demo05c-db1" {
+resource oci_database_data_guard_association tf-demo05c-db1 {
     creation_type           = "NewDbSystem"             # For VM DB system, destination DB system is provisioned automatically
     database_admin_password = random_string.tf-demo05c-dbs-passwd.result
     database_id             = oci_database_db_system.tf-demo05c-db-vm.db_home[0].database[0].id
@@ -71,18 +71,18 @@ resource "oci_database_data_guard_association" "tf-demo05c-db1" {
 
 # ------ Get the public IP of the PRIMARY DB system and display it on screen
 # Get DB node list
-data "oci_database_db_nodes" "tf-demo05c-vm" {
+data oci_database_db_nodes tf-demo05c-vm {
   compartment_id = var.compartment_ocid
   db_system_id   = oci_database_db_system.tf-demo05c-db-vm.id
 }
 
 # Get DB node details
-data "oci_database_db_node" "tf-demo05c-vm" {
+data oci_database_db_node tf-demo05c-vm {
   db_node_id = data.oci_database_db_nodes.tf-demo05c-vm.db_nodes[0]["id"]
 }
 
 # Get the OCID of the first (default) vNIC
-data "oci_core_vnic" "tf-demo05c-vm" {
+data oci_core_vnic tf-demo05c-vm {
   vnic_id = data.oci_database_db_node.tf-demo05c-vm.vnic_id
 }
 
@@ -115,18 +115,18 @@ EOF
 
 # ------ Get the public IP of the STANDBY DB system and display it on screen
 # Get DB node list
-data "oci_database_db_nodes" "tf-demo05c-stdby" {
+data oci_database_db_nodes tf-demo05c-stdby {
   compartment_id = var.compartment_ocid
   db_system_id   = oci_database_data_guard_association.tf-demo05c-db1.peer_db_system_id
 }
 
 # Get DB node details
-data "oci_database_db_node" "tf-demo05c-stdby" {
+data oci_database_db_node tf-demo05c-stdby {
   db_node_id = data.oci_database_db_nodes.tf-demo05c-stdby.db_nodes[0]["id"]
 }
 
 # Get the OCID of the first (default) vNIC
-data "oci_core_vnic" "tf-demo05c-stdby" {
+data oci_core_vnic tf-demo05c-stdby {
   vnic_id = data.oci_database_db_node.tf-demo05c-stdby.vnic_id
 }
 

@@ -1,5 +1,5 @@
 # ------ Create a compute instance for bastion host
-resource "oci_core_instance" "tf-demo07a-bastion" {
+resource oci_core_instance tf-demo07a-bastion {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD_bastion - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "tf-demo07a-bastion"

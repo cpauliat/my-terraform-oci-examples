@@ -1,5 +1,5 @@
 # --------- Get the OCID for the more recent for Windows 2016/2019 disk image
-data "oci_core_images" "ImageOCID-win201x" {
+data oci_core_images ImageOCID-win201x {
   compartment_id           = var.compartment_ocid
   operating_system         = "Windows"
   operating_system_version = "Server ${var.os_version} Standard"
@@ -13,7 +13,7 @@ data "oci_core_images" "ImageOCID-win201x" {
 }
 
 # ------ Create a compute instance from the most recent Windows 2016/2019 image
-resource "oci_core_instance" "tf-demo10-win201x" {
+resource oci_core_instance tf-demo10-win201x {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo10-win201x"
@@ -36,7 +36,7 @@ resource "oci_core_instance" "tf-demo10-win201x" {
 }
 
 # ------ Display connection details
-data "oci_core_instance_credentials" "tf-demo10-win201x" {
+data oci_core_instance_credentials tf-demo10-win201x {
   instance_id = oci_core_instance.tf-demo10-win201x.id
 }
 

@@ -1,10 +1,10 @@
 # -------- get the list of available ADs
-data "oci_identity_availability_domains" "ADs" {
+data oci_identity_availability_domains ADs {
   compartment_id = var.tenancy_ocid
 }
 
 # ------ Create a new VCN
-resource "oci_core_virtual_network" "tf-oow2019-hol1512-vcn" {
+resource oci_core_virtual_network tf-oow2019-hol1512-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "HOL1512 vcn"
@@ -12,14 +12,14 @@ resource "oci_core_virtual_network" "tf-oow2019-hol1512-vcn" {
 }
 
 # ------ Create a new Internet Gategay
-resource "oci_core_internet_gateway" "tf-oow2019-hol1512-ig" {
+resource oci_core_internet_gateway tf-oow2019-hol1512-ig {
   compartment_id = var.compartment_ocid
   display_name   = "HOL1512 ig"
   vcn_id         = oci_core_virtual_network.tf-oow2019-hol1512-vcn.id
 }
 
 # ------ Create a new Route Table
-resource "oci_core_route_table" "tf-oow2019-hol1512-rt" {
+resource oci_core_route_table tf-oow2019-hol1512-rt {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-oow2019-hol1512-vcn.id
   display_name   = "HOL1512 route table"
@@ -31,7 +31,7 @@ resource "oci_core_route_table" "tf-oow2019-hol1512-rt" {
 }
 
 # ------ Create a new security list to be used in the new subnet
-resource "oci_core_security_list" "tf-oow2019-hol1512-subnet1-sl" {
+resource oci_core_security_list tf-oow2019-hol1512-subnet1-sl {
   compartment_id = var.compartment_ocid
   display_name   = "HOL1512 seclist"
   vcn_id         = oci_core_virtual_network.tf-oow2019-hol1512-vcn.id
@@ -66,7 +66,7 @@ resource "oci_core_security_list" "tf-oow2019-hol1512-subnet1-sl" {
 }
 
 # ------ Create a public subnet 1 in AD1 in the new VCN
-resource "oci_core_subnet" "tf-oow2019-hol1512-public-subnet1" {
+resource oci_core_subnet tf-oow2019-hol1512-public-subnet1 {
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   cidr_block          = var.cidr_subnet1
   display_name        = "HOL1512 public subnet 1"

@@ -1,4 +1,4 @@
-resource "oci_file_storage_file_system" "tf-demo05-fs1" {
+resource oci_file_storage_file_system tf-demo05-fs1 {
   #Required
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id      = var.compartment_ocid
@@ -7,7 +7,7 @@ resource "oci_file_storage_file_system" "tf-demo05-fs1" {
   display_name = "tf-demo05-fs1"
 }
 
-resource "oci_file_storage_mount_target" "tf-demo05-mt1" {
+resource oci_file_storage_mount_target tf-demo05-mt1 {
   #Required
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id      = var.compartment_ocid
@@ -17,7 +17,7 @@ resource "oci_file_storage_mount_target" "tf-demo05-mt1" {
   display_name = "tf-demo05-mount-target1"
 }
 
-resource "oci_file_storage_export_set" "tf-demo05-es1" {
+resource oci_file_storage_export_set tf-demo05-es1 {
   # Required
   mount_target_id = oci_file_storage_mount_target.tf-demo05-mt1.id
 
@@ -27,7 +27,7 @@ resource "oci_file_storage_export_set" "tf-demo05-es1" {
   #max_fs_stat_files = "${var.max_files}"
 }
 
-resource "oci_file_storage_export" "tf-demo05-fs1-mt1" {
+resource oci_file_storage_export tf-demo05-fs1-mt1 {
   #Required
   export_set_id  = oci_file_storage_mount_target.tf-demo05-mt1.export_set_id
   file_system_id = oci_file_storage_file_system.tf-demo05-fs1.id
@@ -41,7 +41,7 @@ resource "oci_file_storage_export" "tf-demo05-fs1-mt1" {
   }
 }
 
-data "oci_core_private_ips" "tf-demo05-mt1" {
+data oci_core_private_ips tf-demo05-mt1 {
   subnet_id = oci_file_storage_mount_target.tf-demo05-mt1.subnet_id
 
   filter {
@@ -55,7 +55,7 @@ locals {
 }
 
 # ------ Mount the filesystem in the db system
-resource "null_resource" "mount_fss_on_dbsystem" {
+resource null_resource mount_fss_on_dbsystem {
   depends_on = [ oci_database_db_system.tf-demo05-db-vm, oci_file_storage_export.tf-demo05-fs1-mt1]
   provisioner "remote-exec" {
     connection {

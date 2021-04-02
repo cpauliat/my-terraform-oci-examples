@@ -1,5 +1,5 @@
 # --------- Get the OCID for the most recent for Oracle Linux 7.x disk image
-data "oci_core_images" "ImageOCID-ol7" {
+data oci_core_images ImageOCID-ol7 {
   compartment_id           = var.compartment_ocid
   operating_system         = "Oracle Linux"
   operating_system_version = "7.9"
@@ -13,7 +13,7 @@ data "oci_core_images" "ImageOCID-ol7" {
 }
 
 # ------ Create a compute instance from the most recent Oracle Linux 7.x image
-resource "oci_core_instance" "tf-demo26-ws" {
+resource oci_core_instance tf-demo26-ws {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo26-websrv"
@@ -38,7 +38,7 @@ resource "oci_core_instance" "tf-demo26-ws" {
 }
 
 # ------ Post provisioning by remote-exec
-resource "null_resource" "tf-demo26" {
+resource null_resource tf-demo26 {
 
   provisioner "file" {
     connection {

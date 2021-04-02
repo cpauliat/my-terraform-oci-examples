@@ -5,7 +5,7 @@
 }
 */
 
-resource "oci_dns_record" "tf-demo26-record1" {
+resource oci_dns_record tf-demo26-record1 {
 #    zone_name_or_id = oci_dns_zone.tf-demo26.id
     zone_name_or_id = var.dns_domain_name
     domain          = var.dns_hostname

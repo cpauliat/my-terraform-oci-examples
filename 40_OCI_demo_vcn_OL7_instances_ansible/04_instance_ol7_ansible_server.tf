@@ -1,5 +1,5 @@
 # ------ Create a compute instance from the most recent Oracle Linux 7.x image
-resource "oci_core_instance" "tf-demo40-ansible" {
+resource oci_core_instance tf-demo40-ansible {
   depends_on = [ oci_core_instance.tf-demo40-host1 ]
 
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
@@ -26,7 +26,7 @@ resource "oci_core_instance" "tf-demo40-ansible" {
 }
 
 # ------ Copy Ansible playbooks to Ansible server
-resource "null_resource" "tf-demo40-ansible" {
+resource null_resource tf-demo40-ansible {
   depends_on = [ oci_core_instance.tf-demo40-host1 ]
 
   provisioner "file" {

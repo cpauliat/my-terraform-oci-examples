@@ -1,10 +1,10 @@
 # -------- get the list of available ADs
-data "oci_identity_availability_domains" "ADs" {
+data oci_identity_availability_domains ADs {
   compartment_id = var.tenancy_ocid
 }
 
 # ------ Create a new VCN
-resource "oci_core_virtual_network" "tf-demo38-vcn" {
+resource oci_core_virtual_network tf-demo38-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo38-vcn"
@@ -12,14 +12,14 @@ resource "oci_core_virtual_network" "tf-demo38-vcn" {
 }
 
 # ------ Create a new Internet Gategay
-resource "oci_core_internet_gateway" "tf-demo38-ig" {
+resource oci_core_internet_gateway tf-demo38-ig {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo38-internet-gateway"
   vcn_id         = oci_core_virtual_network.tf-demo38-vcn.id
 }
 
 # ------ Create a new Route Table
-resource "oci_core_route_table" "tf-demo38-rt" {
+resource oci_core_route_table tf-demo38-rt {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo38-vcn.id
   display_name   = "tf-demo38-route-table"
@@ -31,7 +31,7 @@ resource "oci_core_route_table" "tf-demo38-rt" {
 }
 
 # ------ Create a new security list to be used in the new subnet
-resource "oci_core_security_list" "tf-demo38-subnet1-sl" {
+resource oci_core_security_list tf-demo38-subnet1-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo38-subnet1-security-list"
   vcn_id         = oci_core_virtual_network.tf-demo38-vcn.id
@@ -67,7 +67,7 @@ resource "oci_core_security_list" "tf-demo38-subnet1-sl" {
 }
 
 # ------ Create several regional public subnets
-resource "oci_core_subnet" "tf-demo38-subnet" {
+resource oci_core_subnet tf-demo38-subnet {
   count               = var.nb_subnets
   cidr_block          = var.subnets_cidr[count.index]
   display_name        = var.subnets_name[count.index]
@@ -78,4 +78,3 @@ resource "oci_core_subnet" "tf-demo38-subnet" {
   security_list_ids   = [oci_core_security_list.tf-demo38-subnet1-sl.id]
   dhcp_options_id     = oci_core_virtual_network.tf-demo38-vcn.default_dhcp_options_id
 }
-

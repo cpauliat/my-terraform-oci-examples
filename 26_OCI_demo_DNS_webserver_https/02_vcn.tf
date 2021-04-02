@@ -1,10 +1,10 @@
 # -------- get the list of available ADs
-data "oci_identity_availability_domains" "ADs" {
+data oci_identity_availability_domains ADs {
   compartment_id = var.tenancy_ocid
 }
 
 # ------ Create a new VCN
-resource "oci_core_vcn" "tf-demo26-vcn" {
+resource oci_core_vcn tf-demo26-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo26-vcn"
@@ -12,14 +12,14 @@ resource "oci_core_vcn" "tf-demo26-vcn" {
 }
 
 # ------ Create a new Internet Gategay
-resource "oci_core_internet_gateway" "tf-demo26-ig" {
+resource oci_core_internet_gateway tf-demo26-ig {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo26-internet-gateway"
   vcn_id         = oci_core_vcn.tf-demo26-vcn.id
 }
 
 # ------ Create a new Route Table
-resource "oci_core_route_table" "tf-demo26-rt" {
+resource oci_core_route_table tf-demo26-rt {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_vcn.tf-demo26-vcn.id
   display_name   = "tf-demo26-route-table"
@@ -31,7 +31,7 @@ resource "oci_core_route_table" "tf-demo26-rt" {
 }
 
 # ------ Create a new security list to be used in the new subnet
-resource "oci_core_security_list" "tf-demo26-subnet1-sl" {
+resource oci_core_security_list tf-demo26-subnet1-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo26-subnet1-security-list"
   vcn_id         = oci_core_vcn.tf-demo26-vcn.id
@@ -86,7 +86,7 @@ resource "oci_core_security_list" "tf-demo26-subnet1-sl" {
 }
 
 # ------ Create a regional public subnet
-resource "oci_core_subnet" "tf-demo26-public-subnet1" {
+resource oci_core_subnet tf-demo26-public-subnet1 {
   cidr_block          = var.cidr_subnet1
   display_name        = "tf-demo26-public-subnet1"
   dns_label           = "subnet1"

@@ -1,5 +1,5 @@
 # --------- Get the OCID for the most recent for Oracle Linux 7.x disk image
-data "oci_core_images" "ImageOCID-ol7" {
+data oci_core_images ImageOCID-ol7 {
   compartment_id           = var.compartment_ocid
   operating_system         = "Oracle Linux"
   operating_system_version = "7.9"
@@ -13,7 +13,7 @@ data "oci_core_images" "ImageOCID-ol7" {
 }
 
 # ------ Create a compute instance from the most recent Oracle Linux 7.x image
-resource "oci_core_instance" "tf-demo20-ol7" {
+resource oci_core_instance tf-demo20-ol7 {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo20-ol7-dbclient"
@@ -37,7 +37,7 @@ resource "oci_core_instance" "tf-demo20-ol7" {
   }
 }
 
-resource "local_file" "sshconfig" {
+resource local_file sshconfig {
   content = <<EOF
 Host dbclient-opc
           Hostname ${oci_core_instance.tf-demo20-ol7.public_ip}
@@ -59,7 +59,7 @@ output "DB_client" {
 
   WAIT FOR A FEW MINUTES FOR POST_PROVISIONING ACTIONS TO TAKE PLACE
 
-  Connection to Database client (Oracle Linux 7 instance with Oracle Instant Client 18.3)
+  Connection to Database client (Oracle Linux 7 instance with Oracle Instant Client 19.3)
 
   as user opc   :   ssh -F sshcfg dbclient-opc
 

@@ -1,5 +1,5 @@
 # --------- Get the OCID for the most recent for Oracle Linux 7.x disk image
-data "oci_core_images" "ImageOCID-ol7" {
+data oci_core_images ImageOCID-ol7 {
   compartment_id           = var.compartment_ocid
   operating_system         = "Oracle Linux"
   operating_system_version = "7.9"
@@ -13,7 +13,7 @@ data "oci_core_images" "ImageOCID-ol7" {
 }
 
 # ---- Generate a random string to be used as password for opc user on OL7 desktop
-resource "random_string" "tf-demo34-ol7-opc-password" {
+resource random_string tf-demo34-ol7-opc-password {
   # must contains at least 2 upper case letters,
   # 2 lower case letters, 2 numbers and 2 special characters
   length      = 16
@@ -29,7 +29,7 @@ resource "random_string" "tf-demo34-ol7-opc-password" {
 }
 
 # ------ Create a compute instance for OL7 desktop
-resource "oci_core_instance" "tf-demo34-ol7-desktop" {
+resource oci_core_instance tf-demo34-ol7-desktop {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo34-ol7-desktop"

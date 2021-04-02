@@ -1,5 +1,5 @@
 # --------- Get the OCID for the more recent for Windows 2016 disk image
-data "oci_core_images" "ImageOCID-win2016" {
+data oci_core_images ImageOCID-win2016 {
   compartment_id           = var.compartment_ocid
   operating_system         = "Windows"
   operating_system_version = "Server 2016 Standard"
@@ -7,13 +7,13 @@ data "oci_core_images" "ImageOCID-win2016" {
   # filter to remove E2 images
   filter {
       name   = "display_name"
-      values = ["Windows-Server-2016-Standard-Edition-VM-Gen2-2019"]
+      values = ["Windows-Server-2016-Standard-Edition-VM-Gen2-20*"]
       regex  = true
   }
 }
 
 # ------ Create a compute instance from the most recent Windows 2016 image
-resource "oci_core_instance" "tf-demo10c-win2016" {
+resource oci_core_instance tf-demo10c-win2016 {
   depends_on = [ oci_objectstorage_object.tf-demo10c-pwd, oci_objectstorage_preauthrequest.tf-demo10c-pwd ]
 
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
@@ -39,7 +39,7 @@ resource "oci_core_instance" "tf-demo10c-win2016" {
 }
 
 # ------ Display connection details
-data "oci_core_instance_credentials" "tf-demo10c-win2016" {
+data oci_core_instance_credentials tf-demo10c-win2016 {
   instance_id = oci_core_instance.tf-demo10c-win2016.id
 }
 

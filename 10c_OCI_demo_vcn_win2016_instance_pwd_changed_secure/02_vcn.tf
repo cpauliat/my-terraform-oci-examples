@@ -1,10 +1,10 @@
 # -------- get the list of available ADs
-data "oci_identity_availability_domains" "ADs" {
+data oci_identity_availability_domains ADs {
   compartment_id = var.tenancy_ocid
 }
 
 # ------ Create a new VCN
-resource "oci_core_virtual_network" "tf-demo10c-vcn" {
+resource oci_core_virtual_network tf-demo10c-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo10c-vcn"
@@ -12,14 +12,14 @@ resource "oci_core_virtual_network" "tf-demo10c-vcn" {
 }
 
 # ------ Create a new Internet Gategay
-resource "oci_core_internet_gateway" "tf-demo10c-ig" {
+resource oci_core_internet_gateway tf-demo10c-ig {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo10c-internet-gateway"
   vcn_id         = oci_core_virtual_network.tf-demo10c-vcn.id
 }
 
 # ------ Create a new Route Table
-resource "oci_core_route_table" "tf-demo10c-rt" {
+resource oci_core_route_table tf-demo10c-rt {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_virtual_network.tf-demo10c-vcn.id
   display_name   = "tf-demo10c-route-table"
@@ -32,7 +32,7 @@ resource "oci_core_route_table" "tf-demo10c-rt" {
 }
 
 # ------ Create a new security list to be used in the new subnet
-resource "oci_core_security_list" "tf-demo10c-subnet1-sl" {
+resource oci_core_security_list tf-demo10c-subnet1-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo10c-subnet1-security-list"
   vcn_id         = oci_core_virtual_network.tf-demo10c-vcn.id
@@ -68,7 +68,7 @@ resource "oci_core_security_list" "tf-demo10c-subnet1-sl" {
 }
 
 # ------ Create a public subnet 1 in AD1 in the new VCN
-resource "oci_core_subnet" "tf-demo10c-public-subnet1" {
+resource oci_core_subnet tf-demo10c-public-subnet1 {
 # uncomment the following line to create an AD specific subnet
 # availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   cidr_block          = var.cidr_subnet1

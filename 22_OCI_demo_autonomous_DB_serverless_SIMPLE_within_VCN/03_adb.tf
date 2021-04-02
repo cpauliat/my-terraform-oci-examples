@@ -1,5 +1,5 @@
 # ---- Generate a random string to be used as password for ADB admin user
-resource "random_string" "tf-demo22-adb-password" {
+resource random_string tf-demo22-adb-password {
   # must contains at least 2 upper case letters, 
   # 2 lower case letters, 2 numbers and 2 special characters
   length      = 16
@@ -14,7 +14,7 @@ resource "random_string" "tf-demo22-adb-password" {
   override_special = "#+-="   # use only special characters in this list
 }
 
-resource "oci_database_autonomous_database" "tf-demo22-adb" {
+resource oci_database_autonomous_database tf-demo22-adb {
   db_workload              = var.adb_type
   admin_password           = random_string.tf-demo22-adb-password.result
   #admin_password           = var.adb_password
@@ -33,14 +33,14 @@ resource "oci_database_autonomous_database" "tf-demo22-adb" {
   subnet_id                = oci_core_subnet.tf-demo22-public-subnet1.id
 }
 
-resource "oci_database_autonomous_database_wallet" "tf-demo22-adb-wallet" {
+resource oci_database_autonomous_database_wallet tf-demo22-adb-wallet {
   autonomous_database_id = oci_database_autonomous_database.tf-demo22-adb.id
   password               = var.adb_wallet_password
   generate_type          = var.adb_wallet_type
   base64_encode_content  = "true"
 }
 
-resource "local_file" "tf-demo22-adb-wallet" {
+resource local_file tf-demo22-adb-wallet {
   content_base64 = oci_database_autonomous_database_wallet.tf-demo22-adb-wallet.content
   filename       = var.adb_wallet_filename
 }

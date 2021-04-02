@@ -1,5 +1,5 @@
 # --------- Get the OCID for the more recent for Windows 2016 disk image
-data "oci_core_images" "ImageOCID-win2016" {
+data oci_core_images ImageOCID-win2016 {
   compartment_id           = var.compartment_ocid
   operating_system         = "Windows"
   operating_system_version = "Server 2016 Standard"
@@ -13,7 +13,7 @@ data "oci_core_images" "ImageOCID-win2016" {
 }
 
 # ------ generate a random password to replace the temporary password in the cloud-init post-provisioning task
-resource "random_string" "windows_password" {
+resource random_string windows_password {
   # must contains at least 2 upper case letters, 2 lower case letters, 2 numbers and 2 special characters
   length      = 12
   upper       = true
@@ -28,7 +28,7 @@ resource "random_string" "windows_password" {
 }
 
 # ------ Create a compute instance from the most recent Windows 2016 image
-resource "oci_core_instance" "tf-demo15-win2016" {
+resource oci_core_instance tf-demo15-win2016 {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo15-win2016"
@@ -55,7 +55,7 @@ resource "oci_core_instance" "tf-demo15-win2016" {
 }
 
 # ------ Display the complete ssh command needed to connect to the instance
-data "oci_core_instance_credentials" "tf-demo15-win2016" {
+data oci_core_instance_credentials tf-demo15-win2016 {
   instance_id = oci_core_instance.tf-demo15-win2016.id
 }
 
@@ -79,7 +79,7 @@ EOF
   # password  = ${data.oci_core_instance_credentials.tf-demo15-win2016.password}
 }
 
-resource "local_file" "rdpfile" {
+resource local_file rdpfile {
     content = <<EOF
 auto connect:i:1
 full address:s:${oci_core_instance.tf-demo15-win2016.public_ip}

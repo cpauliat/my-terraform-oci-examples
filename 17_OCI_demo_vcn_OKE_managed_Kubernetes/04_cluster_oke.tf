@@ -1,5 +1,5 @@
 # --------- Create an OKE cluster
-resource "oci_containerengine_cluster" "tf-demo17-oke" {
+resource oci_containerengine_cluster tf-demo17-oke {
   compartment_id     = var.compartment_ocid
   kubernetes_version = var.oke_cluster_k8s_version
   name               = var.oke_cluster_name
@@ -21,7 +21,7 @@ resource "oci_containerengine_cluster" "tf-demo17-oke" {
 }
 
 # --------- Create a node pool with worker nodes in the OKE cluster
-resource "oci_containerengine_node_pool" "tf-demo17-npool" {
+resource oci_containerengine_node_pool tf-demo17-npool {
   cluster_id         = oci_containerengine_cluster.tf-demo17-oke.id
   compartment_id     = var.compartment_ocid
   kubernetes_version = var.oke_node_pool_kubernetes_version
@@ -52,19 +52,19 @@ resource "oci_containerengine_node_pool" "tf-demo17-npool" {
   ssh_public_key      = file(var.ssh_public_key_file)
 }
 
-data "oci_containerengine_node_pool" "tf-demo17-npool" {
+data oci_containerengine_node_pool tf-demo17-npool {
     node_pool_id = oci_containerengine_node_pool.tf-demo17-npool.id
 }
 
 # --------- Create a SSH config file to connect to worker nodes
-resource "null_resource" "nodes_ready" {
+resource null_resource nodes_ready {
   depends_on = [ oci_containerengine_node_pool.tf-demo17-npool ]
   provisioner "local-exec" {
     command = "echo 'Wait 10 minutes for the worker nodes to be ready'; sleep 600"
   }
 }
 
-resource "local_file" "sshconfig" {
+resource local_file sshconfig {
   depends_on = [ null_resource.nodes_ready ]
   content = <<EOF
 Host oke-worker${substr(strrev(data.oci_containerengine_node_pool.tf-demo17-npool.nodes[0].name), 0, 1)}
@@ -84,18 +84,18 @@ EOF
 }
 
 # --------- Create the Kubeconfig file
-data "oci_containerengine_cluster_kube_config" "tf-demo17-oke" {
+data oci_containerengine_cluster_kube_config tf-demo17-oke {
     cluster_id = oci_containerengine_cluster.tf-demo17-oke.id
 }
 
-resource "local_file" "kubeconfig" {
+resource local_file kubeconfig {
   content  = data.oci_containerengine_cluster_kube_config.tf-demo17-oke.content
   filename = "kubeconfig"
 }
 
 # --------- Create a service account and cluster role binding
 # --------- Then get a authentication TOKEN to access Kubernetes Dashboard
-resource "local_file" "yaml" {
+resource local_file yaml {
   content = <<EOF
 apiVersion: v1
 kind: ServiceAccount
@@ -120,7 +120,7 @@ EOF
 }
 
 # --------- Create a script to create a service account get an authentication token to access dashboard
-resource "local_file" "get_token" {
+resource local_file get_token {
   content = <<EOF
 export KUBECONFIG=./kubeconfig
 echo "-- Create service account"

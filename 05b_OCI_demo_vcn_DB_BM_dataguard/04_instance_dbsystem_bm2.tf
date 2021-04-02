@@ -1,5 +1,5 @@
 # ------ Create a DB Systems on Bare Metal shape BM.DenseIO1.36
-resource "oci_database_db_system" "tf-demo05b-db-bm2" {
+resource oci_database_db_system tf-demo05b-db-bm2 {
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD2 - 1]["name"]
   compartment_id      = var.compartment_ocid
   cpu_core_count      = var.BM2-CPUCoreCount
@@ -31,22 +31,22 @@ resource "oci_database_db_system" "tf-demo05b-db-bm2" {
 
 # ------ Post-provisioning and outputs
 # Get DB node list
-data "oci_database_db_nodes" "tf-demo05b-bm2" {
+data oci_database_db_nodes tf-demo05b-bm2 {
   compartment_id = var.compartment_ocid
   db_system_id   = oci_database_db_system.tf-demo05b-db-bm2.id
 }
 
 # Get DB node details
-data "oci_database_db_node" "tf-demo05b-bm2" {
+data oci_database_db_node tf-demo05b-bm2 {
   db_node_id = data.oci_database_db_nodes.tf-demo05b-bm2.db_nodes[0]["id"]
 }
 
 # Gets the OCID of the first (default) vNIC
-data "oci_core_vnic" "tf-demo05b-bm2" {
+data oci_core_vnic tf-demo05b-bm2 {
   vnic_id = data.oci_database_db_node.tf-demo05b-bm2.vnic_id
 }
 
-resource "null_resource" "tf-demo05b-bm2" {
+resource null_resource tf-demo05b-bm2 {
   provisioner "file" {
     connection {
       agent       = false

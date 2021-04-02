@@ -1,7 +1,7 @@
 #!/bin/bash
 
-### Send stdout and stderr to /var/log/cloud-init.log
-exec 1> /var/log/cloud-init.log 2>&1
+### Send stdout and stderr to /var/log/cloud-init2.log
+exec 1> /var/log/cloud-init2.log 2>&1
 
 install_oracle_instant_client_18.5()
 {
@@ -50,13 +50,13 @@ EOF
 }
 
 echo "========== Get argument(s) passed thru metadata"
-AUTH_TOKEN=`curl -L http://169.254.169.254/opc/v1/instance/metadata | jq -j ".myarg_auth_token"`
-REGION=`curl -L http://169.254.169.254/opc/v1/instance/metadata | jq -j ".myarg_region"`
-USERNAME=`curl -L http://169.254.169.254/opc/v1/instance/metadata | jq -j ".myarg_username"`
-NAMESPACE=`curl -L http://169.254.169.254/opc/v1/instance/metadata | jq -j ".myarg_namespace"`
-DB_NAME=`curl -L http://169.254.169.254/opc/v1/instance/metadata | jq -j ".myarg_db_name"`
-DB_PASSWORD=`curl -L http://169.254.169.254/opc/v1/instance/metadata | jq -j ".myarg_db_password"`
-WALLET_FILENAME=`curl -L http://169.254.169.254/opc/v1/instance/metadata | jq -j ".myarg_wallet_filename"`
+AUTH_TOKEN=`curl -L http://169.254.169.254/opc/v1/instance/metadata/myarg_auth_token`
+REGION=`curl -L http://169.254.169.254/opc/v1/instance/metadata/myarg_region`
+USERNAME=`curl -L http://169.254.169.254/opc/v1/instance/metadata/myarg_username`
+NAMESPACE=`curl -L http://169.254.169.254/opc/v1/instance/metadata/myarg_namespace`
+DB_NAME=`curl -L http://169.254.169.254/opc/v1/instance/metadata/myarg_db_name`
+DB_PASSWORD=`curl -L http://169.254.169.254/opc/v1/instance/metadata/myarg_db_password`
+WALLET_FILENAME=`curl -L http://169.254.169.254/opc/v1/instance/metadata/myarg_wallet_filename`
 
 echo "==========  Install OCI utilities and start OCI daemon"
 yum -y install oci-utils

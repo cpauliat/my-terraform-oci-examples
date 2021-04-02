@@ -1,5 +1,5 @@
 # --------- Get the OCID for the most recent for Oracle Linux 7.x disk image
-data "oci_core_images" "ImageOCID-ol7" {
+data oci_core_images ImageOCID-ol7 {
   compartment_id           = var.compartment_ocid
   operating_system         = "Oracle Linux"
   operating_system_version = "7.9"
@@ -13,7 +13,7 @@ data "oci_core_images" "ImageOCID-ol7" {
 }
 
 # ------ Generate a random password for VNC user opc
-resource "random_string" "vnc_password_opc" {
+resource random_string vnc_password_opc {
   # must contains at least 2 upper case letters, 2 lower case letters, 2 numbers and 2 special characters
   length      = 12
   upper       = true
@@ -28,13 +28,13 @@ resource "random_string" "vnc_password_opc" {
 }
 
 # ------ Create a network security group to allow SSH connections from specific public IPs 
-resource "oci_core_network_security_group" "demo35" {
+resource oci_core_network_security_group demo35 {
     compartment_id = var.compartment_ocid
     vcn_id         = oci_core_virtual_network.demo35-vcn.id
     display_name   = "demo35"
 }
 
-resource "oci_core_network_security_group_security_rule" "demo35-secrule1" {
+resource oci_core_network_security_group_security_rule demo35-secrule1 {
     network_security_group_id = oci_core_network_security_group.demo35.id
     direction                 = "INGRESS"
     protocol                  = "6"       # for ICMP ("1"), TCP ("6"), UDP ("17"), and ICMPv6 ("58")
@@ -49,7 +49,7 @@ resource "oci_core_network_security_group_security_rule" "demo35-secrule1" {
     }
 }
 
-resource "oci_core_network_security_group_security_rule" "demo35-secrule2" {
+resource oci_core_network_security_group_security_rule demo35-secrule2 {
     network_security_group_id = oci_core_network_security_group.demo35.id
     direction                 = "INGRESS"
     protocol                  = "6"       # for ICMP ("1"), TCP ("6"), UDP ("17"), and ICMPv6 ("58")
@@ -65,7 +65,7 @@ resource "oci_core_network_security_group_security_rule" "demo35-secrule2" {
 }
 
 # ------ Create a REMOTE DESKTOP ion compute instance (OL7.x) 
-resource "oci_core_instance" "demo35" {
+resource oci_core_instance demo35 {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "demo35: remote desktop noVNC"
