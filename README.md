@@ -559,3 +559,38 @@ Details:
 
 Last update: July 23, 2020
 ```
+
+### 46_OCI_demo_vcn_dynamic_security_rules
+
+```
+Summary: VCN + 1 public subnet using dynamic block in security list
+
+Details:
+- 1 VCN with 1 public regional subnet using 1 security list
+- security rules added to security list using dynamic blocks and list of maps variables
+
+Last update: April 2, 2021
+```
+
+### 47_OCI_demo_vcn_instances_advanced_features
+
+```
+Summary: VCN + subnets + Linux compute instances + bastion using advanced features
+
+Details:
+- Several subnets created from details provided in list of maps variables
+- Several Linux compute instances created from details provided in list of maps variables
+- One block volume (variable size) created and iSCSI attached to each Linux compute instance
+- Filesystem created automically on block volumes and mounted automatically on Linux compute instances
+- A Linux compute instance for bastion
+- sshcfg file created from template to facilitate connections to all compute instance from Internet throught bastion host
+- output created from template
+
+Avanced features used:
+- dynamic blocks
+- list of maps variables
+- template files
+- count
+
+Last update: April 2, 2021
+```
