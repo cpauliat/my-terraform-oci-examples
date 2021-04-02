@@ -4,7 +4,7 @@ data oci_identity_availability_domains r1ADs {
   compartment_id = var.tenancy_ocid
 }
 
-# ------ Create a new VCN
+# ------ Create a new VCN in region 1
 resource oci_core_virtual_network r1-vcn {
   provider       = oci.r1
   cidr_block     = var.r1_cidr_vcn
