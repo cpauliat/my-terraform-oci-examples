@@ -1,0 +1,92 @@
+# ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# -------- Tenant
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "80:8d:62:02:9a:0f:95:xx:xx:xx:xx:xx:fa:4e:9d:bb"
+private_key_path = "/Users/cpauliat/.oci/oci_api_key_TENANT1_private.pem"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+region           = "eu-frankfurt-1"
+
+
+# -------- networking: VCN, subnets and security lists
+vcn_cidr            = "192.168.0.0/16"
+vcn_dnslabel        = "project"
+cidr_public_subnet  = "192.168.0.0/24"
+cidr_onprem         = "10.0.0.0/8"
+authorized_ips      = [ 
+    { ip = "123.123.123.123/32", description = "public IP address C. Pauliat" },
+    { ip = "135.135.135.135/32", description = "public IP address User 1" },
+    { ip = "147.147.147.147/32", description = "public IP address user 2" },
+]
+
+private_subnets     = [
+  { name              = "DB",
+    cidr              = "192.168.1.0/24",
+    dnslabel          = "db",
+    ingress_rules_tcp  = [
+        { source = "192.168.2.0/24",  port_min = "1521", port_max = "1522" },
+        { source = "192.168.0.11/32", port_min =   "22", port_max =   "22" }
+    ],
+    ingress_rules_udp  = [
+        { source = "192.168.2.0/24",  port_min = "6789", port_max = "6789" }
+    ],
+    ingress_rules_icmp = [
+    ],
+  },
+  { name              = "APP",
+    cidr              = "192.168.2.0/24",
+    dnslabel          = "app",
+    ingress_rules_tcp  = [
+        { source = "192.168.3.0/24",  port_min = "3001", port_max = "3001" },
+        { source = "192.168.3.0/24",  port_min = "8443", port_max = "8443" },
+        { source = "192.168.0.11/32", port_min =   "22", port_max =   "22" }
+    ],
+    ingress_rules_udp  = [
+        { source = "192.168.3.0/24",  port_min = "9876", port_max = "9876" }
+    ],
+    ingress_rules_icmp = [
+    ],
+  },
+  { name              = "WEB",
+    cidr              = "192.168.3.0/24",
+    dnslabel          = "web",
+    ingress_rules_tcp  = [
+        { source = "10.0.0.0/8"     , port_min =  "443", port_max =  "443" },
+        { source = "192.168.0.11/32", port_min =   "22", port_max =   "22" }
+    ],
+    ingress_rules_udp  = [
+    ],
+    ingress_rules_icmp = [
+        { source = "10.0.0.0/8" },
+    ],
+  },
+]
+
+
+# -------- Compute instances
+
+ol7_image_ocid       = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaawx7h4vxjmrgha6inypi7df63q2y3bjylrp24b4sbgekumq5pqc7a"         
+
+# ---- availability domain (1, 2 or 3)
+AD                   = "1"      
+
+# ---- bastion
+bastion_private_ip           = "192.168.0.11"
+bastion_ssh_private_key_file = "sshkeys/ssh_key_demo47_bastion"
+bastion_ssh_public_key_file  = "sshkeys/ssh_key_demo47_bastion.pub"
+bastion_cloud_init_file      = "userdata/cloud_init_bastion.sh"
+
+# ---- Linux instances
+ssh_private_key_file         = "sshkeys/ssh_key_demo47_linux"
+ssh_public_key_file          = "sshkeys/ssh_key_demo47_linux.pub"
+linux_cloud_init_file        = "userdata/cloud_init_linux.sh"
+linux_instances              = [  
+    { hostname = "WEB1", private_ip = "192.168.3.11",  blk_vol = "50",  subnet = "WEB", fd = "1", shape = "VM.Standard.E2.2" },
+    { hostname = "WEB2", private_ip = "192.168.3.12",  blk_vol = "50",  subnet = "WEB", fd = "2", shape = "VM.Standard.E2.2" },
+    { hostname = "WEB3", private_ip = "192.168.3.13",  blk_vol = "50",  subnet = "WEB", fd = "3", shape = "VM.Standard.E2.2" },
+    { hostname = "APP1", private_ip = "192.168.2.11",  blk_vol = "150", subnet = "APP", fd = "1", shape = "VM.Standard.E2.8" },
+    { hostname = "APP2", private_ip = "192.168.2.12",  blk_vol = "150", subnet = "APP", fd = "2", shape = "VM.Standard.E2.8" },
+    { hostname = "DB1",  private_ip = "192.168.1.11",  blk_vol = "100", subnet = "DB",  fd = "1", shape = "VM.Standard.E3.Flex", ocpus = "4", memory = "16" },
+    { hostname = "DB2",  private_ip = "192.168.1.12",  blk_vol = "100", subnet = "DB",  fd = "2", shape = "VM.Standard.E3.Flex", ocpus = "4", memory = "16" },
+]
