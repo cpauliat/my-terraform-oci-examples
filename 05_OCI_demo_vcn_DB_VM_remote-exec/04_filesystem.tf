@@ -56,7 +56,7 @@ locals {
 
 # ------ Mount the filesystem in the db system
 resource null_resource mount_fss_on_dbsystem {
-  depends_on = [ oci_database_db_system.tf-demo05-db-vm, oci_file_storage_export.tf-demo05-fs1-mt1]
+  depends_on = [ oci_database_db_system.tf-demo05-db-vm, oci_file_storage_export.tf-demo05-fs1-mt1 ]
   provisioner "remote-exec" {
     connection {
       agent = false
