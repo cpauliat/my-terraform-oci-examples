@@ -14,7 +14,7 @@ resource oci_core_instance tf-demo01-ol7 {
   create_vnic_details {
     subnet_id      = oci_core_subnet.tf-demo01-public-subnet1.id
     hostname_label = "tf-demo01-ol7"
-    #  private_ip    = "10.0.0.3"
+    # private_ip    = "10.0.0.3"
   }
 
   metadata = {

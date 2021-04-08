@@ -24,7 +24,7 @@ authorized_ips		= "0.0.0.0/0"		    # all Internet
 AD               = "1"
 
 # ---- IP addresses
-cidr_vcn         = "10.0.0.0/16"
+cidr_vcn         = [ "10.0.0.0/16" ]
 cidr_subnet1     = "10.0.0.0/24"
 
 # ---- Compute instances

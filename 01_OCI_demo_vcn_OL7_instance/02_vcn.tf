@@ -1,6 +1,6 @@
 # ------ Create a new VCN
 resource oci_core_virtual_network tf-demo01-vcn {
-  cidr_block     = var.cidr_vcn
+  cidr_blocks    = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo01-vcn"
   dns_label      = "demo01"
@@ -40,8 +40,9 @@ resource oci_core_security_list tf-demo01-subnet1-sl {
 
   ingress_security_rules {
     protocol = "all"
-    source   = var.cidr_vcn
+    source   = var.cidr_vcn[0]
   }
+  
   ingress_security_rules {
     protocol    = "6" # tcp
     source      = var.authorized_ips
