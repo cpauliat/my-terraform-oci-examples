@@ -14,7 +14,7 @@ data oci_core_images OLImageOCID-ol7-vcn1 {
 
 # ------ Create a test compute instance (Oracle Linux 7) in VCN1
 resource oci_core_instance demo12-vcn1 {
-  availability_domain = data.oci_identity_availability_domains.vcn1ADs.availability_domains[var.vcn1_AD - 1]["name"]
+  availability_domain = data.oci_identity_availability_domains.vcn1ADs.availability_domains[var.vcn1_instance_AD - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "demo12-vcn1"
   shape               = "VM.Standard2.1"
@@ -26,7 +26,7 @@ resource oci_core_instance demo12-vcn1 {
 
   create_vnic_details {
     subnet_id      = oci_core_subnet.vcn1-pubnet.id
-    hostname_label = "demo12-vcn1"
+    hostname_label = var.dns_hostname1
   }
 
   metadata = {
@@ -35,7 +35,7 @@ resource oci_core_instance demo12-vcn1 {
   }
 }
 
-output "Instance_VCN1" {
+output Instance_VCN1 {
   value = <<EOF
 
 
@@ -44,6 +44,10 @@ output "Instance_VCN1" {
 
   ---- You can then ping instance in VCN2 using private IP address
   ping ${oci_core_instance.demo12-vcn2.private_ip}
+
+  ---- In this Terraform example, I also added the DNS private view for VCN2 to DNS resolver for VCN1
+  ---- so, you can also ping instance in VCN2 using DNS hostname
+  ping ${var.dns_hostname2}.${var.dns_label_public2}.${var.dns_label_vcn2}.oraclevcn.com
 
 EOF
 }

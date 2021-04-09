@@ -28,9 +28,18 @@ vcn2_cidr_vcn      = "172.16.0.0/16"
 vcn2_cidr_pubnet   = "172.16.0.0/24"
 vcn2_cidr_privnet  = "172.16.7.0/24"
 
-# ---- availability domain (1, 2 or 3)
-vcn1_AD            = "1"
-vcn2_AD            = "1"
+dns_label_vcn1     = "vcn1"
+dns_label_vcn2     = "vcn2"
+dns_label_public1  = "public"
+dns_label_public2  = "public"
+dns_label_private1 = "private"
+dns_label_private2 = "private"
+dns_hostname1      = "d12_inst1"
+dns_hostname2      = "d12_inst2"
+
+# ---- availability domain (1, 2 or 3) for compute instances
+vcn1_instance_AD   = "1"
+vcn2_instance_AD   = "2"
 
 # -- variables for BM/VM creation
 BootStrapFile      = "userdata/bootstrap_ol7.sh"

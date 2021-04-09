@@ -4,24 +4,24 @@ data oci_identity_availability_domains vcn1ADs {
 }
 
 # ------ Create a new VCN
-resource oci_core_virtual_network vcn1-vcn {
+resource oci_core_vcn vcn1-vcn {
   cidr_block     = var.vcn1_cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo12-vcn1"
-  dns_label      = "vcn1"
+  dns_label      = var.dns_label_vcn1
 }
 
 # ------ Create a new Internet Gategay
 resource oci_core_internet_gateway vcn1-ig {
   compartment_id = var.compartment_ocid
   display_name   = "demo12_vcn1_igw"
-  vcn_id         = oci_core_virtual_network.vcn1-vcn.id
+  vcn_id         = oci_core_vcn.vcn1-vcn.id
 }
 
 # ------ Create a new Route Table for the public subnet
 resource oci_core_route_table vcn1-pubnet-rt {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.vcn1-vcn.id
+  vcn_id         = oci_core_vcn.vcn1-vcn.id
   display_name   = "demo12_vcn1_pubnet_rt"
 
   route_rules {
@@ -38,7 +38,7 @@ resource oci_core_route_table vcn1-pubnet-rt {
 # ------ Create a new Route Table for the private subnet
 resource oci_core_route_table vcn1-privnet-rt {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.vcn1-vcn.id
+  vcn_id         = oci_core_vcn.vcn1-vcn.id
   display_name   = "demo12_vcn1_privnet_rt"
 
   route_rules {
@@ -51,7 +51,7 @@ resource oci_core_route_table vcn1-privnet-rt {
 resource oci_core_security_list vcn1-pubnet-sl {
   compartment_id = var.compartment_ocid
   display_name   = "demo12_vcn1_pubnet_sl"
-  vcn_id         = oci_core_virtual_network.vcn1-vcn.id
+  vcn_id         = oci_core_vcn.vcn1-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -91,7 +91,7 @@ resource oci_core_security_list vcn1-pubnet-sl {
 resource oci_core_security_list vcn1-privnet-sl {
   compartment_id = var.compartment_ocid
   display_name   = "demo12_vcn1_privnet_sl"
-  vcn_id         = oci_core_virtual_network.vcn1-vcn.id
+  vcn_id         = oci_core_vcn.vcn1-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -117,31 +117,31 @@ resource oci_core_security_list vcn1-privnet-sl {
 resource oci_core_subnet vcn1-pubnet {
   cidr_block          = var.vcn1_cidr_pubnet
   display_name        = "demo12_vcn1_pubnet"
-  dns_label           = "pub"
+  dns_label           = var.dns_label_public1
   compartment_id      = var.compartment_ocid
-  vcn_id              = oci_core_virtual_network.vcn1-vcn.id
+  vcn_id              = oci_core_vcn.vcn1-vcn.id
   route_table_id      = oci_core_route_table.vcn1-pubnet-rt.id
   security_list_ids   = [oci_core_security_list.vcn1-pubnet-sl.id]
-  dhcp_options_id     = oci_core_virtual_network.vcn1-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.vcn1-vcn.default_dhcp_options_id
 }
 
 # ------ Create a private subnet in the new VCN
 resource oci_core_subnet vcn1-privnet {
   cidr_block          = var.vcn1_cidr_privnet
   display_name        = "demo12_vcn1_privnet"
-  dns_label           = "priv"
+  dns_label           = var.dns_label_private1
   compartment_id      = var.compartment_ocid
-  vcn_id              = oci_core_virtual_network.vcn1-vcn.id
+  vcn_id              = oci_core_vcn.vcn1-vcn.id
   route_table_id      = oci_core_route_table.vcn1-privnet-rt.id
   security_list_ids   = [oci_core_security_list.vcn1-privnet-sl.id]
-  dhcp_options_id     = oci_core_virtual_network.vcn1-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.vcn1-vcn.default_dhcp_options_id
 }
 
 # ------ Create a Local Peering Gateway (LPG) in the new VCN
 resource oci_core_local_peering_gateway vcn1-lpg {
   #Required
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.vcn1-vcn.id
+  vcn_id         = oci_core_vcn.vcn1-vcn.id
 
   #Optional
   display_name = "lpg1"
