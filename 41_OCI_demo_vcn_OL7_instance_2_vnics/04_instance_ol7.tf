@@ -23,7 +23,7 @@ resource oci_core_instance tf-demo41-ol7 {
 }
 
 # ------ Display the complete ssh command needed to connect to the instance
-output "Instance_OL7" {
+output Instance_OL7 {
   value = <<EOF
 
 

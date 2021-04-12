@@ -1,5 +1,5 @@
 # ------ Create a new VCN
-resource oci_core_virtual_network tf-demo08-vcn {
+resource oci_core_vcn tf-demo08-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo08-vcn"
@@ -12,13 +12,13 @@ resource oci_core_virtual_network tf-demo08-vcn {
 resource oci_core_internet_gateway tf-demo08-ig {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo08-internet-gateway"
-  vcn_id         = oci_core_virtual_network.tf-demo08-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo08-vcn.id
 }
 
 # ------ Create a new Route Table to be used in the new public subnet
 resource oci_core_route_table tf-demo08-rt-public {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo08-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo08-vcn.id
   display_name   = "tf-demo08-rt-public"
 
   route_rules {
@@ -32,7 +32,7 @@ resource oci_core_route_table tf-demo08-rt-public {
 resource oci_core_security_list tf-demo08-subnet-sl-public {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo08-sl-public"
-  vcn_id         = oci_core_virtual_network.tf-demo08-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo08-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -67,10 +67,10 @@ resource oci_core_subnet tf-demo08-public-subnet {
   display_name        = "tf-demo08-public-subnet"
   dns_label           = "public"
   compartment_id      = var.compartment_ocid
-  vcn_id              = oci_core_virtual_network.tf-demo08-vcn.id
+  vcn_id              = oci_core_vcn.tf-demo08-vcn.id
   route_table_id      = oci_core_route_table.tf-demo08-rt-public.id
   security_list_ids   = [oci_core_security_list.tf-demo08-subnet-sl-public.id]
-  dhcp_options_id     = oci_core_virtual_network.tf-demo08-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.tf-demo08-vcn.default_dhcp_options_id
 }
 
 # ========== Objects for private subnet
@@ -78,14 +78,14 @@ resource oci_core_subnet tf-demo08-public-subnet {
 # ------ Create a NAT gateway
 resource oci_core_nat_gateway tf-demo08-natgw {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo08-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo08-vcn.id
   display_name   = "tf-demo08-nat-gateway"
 }
 
 # ------ Create a new Route Table to be used in the new private subnet
 resource oci_core_route_table tf-demo08-rt-private {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo08-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo08-vcn.id
   display_name   = "tf-demo08-rt-private"
 
   route_rules {
@@ -99,7 +99,7 @@ resource oci_core_route_table tf-demo08-rt-private {
 resource oci_core_security_list tf-demo08-subnet-sl-private {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo08-sl-private"
-  vcn_id         = oci_core_virtual_network.tf-demo08-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo08-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -134,9 +134,9 @@ resource oci_core_subnet tf-demo08-private-subnet {
   display_name               = "tf-demo08-private-subnet"
   dns_label                  = "private"
   compartment_id             = var.compartment_ocid
-  vcn_id                     = oci_core_virtual_network.tf-demo08-vcn.id
+  vcn_id                     = oci_core_vcn.tf-demo08-vcn.id
   route_table_id             = oci_core_route_table.tf-demo08-rt-private.id
   security_list_ids          = [oci_core_security_list.tf-demo08-subnet-sl-private.id]
-  dhcp_options_id            = oci_core_virtual_network.tf-demo08-vcn.default_dhcp_options_id
+  dhcp_options_id            = oci_core_vcn.tf-demo08-vcn.default_dhcp_options_id
   prohibit_public_ip_on_vnic = true
 }

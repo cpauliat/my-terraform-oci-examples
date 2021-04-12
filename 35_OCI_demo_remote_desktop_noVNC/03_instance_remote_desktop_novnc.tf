@@ -30,7 +30,7 @@ resource random_string vnc_password_opc {
 # ------ Create a network security group to allow SSH connections from specific public IPs 
 resource oci_core_network_security_group demo35 {
     compartment_id = var.compartment_ocid
-    vcn_id         = oci_core_virtual_network.demo35-vcn.id
+    vcn_id         = oci_core_vcn.demo35-vcn.id
     display_name   = "demo35"
 }
 
@@ -92,7 +92,7 @@ resource oci_core_instance demo35 {
 }
 
 # ------ Display the complete ssh command needed to connect to the instance
-output "demo35" {
+output demo35 {
   value = <<EOF
 
   ---- You can SSH directly to the demo35 compute instance by typing the following ssh command

@@ -1,5 +1,5 @@
 # ------ Create a new VCN
-resource oci_core_virtual_network tf-demo17-vcn {
+resource oci_core_vcn tf-demo17-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo17-oke-vcn"
@@ -12,13 +12,13 @@ resource oci_core_virtual_network tf-demo17-vcn {
 resource oci_core_internet_gateway tf-demo17-ig {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo17-internet-gateway"
-  vcn_id         = oci_core_virtual_network.tf-demo17-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo17-vcn.id
 }
 
 # ------ Create a new Route Table
 resource oci_core_route_table tf-demo17-rt {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo17-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo17-vcn.id
   display_name   = "tf-demo17-route-table"
 
   route_rules {
@@ -33,7 +33,7 @@ resource oci_core_route_table tf-demo17-rt {
 resource oci_core_security_list tf-demo17-sl-worker {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo17-sl-worker"
-  vcn_id         = oci_core_virtual_network.tf-demo17-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo17-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -137,10 +137,10 @@ resource oci_core_subnet tf-demo17-worker {
   display_name        = "tf-demo17-worker"
   dns_label           = "worker"
   compartment_id      = var.compartment_ocid
-  vcn_id              = oci_core_virtual_network.tf-demo17-vcn.id
+  vcn_id              = oci_core_vcn.tf-demo17-vcn.id
   route_table_id      = oci_core_route_table.tf-demo17-rt.id
   security_list_ids   = [oci_core_security_list.tf-demo17-sl-worker.id]
-  dhcp_options_id     = oci_core_virtual_network.tf-demo17-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.tf-demo17-vcn.default_dhcp_options_id
 }
 
 # ============ LOAD BALANCER subnet and related resources
@@ -149,7 +149,7 @@ resource oci_core_subnet tf-demo17-worker {
 resource oci_core_security_list tf-demo17-sl-loadbalancers {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo17-sl-loadbalancers"
-  vcn_id         = oci_core_virtual_network.tf-demo17-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo17-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -168,8 +168,8 @@ resource oci_core_subnet tf-demo17-lb {
   display_name        = "tf-demo17-lb"
   dns_label           = "lb"
   compartment_id      = var.compartment_ocid
-  vcn_id              = oci_core_virtual_network.tf-demo17-vcn.id
+  vcn_id              = oci_core_vcn.tf-demo17-vcn.id
   route_table_id      = oci_core_route_table.tf-demo17-rt.id
   security_list_ids   = [oci_core_security_list.tf-demo17-sl-loadbalancers.id]
-  dhcp_options_id     = oci_core_virtual_network.tf-demo17-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.tf-demo17-vcn.default_dhcp_options_id
 }

@@ -41,7 +41,7 @@ resource oci_core_instance tf-demo03-ol7 {
 
 # ------ Display the complete ssh command needed to connect to the instances
 
-output "SSH_connections" {
+output SSH_connections {
   value = [
     for instance in oci_core_instance.tf-demo03-ol7.*:
       "${var.instances_name[index(oci_core_instance.tf-demo03-ol7.*, instance)]}: ssh -i ${var.ssh_private_key_file_ol7} opc@${instance.public_ip}"

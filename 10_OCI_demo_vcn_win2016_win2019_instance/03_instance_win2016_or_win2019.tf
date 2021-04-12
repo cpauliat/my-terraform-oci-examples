@@ -40,7 +40,7 @@ data oci_core_instance_credentials tf-demo10-win201x {
   instance_id = oci_core_instance.tf-demo10-win201x.id
 }
 
-output "Instance_Win201x" {
+output Instance_Win201x {
   value = <<EOF
 
 

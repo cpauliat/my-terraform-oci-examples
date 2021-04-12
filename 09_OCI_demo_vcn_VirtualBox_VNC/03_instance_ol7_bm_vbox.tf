@@ -110,7 +110,7 @@ EOF
 }
 
 # ------ Outputs
-output "VBOX" {
+output VBOX {
   value = <<EOF
 
 

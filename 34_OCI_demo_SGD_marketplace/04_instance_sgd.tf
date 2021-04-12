@@ -90,7 +90,7 @@ EOF
 }
 
 # ------ Instructions
-output "sgd" {
+output sgd {
   value = <<EOF
 
   ---- Wait a few minutes for post-provisioning yum update and reboot

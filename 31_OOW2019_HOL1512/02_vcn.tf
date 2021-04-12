@@ -4,7 +4,7 @@ data oci_identity_availability_domains ADs {
 }
 
 # ------ Create a new VCN
-resource oci_core_virtual_network tf-oow2019-hol1512-vcn {
+resource oci_core_vcn tf-oow2019-hol1512-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "HOL1512 vcn"
@@ -15,13 +15,13 @@ resource oci_core_virtual_network tf-oow2019-hol1512-vcn {
 resource oci_core_internet_gateway tf-oow2019-hol1512-ig {
   compartment_id = var.compartment_ocid
   display_name   = "HOL1512 ig"
-  vcn_id         = oci_core_virtual_network.tf-oow2019-hol1512-vcn.id
+  vcn_id         = oci_core_vcn.tf-oow2019-hol1512-vcn.id
 }
 
 # ------ Create a new Route Table
 resource oci_core_route_table tf-oow2019-hol1512-rt {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-oow2019-hol1512-vcn.id
+  vcn_id         = oci_core_vcn.tf-oow2019-hol1512-vcn.id
   display_name   = "HOL1512 route table"
 
   route_rules {
@@ -34,7 +34,7 @@ resource oci_core_route_table tf-oow2019-hol1512-rt {
 resource oci_core_security_list tf-oow2019-hol1512-subnet1-sl {
   compartment_id = var.compartment_ocid
   display_name   = "HOL1512 seclist"
-  vcn_id         = oci_core_virtual_network.tf-oow2019-hol1512-vcn.id
+  vcn_id         = oci_core_vcn.tf-oow2019-hol1512-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -72,8 +72,8 @@ resource oci_core_subnet tf-oow2019-hol1512-public-subnet1 {
   display_name        = "HOL1512 public subnet 1"
   dns_label           = "subnet1"
   compartment_id      = var.compartment_ocid
-  vcn_id              = oci_core_virtual_network.tf-oow2019-hol1512-vcn.id
+  vcn_id              = oci_core_vcn.tf-oow2019-hol1512-vcn.id
   route_table_id      = oci_core_route_table.tf-oow2019-hol1512-rt.id
   security_list_ids   = [oci_core_security_list.tf-oow2019-hol1512-subnet1-sl.id]
-  dhcp_options_id     = oci_core_virtual_network.tf-oow2019-hol1512-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.tf-oow2019-hol1512-vcn.default_dhcp_options_id
 }

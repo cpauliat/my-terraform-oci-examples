@@ -69,7 +69,7 @@ data oci_core_vnic tf-demo05-vm {
   vnic_id = data.oci_database_db_node.tf-demo05-vm.vnic_id
 }
 
-output "DB_SYSTEM" {
+output DB_SYSTEM {
   value = <<EOF
 
 

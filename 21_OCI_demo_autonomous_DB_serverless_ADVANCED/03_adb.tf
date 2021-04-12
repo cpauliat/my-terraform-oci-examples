@@ -39,7 +39,7 @@ resource oci_database_autonomous_database tf-demo21-adb {
   display_name             = var.adb_display_name
   license_model            = var.adb_license_model
   is_auto_scaling_enabled  = var.adb_autoscaling_enabled
-  whitelisted_ips          = [ oci_core_virtual_network.tf-demo21-vcn.id ]
+  whitelisted_ips          = [ oci_core_vcn.tf-demo21-vcn.id ]
   is_free_tier             = var.adb_is_free_tier
   data_safe_status         = var.adb_data_safe_status 
 }
@@ -70,7 +70,7 @@ resource local_file tf-demo21-adb-wallet {
 }
 
 # ---- outputs
-output "ADB_instance" {
+output ADB_instance {
   value = <<EOF
 
   service console URL = ${oci_database_autonomous_database.tf-demo21-adb.service_console_url}

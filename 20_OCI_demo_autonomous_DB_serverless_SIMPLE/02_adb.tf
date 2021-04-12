@@ -30,7 +30,7 @@ resource oci_database_autonomous_database tf-demo20-adb {
   whitelisted_ips          = var.adb_whitelisted_ips
 }
 
-output "ADB" {
+output ADB {
   value = <<EOF
 
   service console URL = ${oci_database_autonomous_database.tf-demo20-adb.service_console_url}

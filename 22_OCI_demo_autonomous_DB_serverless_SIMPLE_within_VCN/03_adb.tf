@@ -45,7 +45,7 @@ resource local_file tf-demo22-adb-wallet {
   filename       = var.adb_wallet_filename
 }
 
-output "ADB" {
+output ADB {
   value = <<EOF
 
   service console URL = ${oci_database_autonomous_database.tf-demo22-adb.service_console_url}

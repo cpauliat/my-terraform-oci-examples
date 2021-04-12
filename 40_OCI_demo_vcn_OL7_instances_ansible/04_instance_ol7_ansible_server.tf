@@ -55,7 +55,7 @@ resource null_resource tf-demo40-ansible {
 }
 
 # ------ Display the complete ssh command needed to connect to the instance
-output "Instance_ANSIBLE" {
+output Instance_ANSIBLE {
   value = <<EOF
 
 

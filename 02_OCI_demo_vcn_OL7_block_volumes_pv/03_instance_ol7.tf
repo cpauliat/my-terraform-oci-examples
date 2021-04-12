@@ -57,7 +57,7 @@ resource oci_core_instance tf-demo02-ol7 {
 }
 
 # ------ Get the public IP of instance and display it on screen
-output "Instance_OL7" {
+output Instance_OL7 {
   value = <<EOF
 
 

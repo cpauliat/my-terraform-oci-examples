@@ -75,7 +75,7 @@ resource null_resource tf-demo05b-bm2 {
 }
 
 # ------ Output
-output "DBS2_DB1_standby" {
+output DBS2_DB1_standby {
   value = <<EOF
   
   SSH connection to DB node from outside the VCN:

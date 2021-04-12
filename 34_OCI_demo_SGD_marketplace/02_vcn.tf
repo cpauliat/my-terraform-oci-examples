@@ -4,7 +4,7 @@ data oci_identity_availability_domains ADs {
 }
 
 # ------ Create a new VCN
-resource oci_core_virtual_network tf-demo34-vcn {
+resource oci_core_vcn tf-demo34-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo34-vcn"
@@ -17,13 +17,13 @@ resource oci_core_virtual_network tf-demo34-vcn {
 resource oci_core_internet_gateway tf-demo34-public-ig {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo34-public-ig"
-  vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo34-vcn.id
 }
 
 # ------ Create a new Route Table
 resource oci_core_route_table tf-demo34-public-rt {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo34-vcn.id
   display_name   = "tf-demo34-public-rt"
 
   route_rules {
@@ -36,7 +36,7 @@ resource oci_core_route_table tf-demo34-public-rt {
 resource oci_core_security_list tf-demo34-bastion-subnet-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo34-bastion-subnet-seclist"
-  vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo34-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -99,10 +99,10 @@ resource oci_core_subnet tf-demo34-bastion-subnet {
   display_name        = "tf-demo34-bastion-subnet"
   dns_label           = "bastion"
   compartment_id      = var.compartment_ocid
-  vcn_id              = oci_core_virtual_network.tf-demo34-vcn.id
+  vcn_id              = oci_core_vcn.tf-demo34-vcn.id
   route_table_id      = oci_core_route_table.tf-demo34-public-rt.id
   security_list_ids   = [oci_core_security_list.tf-demo34-bastion-subnet-sl.id]
-  dhcp_options_id     = oci_core_virtual_network.tf-demo34-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.tf-demo34-vcn.default_dhcp_options_id
 }
 
 # ======== Objects for private subnet
@@ -118,7 +118,7 @@ data oci_core_services services {
 
 resource oci_core_service_gateway tf-demo34-private-sgw {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo34-vcn.id
   services {
     service_id = lookup(data.oci_core_services.services.services[0], "id")
   }
@@ -128,14 +128,14 @@ resource oci_core_service_gateway tf-demo34-private-sgw {
 # ------ Create a NAT gateway
 resource oci_core_nat_gateway tf-demo34-private-natgw {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo34-vcn.id
   display_name   = "tf-demo34-private-natgw"
 }
 
 # ------ Create a new Route Table
 resource oci_core_route_table tf-demo34-private-rt {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo34-vcn.id
   display_name   = "tf-demo34-private-rt"
 
   route_rules {
@@ -154,7 +154,7 @@ resource oci_core_route_table tf-demo34-private-rt {
 resource oci_core_security_list tf-demo34-private-subnet-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo34-private-subnet-seclist"
-  vcn_id         = oci_core_virtual_network.tf-demo34-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo34-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -173,10 +173,10 @@ resource oci_core_subnet tf-demo34-private-subnet {
   display_name        = "tf-demo34-private-subnet"
   dns_label           = "private"
   compartment_id      = var.compartment_ocid
-  vcn_id              = oci_core_virtual_network.tf-demo34-vcn.id
+  vcn_id              = oci_core_vcn.tf-demo34-vcn.id
   route_table_id      = oci_core_route_table.tf-demo34-private-rt.id
   security_list_ids   = [oci_core_security_list.tf-demo34-private-subnet-sl.id]
-  dhcp_options_id     = oci_core_virtual_network.tf-demo34-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.tf-demo34-vcn.default_dhcp_options_id
   prohibit_public_ip_on_vnic = true
 }
 

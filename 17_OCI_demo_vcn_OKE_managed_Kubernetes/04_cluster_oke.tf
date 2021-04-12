@@ -3,7 +3,7 @@ resource oci_containerengine_cluster tf-demo17-oke {
   compartment_id     = var.compartment_ocid
   kubernetes_version = var.oke_cluster_k8s_version
   name               = var.oke_cluster_name
-  vcn_id             = oci_core_virtual_network.tf-demo17-vcn.id
+  vcn_id             = oci_core_vcn.tf-demo17-vcn.id
 
   options {
     service_lb_subnet_ids = [oci_core_subnet.tf-demo17-lb.id]
@@ -131,7 +131,7 @@ EOF
   filename = "create_oke-admin.sh"
 }
 
-output "INSTRUCTIONS" {
+output INSTRUCTIONS {
   value = <<EOF
 
     File kubeconfig was created

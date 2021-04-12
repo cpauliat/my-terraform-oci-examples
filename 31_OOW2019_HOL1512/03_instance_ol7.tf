@@ -56,7 +56,7 @@ EOF
 }
 
 # ------ Display the complete ssh command needed to connect to the instance
-output "Connection" {
+output Connection {
   value = <<EOF
 
 

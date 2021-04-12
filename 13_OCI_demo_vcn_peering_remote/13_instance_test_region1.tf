@@ -28,7 +28,7 @@ resource oci_core_instance tf-demo13-r1 {
 
   create_vnic_details {
     subnet_id      = oci_core_subnet.r1-pubnet.id
-    hostname_label = "demo13reg1"
+    hostname_label = var.dns_hostname1
   }
 
   metadata = {
@@ -37,7 +37,7 @@ resource oci_core_instance tf-demo13-r1 {
   }
 }
 
-output "Instance_VCN1_REGION1" {
+output Instance_VCN1_REGION1 {
   value = <<EOF
 
 
@@ -46,6 +46,6 @@ output "Instance_VCN1_REGION1" {
 
   ---- You can then ping instance in VCN2/REGION2 using private IP address
   ping ${oci_core_instance.tf-demo13-r2.private_ip}
-
+  
 EOF
 }

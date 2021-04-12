@@ -59,7 +59,7 @@ data oci_core_instance_credentials tf-demo15-win2016 {
   instance_id = oci_core_instance.tf-demo15-win2016.id
 }
 
-output "Instance_Win2016" {
+output Instance_Win2016 {
   value = <<EOF
 
 

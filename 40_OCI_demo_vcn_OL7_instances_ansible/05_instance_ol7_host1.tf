@@ -23,7 +23,7 @@ resource oci_core_instance tf-demo40-host1 {
 }
 
 # ------ Display the complete ssh command needed to connect to the instance
-output "Instance_HOST1" {
+output Instance_HOST1 {
   value = <<EOF
 
 

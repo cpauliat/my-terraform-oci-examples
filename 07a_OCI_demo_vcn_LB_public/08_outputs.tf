@@ -20,11 +20,12 @@ Host d07a-ws2
           proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07a-bastion
 EOF
 
-  filename = "sshcfg"
+  filename        = "sshcfg"
+  file_permission = "0600"
 }
 
 # ------ Display the complete ssh commands needed to connect to the compute instances
-output "CONNECTIONS" {
+output CONNECTIONS {
   value = <<EOF
 
   Wait a few minutes so that post-provisioning scripts can run on the compute instances

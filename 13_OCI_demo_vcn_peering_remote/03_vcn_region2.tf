@@ -5,12 +5,12 @@ data oci_identity_availability_domains r2ADs {
 }
 
 # ------ Create a new VCN in region 2
-resource oci_core_virtual_network r2-vcn {
+resource oci_core_vcn r2-vcn {
   provider       = oci.r2
   cidr_block     = var.r2_cidr_vcn
   compartment_id = var.r2_compartment_ocid
   display_name   = "demo13_r2_vcn"
-  dns_label      = "demo13r2"
+  dns_label      = var.dns_label_vcn2
 }
 
 # ------ Create a new Internet Gategay
@@ -18,14 +18,14 @@ resource oci_core_internet_gateway r2-ig {
   provider       = oci.r2
   compartment_id = var.r2_compartment_ocid
   display_name   = "rdemo13_r2_igw"
-  vcn_id         = oci_core_virtual_network.r2-vcn.id
+  vcn_id         = oci_core_vcn.r2-vcn.id
 }
 
 # ------ Create a new Route Table for the public subnet
 resource oci_core_route_table r2-pubnet-rt {
   provider       = oci.r2
   compartment_id = var.r2_compartment_ocid
-  vcn_id         = oci_core_virtual_network.r2-vcn.id
+  vcn_id         = oci_core_vcn.r2-vcn.id
   display_name   = "demo13_r2_pubnet_rt"
 
   route_rules {
@@ -43,7 +43,7 @@ resource oci_core_route_table r2-pubnet-rt {
 resource oci_core_route_table r2-privnet-rt {
   provider       = oci.r2
   compartment_id = var.r2_compartment_ocid
-  vcn_id         = oci_core_virtual_network.r2-vcn.id
+  vcn_id         = oci_core_vcn.r2-vcn.id
   display_name   = "demo13_r2_privnet_rt"
 
   route_rules {
@@ -57,7 +57,7 @@ resource oci_core_security_list r2-pubnet-sl {
   provider       = oci.r2
   compartment_id = var.r2_compartment_ocid
   display_name   = "demo13_r2_pubnet_sl"
-  vcn_id         = oci_core_virtual_network.r2-vcn.id
+  vcn_id         = oci_core_vcn.r2-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -98,7 +98,7 @@ resource oci_core_security_list r2-privnet-sl {
   provider       = oci.r2
   compartment_id = var.r2_compartment_ocid
   display_name   = "demo13_r2_privnet_sl"
-  vcn_id         = oci_core_virtual_network.r2-vcn.id
+  vcn_id         = oci_core_vcn.r2-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -125,12 +125,12 @@ resource oci_core_subnet r2-pubnet {
   provider            = oci.r2
   cidr_block          = var.r2_cidr_pubnet
   display_name        = "demo13_r2_pubnet"
-  dns_label           = "pub"
+  dns_label           = var.dns_label_public2
   compartment_id      = var.r2_compartment_ocid
-  vcn_id              = oci_core_virtual_network.r2-vcn.id
+  vcn_id              = oci_core_vcn.r2-vcn.id
   route_table_id      = oci_core_route_table.r2-pubnet-rt.id
   security_list_ids   = [oci_core_security_list.r2-pubnet-sl.id]
-  dhcp_options_id     = oci_core_virtual_network.r2-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.r2-vcn.default_dhcp_options_id
 }
 
 # ------ Create a private subnet in the new VCN
@@ -138,12 +138,12 @@ resource oci_core_subnet r2-privnet {
   provider            = oci.r2
   cidr_block          = var.r2_cidr_privnet
   display_name        = "demo13_r2_privnet"
-  dns_label           = "priv"
+  dns_label           = var.dns_label_private2
   compartment_id      = var.r2_compartment_ocid
-  vcn_id              = oci_core_virtual_network.r2-vcn.id
+  vcn_id              = oci_core_vcn.r2-vcn.id
   route_table_id      = oci_core_route_table.r2-privnet-rt.id
   security_list_ids   = [oci_core_security_list.r2-privnet-sl.id]
-  dhcp_options_id     = oci_core_virtual_network.r2-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.r2-vcn.default_dhcp_options_id
 }
 
 # ------ Create a Dynamic Routing Gateway (DRG) in the new VCN and attach it to the VCN
@@ -155,7 +155,7 @@ resource oci_core_drg r2_drg {
 resource oci_core_drg_attachment r2_drg_attachment {
   provider = oci.r2
   drg_id   = oci_core_drg.r2_drg.id
-  vcn_id   = oci_core_virtual_network.r2-vcn.id
+  vcn_id   = oci_core_vcn.r2-vcn.id
 }
 
 # ------ Enable the remote VCN peering (region2 = requestor)

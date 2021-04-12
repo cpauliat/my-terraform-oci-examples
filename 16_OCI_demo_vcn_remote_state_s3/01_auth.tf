@@ -28,7 +28,7 @@ terraform {
     key                         = "terraform.state.demo16"
     region                      = "eu-frankfurt-1"
     # format for endpoint is https://<namespace>.compat.objectstorage.<region>.oraclecloud.com
-    endpoint                    = "https://emeaosc.compat.objectstorage.eu-frankfurt-1.oraclecloud.com"
+    endpoint                    = "https://oci_core_emea_osc_pauliat.compat.objectstorage.eu-frankfurt-1.oraclecloud.com"
     shared_credentials_file     = "s3key"
     skip_region_validation      = true
     skip_credentials_validation = true

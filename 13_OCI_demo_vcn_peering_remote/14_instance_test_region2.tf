@@ -28,7 +28,7 @@ resource oci_core_instance tf-demo13-r2 {
 
   create_vnic_details {
     subnet_id      = oci_core_subnet.r2-pubnet.id
-    hostname_label = "demo13reg2"
+    hostname_label = var.dns_hostname2
   }
 
   metadata = {
@@ -37,7 +37,7 @@ resource oci_core_instance tf-demo13-r2 {
   }
 }
 
-output "Instance_VCN2_REGION2" {
+output Instance_VCN2_REGION2 {
   value = <<EOF
 
 

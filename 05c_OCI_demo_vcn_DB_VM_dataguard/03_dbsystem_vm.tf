@@ -86,7 +86,7 @@ data oci_core_vnic tf-demo05c-vm {
   vnic_id = data.oci_database_db_node.tf-demo05c-vm.vnic_id
 }
 
-output "PRIMARY_DB_SYSTEM" {
+output PRIMARY_DB_SYSTEM {
   value = <<EOF
 
 
@@ -130,7 +130,7 @@ data oci_core_vnic tf-demo05c-stdby {
   vnic_id = data.oci_database_db_node.tf-demo05c-stdby.vnic_id
 }
 
-output "STANDBY_DB_SYSTEM" {
+output STANDBY_DB_SYSTEM {
   value = <<EOF
 
 

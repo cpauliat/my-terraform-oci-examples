@@ -22,13 +22,22 @@ authorized_ips   = "0.0.0.0/0"               # all Internet
 # ============== NO UPDATE NEEDED BELOW
 
 # ---- CIDR VCNs and SUBNETs
-r1_cidr_vcn         = "10.0.0.0/16"
-r1_cidr_pubnet      = "10.0.0.0/24"
-r1_cidr_privnet     = "10.0.7.0/24"
+r1_cidr_vcn        = "10.0.0.0/16"
+r1_cidr_pubnet     = "10.0.0.0/24"
+r1_cidr_privnet    = "10.0.7.0/24"
 
-r2_cidr_vcn         = "172.16.0.0/16"
-r2_cidr_pubnet      = "172.16.0.0/24"
-r2_cidr_privnet     = "172.16.7.0/24"
+r2_cidr_vcn        = "172.16.0.0/16"
+r2_cidr_pubnet     = "172.16.0.0/24"
+r2_cidr_privnet    = "172.16.7.0/24"
+
+dns_label_vcn1     = "vcn-region1"
+dns_label_vcn2     = "vcn-region2"
+dns_label_public1  = "public"
+dns_label_public2  = "public"
+dns_label_private1 = "private"
+dns_label_private2 = "private"
+dns_hostname1      = "inst-reg1"
+dns_hostname2      = "inst-reg2"
 
 # ---- availability domain (1, 2 or 3)
 r1_AD               = "1"

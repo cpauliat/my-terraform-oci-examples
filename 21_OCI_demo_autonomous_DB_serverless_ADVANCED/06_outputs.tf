@@ -24,7 +24,7 @@ EOF
 }
 
 # ------ Display the complete ssh commands needed to connect to the compute instances
-output "DB_client" {
+output DB_client {
   value = <<EOF
 
   1) ---- Connection to Database client host (Oracle Linux 7 instance with Oracle Instant Client) thru bastion host

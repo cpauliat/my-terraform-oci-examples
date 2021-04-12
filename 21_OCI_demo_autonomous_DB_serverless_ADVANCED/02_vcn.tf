@@ -4,7 +4,7 @@ data oci_identity_availability_domains ADs {
 }
 
 # ------ Create a new VCN
-resource oci_core_virtual_network tf-demo21-vcn {
+resource oci_core_vcn tf-demo21-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo21-vcn"
@@ -17,13 +17,13 @@ resource oci_core_virtual_network tf-demo21-vcn {
 resource oci_core_internet_gateway tf-demo21-public-ig {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo21-public-ig"
-  vcn_id         = oci_core_virtual_network.tf-demo21-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo21-vcn.id
 }
 
 # ------ Create a new Route Table
 resource oci_core_route_table tf-demo21-public-rt {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo21-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo21-vcn.id
   display_name   = "tf-demo21-public-rt"
 
   route_rules {
@@ -36,7 +36,7 @@ resource oci_core_route_table tf-demo21-public-rt {
 resource oci_core_security_list tf-demo21-bastion-subnet-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo21-bastion-subnet-seclist"
-  vcn_id         = oci_core_virtual_network.tf-demo21-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo21-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -75,10 +75,10 @@ resource oci_core_subnet tf-demo21-bastion-subnet {
   display_name        = "tf-demo21-bastion-subnet"
   dns_label           = "bastion"
   compartment_id      = var.compartment_ocid
-  vcn_id              = oci_core_virtual_network.tf-demo21-vcn.id
+  vcn_id              = oci_core_vcn.tf-demo21-vcn.id
   route_table_id      = oci_core_route_table.tf-demo21-public-rt.id
   security_list_ids   = [oci_core_security_list.tf-demo21-bastion-subnet-sl.id]
-  dhcp_options_id     = oci_core_virtual_network.tf-demo21-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.tf-demo21-vcn.default_dhcp_options_id
 }
 
 # ======== Objects for private subnet
@@ -94,7 +94,7 @@ data oci_core_services services {
 
 resource oci_core_service_gateway tf-demo21-private-sgw {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo21-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo21-vcn.id
   services {
     service_id = lookup(data.oci_core_services.services.services[0], "id")
   }
@@ -104,14 +104,14 @@ resource oci_core_service_gateway tf-demo21-private-sgw {
 # ------ Create a NAT gateway
 resource oci_core_nat_gateway tf-demo21-private-natgw {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo21-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo21-vcn.id
   display_name   = "tf-demo21-private-natgw"
 }
 
 # ------ Create a new Route Table
 resource oci_core_route_table tf-demo21-private-rt {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo21-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo21-vcn.id
   display_name   = "tf-demo21-private-rt"
 
   route_rules {
@@ -130,7 +130,7 @@ resource oci_core_route_table tf-demo21-private-rt {
 resource oci_core_security_list tf-demo21-private-subnet-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo21-private-subnet-seclist"
-  vcn_id         = oci_core_virtual_network.tf-demo21-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo21-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -149,10 +149,10 @@ resource oci_core_subnet tf-demo21-private-subnet {
   display_name        = "tf-demo21-private-subnet"
   dns_label           = "private"
   compartment_id      = var.compartment_ocid
-  vcn_id              = oci_core_virtual_network.tf-demo21-vcn.id
+  vcn_id              = oci_core_vcn.tf-demo21-vcn.id
   route_table_id      = oci_core_route_table.tf-demo21-private-rt.id
   security_list_ids   = [oci_core_security_list.tf-demo21-private-subnet-sl.id]
-  dhcp_options_id     = oci_core_virtual_network.tf-demo21-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.tf-demo21-vcn.default_dhcp_options_id
   prohibit_public_ip_on_vnic = true
 }
 

@@ -73,7 +73,7 @@ resource null_resource tf-demo22-connect-dbclient {
 }
 
 # ------ Display the complete ssh command needed to connect to the instance
-output "DB_client" {
+output DB_client {
   value = <<EOF
 
   1) ---- Connection to Database client host (Oracle Linux 7 instance with Oracle Instant Client)

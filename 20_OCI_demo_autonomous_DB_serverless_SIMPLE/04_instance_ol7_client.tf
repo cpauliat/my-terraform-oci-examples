@@ -54,7 +54,7 @@ EOF
 }
 
 # ------ Display the complete ssh command needed to connect to the instance
-output "DB_client" {
+output DB_client {
   value = <<EOF
 
   WAIT FOR A FEW MINUTES FOR POST_PROVISIONING ACTIONS TO TAKE PLACE

@@ -4,7 +4,7 @@ data oci_identity_availability_domains ADs {
 }
 
 # ------ Create a new VCN
-resource oci_core_virtual_network tf-demo05c-vcn {
+resource oci_core_vcn tf-demo05c-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo05c-vcn"
@@ -15,13 +15,13 @@ resource oci_core_virtual_network tf-demo05c-vcn {
 resource oci_core_internet_gateway tf-demo05c-ig {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo05c-internet-gateway"
-  vcn_id         = oci_core_virtual_network.tf-demo05c-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo05c-vcn.id
 }
 
 # ------ Create a new Route Table
 resource oci_core_route_table tf-demo05c-rt {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo05c-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo05c-vcn.id
   display_name   = "tf-demo05c-route-table"
 
   route_rules {
@@ -34,7 +34,7 @@ resource oci_core_route_table tf-demo05c-rt {
 resource oci_core_security_list tf-demo05c-subnet1-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo05c-subnet1-security-list"
-  vcn_id         = oci_core_virtual_network.tf-demo05c-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo05c-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -85,9 +85,9 @@ resource oci_core_subnet tf-demo05c-public-subnet1 {
   display_name        = "tf-demo05c-public-subnet1"
   dns_label           = var.dns_subnet1
   compartment_id      = var.compartment_ocid
-  vcn_id              = oci_core_virtual_network.tf-demo05c-vcn.id
+  vcn_id              = oci_core_vcn.tf-demo05c-vcn.id
   route_table_id      = oci_core_route_table.tf-demo05c-rt.id
   security_list_ids   = [oci_core_security_list.tf-demo05c-subnet1-sl.id]
-  dhcp_options_id     = oci_core_virtual_network.tf-demo05c-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.tf-demo05c-vcn.default_dhcp_options_id
 }
 

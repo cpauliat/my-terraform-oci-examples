@@ -61,7 +61,7 @@ resource oci_core_public_ip demo37_reserved_public_ip {
 }
 
 # ------ Display the complete ssh command needed to connect to the instance
-output "Instance_OL7" {
+output Instance_OL7 {
   value = <<EOF
 
 

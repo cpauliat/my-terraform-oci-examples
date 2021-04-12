@@ -24,7 +24,7 @@ EOF
 }
 
 # ------ Display the complete ssh commands needed to connect to the compute instances
-output "CONNECTIONS" {
+output CONNECTIONS {
   value = <<EOF
 
   Wait a few minutes so that post-provisioning scripts can run on the compute instances

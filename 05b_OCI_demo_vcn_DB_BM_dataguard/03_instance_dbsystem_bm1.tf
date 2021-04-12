@@ -88,7 +88,7 @@ resource null_resource tf-demo05b-bm1 {
 }
 
 # ------ Output
-output "DBS1_DB1_primary" {
+output DBS1_DB1_primary {
   value = <<EOF
   
   SSH connection to DB node from outside the VCN:

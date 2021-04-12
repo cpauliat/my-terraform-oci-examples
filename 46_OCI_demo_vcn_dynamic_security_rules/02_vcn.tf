@@ -1,5 +1,5 @@
 # ------ Create a new VCN
-resource oci_core_virtual_network tf-demo46-vcn {
+resource oci_core_vcn tf-demo46-vcn {
   cidr_block     = var.cidr_vcn
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo46-vcn"
@@ -10,13 +10,13 @@ resource oci_core_virtual_network tf-demo46-vcn {
 resource oci_core_internet_gateway tf-demo46-ig {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo46-internet-gateway"
-  vcn_id         = oci_core_virtual_network.tf-demo46-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo46-vcn.id
 }
 
 # ------ Create a new Route Table
 resource oci_core_route_table tf-demo46-rt {
   compartment_id = var.compartment_ocid
-  vcn_id         = oci_core_virtual_network.tf-demo46-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo46-vcn.id
   display_name   = "tf-demo46-route-table"
 
   route_rules {
@@ -30,7 +30,7 @@ resource oci_core_route_table tf-demo46-rt {
 resource oci_core_security_list tf-demo46-subnet1-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo46-subnet1-security-list"
-  vcn_id         = oci_core_virtual_network.tf-demo46-vcn.id
+  vcn_id         = oci_core_vcn.tf-demo46-vcn.id
 
   egress_security_rules {
     protocol    = "all"
@@ -76,9 +76,9 @@ resource oci_core_subnet tf-demo46-public-subnet1 {
   display_name        = "tf-demo46-public-subnet1"
   dns_label           = "subnet1"
   compartment_id      = var.compartment_ocid
-  vcn_id              = oci_core_virtual_network.tf-demo46-vcn.id
+  vcn_id              = oci_core_vcn.tf-demo46-vcn.id
   route_table_id      = oci_core_route_table.tf-demo46-rt.id
   security_list_ids   = [oci_core_security_list.tf-demo46-subnet1-sl.id]
-  dhcp_options_id     = oci_core_virtual_network.tf-demo46-vcn.default_dhcp_options_id
+  dhcp_options_id     = oci_core_vcn.tf-demo46-vcn.default_dhcp_options_id
 }
 
