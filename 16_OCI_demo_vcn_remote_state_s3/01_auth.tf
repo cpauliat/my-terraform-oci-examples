@@ -29,7 +29,7 @@ terraform {
     region                      = "eu-frankfurt-1"
     # format for endpoint is https://<namespace>.compat.objectstorage.<region>.oraclecloud.com
     endpoint                    = "https://oci_core_emea_osc_pauliat.compat.objectstorage.eu-frankfurt-1.oraclecloud.com"
-    shared_credentials_file     = "s3key"
+    shared_credentials_file     = "s3key"        # not needed if you use shell variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
     skip_region_validation      = true
     skip_credentials_validation = true
     skip_metadata_api_check     = true
