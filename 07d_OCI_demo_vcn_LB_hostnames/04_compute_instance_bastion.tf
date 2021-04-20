@@ -3,7 +3,7 @@ resource oci_core_instance tf-demo07d-bastion {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD_bastion - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "tf-demo07d-bastion"
-  shape               = "VM.Standard.E2.1"
+  shape               = "VM.Standard2.1"
   preserve_boot_volume = "false"
 
   source_details {
@@ -14,6 +14,7 @@ resource oci_core_instance tf-demo07d-bastion {
   create_vnic_details {
     subnet_id      = oci_core_subnet.tf-demo07d-public-subnet.id
     hostname_label = "bastion"
+    private_ip     = var.bastion_private_ip
   }
 
   metadata = {

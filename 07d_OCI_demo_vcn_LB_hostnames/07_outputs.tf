@@ -7,13 +7,13 @@ Host d07d-bastion
           IdentityFile ${var.ssh_private_key_file_bastion}
           StrictHostKeyChecking no
 Host d07d-ws1
-          Hostname ${oci_core_instance.tf-demo07d-ws1.private_ip}
+          Hostname ${oci_core_instance.tf-demo07d-ws[0].private_ip}
           User opc
           IdentityFile ${var.ssh_private_key_file_websrv}
           StrictHostKeyChecking no
           proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07d-bastion
 Host d07d-ws2
-          Hostname ${oci_core_instance.tf-demo07d-ws2.private_ip}
+          Hostname ${oci_core_instance.tf-demo07d-ws[1].private_ip}
           User opc
           IdentityFile ${var.ssh_private_key_file_websrv}
           StrictHostKeyChecking no
@@ -39,12 +39,12 @@ output CONNECTIONS {
 
   2) ---- HTTP connection to public load balancer
      Add the following lines to your local hosts file
-     ${oci_load_balancer.tf-demo07d-lb.ip_addresses[0]} ${var.hostname1}
-     ${oci_load_balancer.tf-demo07d-lb.ip_addresses[0]} ${var.hostname2}
+     ${oci_load_balancer.tf-demo07d-lb.ip_addresses[0]} ${var.hostnames[0]}
+     ${oci_load_balancer.tf-demo07d-lb.ip_addresses[0]} ${var.hostnames[1]}
 
      Then open following URLs in your Web browser:
-     http://${var.hostname1}/
-     http://${var.hostname2}/
+     http://${var.hostnames[0]}/
+     http://${var.hostnames[1]}/
 
 EOF
 

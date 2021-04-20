@@ -25,16 +25,16 @@ ssh_private_key_file_bastion = "/Users/cpauliat/.ssh/id_rsa"
 cidr_vcn             = "10.0.0.0/16"
 cidr_public_subnet   = "10.0.0.0/24"
 cidr_private_subnet  = "10.0.1.0/24"
+bastion_private_ip   = "10.0.0.2"
+websrv_private_ips   = [ "10.0.1.2", "10.0.1.3" ]
 
-# ---- IP addresses
+# ---- Availability domains
 AD_bastion           = "1"
-AD_websrv1           = "1"
-AD_websrv2           = "2"
+AD_websrvs           = [ "1", "2" ]
 
 # ---- Cloud-init post-provisioning scripts
 BootStrapFile_bastion        = "userdata/bootstrap_bastion.sh"
 BootStrapFile_websrv         = "userdata/bootstrap_websrv.sh"
 
-# ---- hostnames
-hostname1     = "app1"
-hostname2     = "app2"
+# ---- virtual hostnames
+hostnames     = [ "hostname1", "hostname2" ]
