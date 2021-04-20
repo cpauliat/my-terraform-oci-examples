@@ -14,7 +14,7 @@ resource oci_load_balancer tf-demo07d-lb {
 resource oci_load_balancer_hostname tf-demo07d-lb-hosts {
   count            = 2
   load_balancer_id = oci_load_balancer.tf-demo07d-lb.id
-  hostname         = var.hostnames[count.index]
+  hostname         = "hostname${count.index+1}"
   name             = var.hostnames[count.index]
 }
 
