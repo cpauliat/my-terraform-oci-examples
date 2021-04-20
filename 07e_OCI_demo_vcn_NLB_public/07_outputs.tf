@@ -28,7 +28,8 @@ output CONNECTIONS {
   value = <<EOF
 
   Wait a few minutes so that post-provisioning scripts can run on the compute instances
-  Then you can use instructions below to connect
+  Then you can use instructions below to connect.
+  (Once connected to a server, you can see Cloud-init activity in /var/log/cloud-init2.log)
 
   1) ---- SSH connection to compute instances
      Run one of following commands on your Linux/MacOS desktop/laptop
@@ -41,6 +42,8 @@ output CONNECTIONS {
      Open the following URL in your Web browser:
      http://${oci_network_load_balancer_network_load_balancer.tf-demo07e-nlb.ip_addresses[0].ip_address}
 
+     You can monitor HTTP requests on the Web servers with following command:
+     sudo tail -f /var/log/httpd/access_log
 EOF
 
 }

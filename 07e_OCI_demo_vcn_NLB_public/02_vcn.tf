@@ -117,6 +117,19 @@ resource oci_core_security_list tf-demo07e-subnet-sl-private {
     }
   }
 
+  dynamic "ingress_security_rules" {
+    for_each = var.nlb_bes_preserve_src == "true" ? [1] : []
+    content {
+      protocol    = "6" # tcp
+      source      = "0.0.0.0/0"
+      description = "Allow HTTP from external public IP (preserve source IP)"
+      tcp_options {
+        min = 80
+        max = 80
+      }
+    }
+  }
+
   ingress_security_rules {
     protocol    = "6" # tcp
     source      = var.cidr_public_subnet

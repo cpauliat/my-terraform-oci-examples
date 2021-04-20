@@ -14,6 +14,7 @@ resource oci_core_instance tf-demo07e-bastion {
   create_vnic_details {
     subnet_id      = oci_core_subnet.tf-demo07e-public-subnet.id
     hostname_label = "bastion"
+    private_ip     = var.bastion_private_ip
   }
 
   metadata = {

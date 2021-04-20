@@ -1,5 +1,13 @@
 # ------ Create 2 compute instances for web servers
 resource oci_core_instance tf-demo07e-ws {
+
+  # ignore change in cloud-init file after provisioning
+  lifecycle {
+    ignore_changes = [
+      metadata
+    ]
+  }
+
   count               = 2
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD_ws1 - 1]["name"]
   compartment_id      = var.compartment_ocid
@@ -14,6 +22,7 @@ resource oci_core_instance tf-demo07e-ws {
   create_vnic_details {
     subnet_id        = oci_core_subnet.tf-demo07e-private-subnet.id
     hostname_label   = "websrv${count.index+1}"
+    private_ip       = var.websrv_private_ips[count.index]  
     assign_public_ip = false
   }
 
