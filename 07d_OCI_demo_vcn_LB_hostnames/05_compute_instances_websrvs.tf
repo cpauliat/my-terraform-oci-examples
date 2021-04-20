@@ -1,4 +1,4 @@
-# ------ Create 2 compute instances for web servers
+# ------ Create 4 compute instances for web servers
 resource oci_core_instance tf-demo07d-ws {
 
   # ignore change in cloud-init file after provisioning
@@ -8,7 +8,7 @@ resource oci_core_instance tf-demo07d-ws {
     ]
   }
 
-  count               = 2
+  count               = 4
   availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD_websrvs[count.index] - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "tf-demo07d-websrv${count.index+1}"

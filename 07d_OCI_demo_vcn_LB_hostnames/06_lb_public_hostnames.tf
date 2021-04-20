@@ -1,13 +1,16 @@
 # ---- Create the public load balancer
 resource oci_load_balancer tf-demo07d-lb {
-  shape          = "100Mbps"
   compartment_id = var.compartment_ocid
+  display_name   = "tf-demo07d-public-lb"
+  shape          = "flexible"
+  shape_details {
+      minimum_bandwidth_in_mbps = var.lb_mbps_min
+      maximum_bandwidth_in_mbps = var.lb_mbps_max
+  }
 
   subnet_ids = [
     oci_core_subnet.tf-demo07d-public-subnet.id,
   ]
-
-  display_name = "tf-demo07d-public-lb"
 }
 
 # ---- Create 2 hostnames
@@ -30,14 +33,16 @@ resource oci_load_balancer_backendset tf-demo07d-lb-bes {
     protocol            = "HTTP"
     response_body_regex = ".*"
     url_path            = "/"
+    retries             = 1
+    interval_ms         = "10000"
   }
 }
 
-# ---- Create 2 backends (1 per backend set)
+# ---- Create 4 backends (4 per backend set)
 resource oci_load_balancer_backend tf-demo07d-lb-be {
-  count            = 2
+  count            = 4
   load_balancer_id = oci_load_balancer.tf-demo07d-lb.id
-  backendset_name  = oci_load_balancer_backendset.tf-demo07d-lb-bes[count.index].name
+  backendset_name  = oci_load_balancer_backendset.tf-demo07d-lb-bes[count.index % 2].name
   ip_address       = oci_core_instance.tf-demo07d-ws[count.index].private_ip
   port             = 80
   backup           = false

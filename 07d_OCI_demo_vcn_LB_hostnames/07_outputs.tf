@@ -18,6 +18,18 @@ Host d07d-ws2
           IdentityFile ${var.ssh_private_key_file_websrv}
           StrictHostKeyChecking no
           proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07d-bastion
+Host d07d-ws3
+          Hostname ${oci_core_instance.tf-demo07d-ws[2].private_ip}
+          User opc
+          IdentityFile ${var.ssh_private_key_file_websrv}
+          StrictHostKeyChecking no
+          proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07d-bastion
+Host d07d-ws4
+          Hostname ${oci_core_instance.tf-demo07d-ws[3].private_ip}
+          User opc
+          IdentityFile ${var.ssh_private_key_file_websrv}
+          StrictHostKeyChecking no
+          proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07d-bastion
 EOF
 
   filename = "sshcfg"
@@ -34,8 +46,10 @@ output CONNECTIONS {
      Run one of following commands on your Linux/MacOS desktop/laptop
 
      ssh -F sshcfg d07d-bastion             to connect to bastion host
-     ssh -F sshcfg d07d-ws1                 to connect to Web server #1
-     ssh -F sshcfg d07d-ws2                 to connect to Web server #2
+     ssh -F sshcfg d07d-ws1                 to connect to Web server #1 (backend set #1)
+     ssh -F sshcfg d07d-ws2                 to connect to Web server #2 (backend set #2)
+     ssh -F sshcfg d07d-ws3                 to connect to Web server #3 (backend set #1)
+     ssh -F sshcfg d07d-ws4                 to connect to Web server #4 (backend set #2)
 
   2) ---- HTTP connection to public load balancer
      Add the following lines to your local hosts file
@@ -43,8 +57,8 @@ output CONNECTIONS {
      ${oci_load_balancer.tf-demo07d-lb.ip_addresses[0]} ${var.hostnames[1]}
 
      Then open following URLs in your Web browser:
-     http://${var.hostnames[0]}/
-     http://${var.hostnames[1]}/
+     http://${var.hostnames[0]}
+     http://${var.hostnames[1]}
 
 EOF
 

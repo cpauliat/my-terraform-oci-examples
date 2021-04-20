@@ -15,6 +15,8 @@ variable "cidr_public_subnet" {}
 variable "cidr_private_subnet" {}
 variable "bastion_private_ip" {}
 variable "websrv_private_ips" {}
+variable "lb_mbps_min" {}
+variable "lb_mbps_max" {}
 variable "AD_bastion" {}
 variable "AD_websrvs" {}
 variable "BootStrapFile_bastion" {}

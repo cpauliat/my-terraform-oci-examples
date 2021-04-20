@@ -26,11 +26,15 @@ cidr_vcn             = "10.0.0.0/16"
 cidr_public_subnet   = "10.0.0.0/24"
 cidr_private_subnet  = "10.0.1.0/24"
 bastion_private_ip   = "10.0.0.2"
-websrv_private_ips   = [ "10.0.1.2", "10.0.1.3" ]
+websrv_private_ips   = [ "10.0.1.2", "10.0.1.3", "10.0.1.4", "10.0.1.5" ]
+
+# ---- Flexible shape for Load Balancer
+lb_mbps_min          = "100"
+lb_mbps_max          = "500"
 
 # ---- Availability domains
 AD_bastion           = "1"
-AD_websrvs           = [ "1", "2" ]
+AD_websrvs           = [ "1", "2", "2", "1" ]
 
 # ---- Cloud-init post-provisioning scripts
 BootStrapFile_bastion        = "userdata/bootstrap_bastion.sh"
