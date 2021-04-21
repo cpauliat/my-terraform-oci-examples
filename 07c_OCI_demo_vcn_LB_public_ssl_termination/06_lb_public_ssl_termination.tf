@@ -6,7 +6,7 @@ resource oci_load_balancer tf-demo07c-lb {
     oci_core_subnet.tf-demo07c-public-subnet.id,
   ]
 
-  display_name = "tf-demo07c-public-lb"
+  display_name = "tf-demo07c-public-lb-ssl-termination"
   reserved_ips { id = var.lb_reserved_public_ip_id }
 }
 
@@ -58,7 +58,9 @@ resource oci_load_balancer_listener tf-demo07c-lb-listener {
   port                     = 443
   protocol                 = "HTTP"
   ssl_configuration {
-    certificate_name = "tf-demo07c-cert" 
-    #certificate_name = "lb07c-sslforfree"     
+    certificate_name        = "tf-demo07c-cert" 
+    verify_peer_certificate = var.verify_peer_certificate
+    verify_depth            = 5
+    protocols               = [ "TLSv1.2" ]
   }
 }

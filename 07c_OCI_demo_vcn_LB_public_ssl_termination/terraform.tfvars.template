@@ -24,19 +24,27 @@ ssh_private_key_file_bastion = "/Users/cpauliat/.ssh/id_rsa"
 reserved_public_ip           = "130.61.x.y"
 dns_hostname                 = "lb07c.example.com"
 
+# ---- Certificate for Load Balancer listener in HTTPS mode
+file_lb_cert = "cert/certificate.crt"
+file_ca_cert = "cert/ca_bundle.crt"
+file_lb_key  = "cert/private.key"
+
 # ============== NO UPDATE NEEDED BELOW
 
 # ---- IP addresses
 cidr_vcn             = "10.0.0.0/16"
 cidr_public_subnet   = "10.0.0.0/24"
 cidr_private_subnet  = "10.0.1.0/24"
+bastion_private_ip   = "10.0.0.2"
+websrv_private_ips   = [ "10.0.1.2", "10.0.1.3" ]
 
 # ---- IP addresses
 AD_bastion           = "1"
-AD_ws1               = "1"
-AD_ws2               = "2"
+AD_websrvs           = [ "1", "2" ]
 
 # ---- Cloud-init post-provisioning scripts
 BootStrapFile_websrv         = "userdata/bootstrap_websrv.sh"
 BootStrapFile_bastion        = "userdata/bootstrap_bastion.sh"
 
+# ---- Verify certificate on Client browser
+verify_peer_certificate = "false"

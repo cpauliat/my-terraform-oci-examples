@@ -12,6 +12,9 @@ variable "ssh_public_key_file_bastion" {}
 variable "ssh_private_key_file_bastion" {}
 variable "lb_reserved_public_ip_id" {}
 variable "dns_hostname" {}
+variable "file_lb_cert" {}
+variable "file_ca_cert" {}
+variable "file_lb_key" {}
 variable "cidr_vcn" {}
 variable "cidr_public_subnet" {}
 variable "cidr_private_subnet" {}
@@ -21,9 +24,7 @@ variable "AD_bastion" {}
 variable "AD_websrvs" {}
 variable "BootStrapFile_websrv" {}
 variable "BootStrapFile_bastion" {}
-variable "file_lb_cert" {}
-variable "file_ca_cert" {}
-variable "file_lb_key" {}
+variable "verify_peer_certificate" {}
 
 # ---- provider
 provider "oci" {
