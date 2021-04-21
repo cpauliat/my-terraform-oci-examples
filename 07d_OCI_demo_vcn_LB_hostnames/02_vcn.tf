@@ -109,7 +109,7 @@ resource oci_core_security_list tf-demo07d-subnet-sl-private {
 
   ingress_security_rules {
     protocol = "6" # tcp
-    source   = var.cidr_public_subnet
+    source   = "0.0.0.0/0"
     description = "Allow HTTP access from public load balancer"
     tcp_options {
       min = 80

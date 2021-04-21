@@ -1,7 +1,7 @@
 # ---- Create the public load balancer
 resource oci_load_balancer tf-demo07d-lb {
   compartment_id = var.compartment_ocid
-  display_name   = "tf-demo07d-public-lb"
+  display_name   = "tf-demo07d-public-lb-hostnames"
   shape          = "flexible"
   shape_details {
       minimum_bandwidth_in_mbps = var.lb_mbps_min
@@ -21,9 +21,9 @@ resource oci_load_balancer_hostname tf-demo07d-lb-hosts {
   name             = var.hostnames[count.index]
 }
 
-# ---- Create 2 backend sets
+# ---- Create 3 backend sets
 resource oci_load_balancer_backendset tf-demo07d-lb-bes {
-  count            = 2
+  count            = 3
   name             = "tf-demo07d-lb-bes${count.index+1}"
   load_balancer_id = oci_load_balancer.tf-demo07d-lb.id
   policy           = "ROUND_ROBIN"
@@ -38,7 +38,7 @@ resource oci_load_balancer_backendset tf-demo07d-lb-bes {
   }
 }
 
-# ---- Create 4 backends (4 per backend set)
+# ---- Create 4 backends (2 per backend set)
 resource oci_load_balancer_backend tf-demo07d-lb-be {
   count            = 4
   load_balancer_id = oci_load_balancer.tf-demo07d-lb.id
@@ -51,7 +51,18 @@ resource oci_load_balancer_backend tf-demo07d-lb-be {
   weight           = 1
 }
 
-# ---- Create 2 listeners 
+# ---- Create 1 backends for default backend set [2]
+resource oci_load_balancer_backend tf-demo07d-lb-be-default {
+  load_balancer_id = oci_load_balancer.tf-demo07d-lb.id
+  backendset_name  = oci_load_balancer_backendset.tf-demo07d-lb-bes[2].name
+  ip_address       = oci_core_instance.tf-demo07d-ws[4].private_ip
+  port             = 80
+  backup           = false
+  drain            = false
+  offline          = false
+  weight           = 1
+}
+# ---- Create 2 listeners with virtual hostnames
 resource oci_load_balancer_listener tf-demo07d-lb-listener {
   count                    = 2
   load_balancer_id         = oci_load_balancer.tf-demo07d-lb.id
@@ -60,4 +71,13 @@ resource oci_load_balancer_listener tf-demo07d-lb-listener {
   protocol                 = "HTTP"
   hostname_names           = [ oci_load_balancer_hostname.tf-demo07d-lb-hosts[count.index].name ]
   default_backend_set_name = oci_load_balancer_backendset.tf-demo07d-lb-bes[count.index].name
+}
+
+# ---- Create default listener without virtual hostname
+resource oci_load_balancer_listener tf-demo07d-lb-listener-default {
+  load_balancer_id         = oci_load_balancer.tf-demo07d-lb.id
+  name                     = "tf-demo07d-lb-listener-default"
+  port                     = 80
+  protocol                 = "HTTP"
+  default_backend_set_name = oci_load_balancer_backendset.tf-demo07d-lb-bes[2].name
 }

@@ -30,6 +30,12 @@ Host d07d-ws4
           IdentityFile ${var.ssh_private_key_file_websrv}
           StrictHostKeyChecking no
           proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07d-bastion
+Host d07d-ws5
+          Hostname ${oci_core_instance.tf-demo07d-ws[4].private_ip}
+          User opc
+          IdentityFile ${var.ssh_private_key_file_websrv}
+          StrictHostKeyChecking no
+          proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07d-bastion
 EOF
 
   filename = "sshcfg"
@@ -50,11 +56,11 @@ output CONNECTIONS {
      ssh -F sshcfg d07d-ws2                 to connect to Web server #2 (backend set #2)
      ssh -F sshcfg d07d-ws3                 to connect to Web server #3 (backend set #1)
      ssh -F sshcfg d07d-ws4                 to connect to Web server #4 (backend set #2)
+     ssh -F sshcfg d07d-ws5                 to connect to Web server #5 (backend set #3 / default)
 
   2) ---- HTTP connection to public load balancer
-     Add the following lines to your local hosts file
-     ${oci_load_balancer.tf-demo07d-lb.ip_addresses[0]} ${var.hostnames[0]}
-     ${oci_load_balancer.tf-demo07d-lb.ip_addresses[0]} ${var.hostnames[1]}
+     Add the following line to your local hosts file
+     ${oci_load_balancer.tf-demo07d-lb.ip_addresses[0]} ${var.hostnames[0]} ${var.hostnames[1]}
 
      Then open following URLs in your Web browser:
      http://${var.hostnames[0]}

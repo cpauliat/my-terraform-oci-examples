@@ -7,6 +7,7 @@ exec 1> /var/log/cloud-init2.log 2>&1
 case `hostname` in
 "websrv1"|"websrv3")  backend_set="#1" ;;
 "websrv2"|"websrv4")  backend_set="#2" ;;
+"websrv5")            backend_set="DEFAULT" ;;
 esac
 
 echo "========== Install and configure Apache Web server with PHP support"
@@ -47,17 +48,18 @@ table {
 </head>
 <body>
 <table>
+<tbody>
 <tr>
 <td>
-<div class="text1"> This web page is served by </div>
-<p>
-<div class="text2"> backend set ${backend_set} </div>
+<span class="text1"> This web page is served by </span>
+<span class="text2"> backend set ${backend_set} </span>
 <p>
 <span class="text1"> ( server </span>
 <span class="text2"> <?php echo gethostname(); ?> </span>
 <span class="text1"> ) </span>
 </td>
 </tr>
+</tbody>
 </table>
 
 <div class="text3"> 
