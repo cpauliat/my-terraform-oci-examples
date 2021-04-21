@@ -3,7 +3,7 @@ resource oci_core_instance tf-demo07e-bastion {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD_bastion - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "tf-demo07e-bastion"
-  shape               = "VM.Standard2.1"
+  shape               = "VM.Standard.E2.1"
   preserve_boot_volume = "false"
 
   source_details {

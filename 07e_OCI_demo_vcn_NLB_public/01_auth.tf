@@ -16,8 +16,7 @@ variable "cidr_private_subnet" {}
 variable "bastion_private_ip" {}
 variable "websrv_private_ips" {}
 variable "AD_bastion" {}
-variable "AD_ws1" {}
-variable "AD_ws2" {}
+variable "AD_websrvs" {}
 variable "BootStrapFile_websrv" {}
 variable "BootStrapFile_bastion" {}
 variable "nlb_is_private" {}

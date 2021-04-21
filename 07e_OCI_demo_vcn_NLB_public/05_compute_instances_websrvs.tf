@@ -9,10 +9,10 @@ resource oci_core_instance tf-demo07e-ws {
   }
 
   count               = 2
-  availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD_ws1 - 1]["name"]
+  availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD_websrvs[count.index] - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "tf-demo07e-websrv${count.index+1}"
-  shape               = "VM.Standard2.1"
+  shape               = "VM.Standard.E2.1"
 
   source_details {
     source_type = "image"
