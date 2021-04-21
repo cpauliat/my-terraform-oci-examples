@@ -185,13 +185,13 @@ Details:
   (/app1 directed to web server 1 and /app2 directed to web server 2)
 - after provisioning, print instructions for connections (HTTP and SSH connections)
 
-Last update: August 6, 2020
+Last update: April 21, 2021
 ```
 
-### 07c_OCI_demo_vcn_LB_public_HTTPS
+### 07c_OCI_demo_vcn_LB_public_SSL_termination
 
 ```
-Summary: 1 VCN + 3 compute instances (2 web servers + 1 bastion) + 1 public load balancer with HTTPS enabled for the load balancer
+Summary: 1 VCN + 3 compute instances (2 web servers + 1 bastion) + 1 public load balancer with HTTPS enabled for the load balancer with SSL termination
 
 Details:
 - 1 VCN with 1 public regional subnet and 1 private regional subnet
@@ -201,7 +201,62 @@ Details:
 - 1 public load balancer with HTTPS listener on port 443 with official certificate
 - after provisioning, print instructions for connections (HTTP and SSH connections)
 
-Last update: March 16, 2021
+Last update: April 21, 2021
+```
+
+### 07d_OCI_demo_vcn_LB_hostnames
+
+```
+Summary: 1 VCN + 6 compute instances (5 web servers + 1 bastion) + 1 public load balancer with routing using virtual hostnames
+
+Details:
+- 1 VCN with 1 public regional subnet and 1 private regional subnet
+  Note: using Terraform dynamic blocks for the ingress rules in security list
+- 1 public load balancer
+- 1 backends set for virtual hostname #1 (2 compute instances web servers)
+- 1 backends set for virtual hostname #1 (2 compute instances web servers)
+- 1 backends set for default (1 compute instances web server)
+- 3 load balancer listeners (1 per backend set)
+- 2 virtual hostnames
+- 1 compute instance for bastion host
+- after provisioning, print instructions for connections (HTTP and SSH connections)
+
+Last update: April 21, 2021
+```
+
+### 07e_OCI_demo_vcn_NLB_public
+
+```
+Summary: 1 VCN + 3 compute instances (2 web servers + 1 bastion) + 1 public Network load balancer
+
+Details:
+- 1 VCN with 1 public regional subnet and 1 private regional subnet
+- 2 compute instances for web servers in private subnet with HTTP web server
+- 1 compute instance for bastion host
+- 1 public NETWORK load balancer with listener on port 80
+- after provisioning, print instructions for connections (HTTP and SSH connections)
+
+Last update: April 21, 2021
+```
+
+### 07f_OCI_demo_vcn_LB_routing_policies
+
+```
+Summary: 1 VCN + 6 compute instances (5 web servers + 1 bastion) + 1 public load balancer with routing using virtual hostnames
+
+Details:
+- 1 VCN with 1 public regional subnet and 1 private regional subnet
+  Note: using Terraform dynamic blocks for the ingress rules in security list
+- 1 public load balancer
+- 1 routing policy using path route
+- 1 backends set for route /route1 (2 compute instances web servers)
+- 1 backends set for route /route2 (2 compute instances web servers)
+- 1 backends set for default (1 compute instances web server)
+- 1 load balancer listener using the routing policy
+- 1 compute instance for bastion host
+- after provisioning, print instructions for connections (HTTP and SSH connections)
+
+Last update: April 21, 2021
 ```
 
 ### 09_OCI_demo_vcn_VirtualBox_VNC
