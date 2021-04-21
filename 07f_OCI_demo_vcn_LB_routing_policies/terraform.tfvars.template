@@ -40,5 +40,5 @@ AD_websrvs           = [ "1", "2", "2", "1", "3" ]
 BootStrapFile_bastion        = "userdata/bootstrap_bastion.sh"
 BootStrapFile_websrv         = "userdata/bootstrap_websrv.sh"
 
-# ---- virtual hostnames
-hostnames     = [ "hostname1.cpauliat.com", "hostname2.cpauliat.com" ]
+# ---- Routes for routing policy
+routes     = [ "/route1", "/route2", "/" ]

@@ -14,14 +14,6 @@ resource oci_load_balancer tf-demo07f-lb {
   ]
 }
 
-# ---- Create 2 hostnames
-resource oci_load_balancer_hostname tf-demo07f-lb-hosts {
-  count            = 2
-  load_balancer_id = oci_load_balancer.tf-demo07f-lb.id
-  hostname         = "hostname${count.index+1}"
-  name             = var.hostnames[count.index]
-}
-
 # ---- Create 3 backend sets
 resource oci_load_balancer_backendset tf-demo07f-lb-bes {
   count            = 3
