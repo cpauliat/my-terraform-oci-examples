@@ -12,6 +12,7 @@ variable "ssh_private_key_file_ol7" {}
 variable "authorized_ips" {}
 variable "cidr_vcn" {}
 variable "cidr_subnet1" {}
+variable "boot_volume_size_in_gbs" {}
 
 # ---- provider
 provider "oci" {

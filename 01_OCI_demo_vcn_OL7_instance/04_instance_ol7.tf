@@ -7,8 +7,9 @@ resource oci_core_instance tf-demo01-ol7 {
   preserve_boot_volume = "false"
 
   source_details {
-    source_type = "image"
-    source_id   = data.oci_core_images.ImageOCID-ol7.images[0]["id"]
+    source_type             = "image"
+    source_id               = data.oci_core_images.ImageOCID-ol7.images[0]["id"]
+    boot_volume_size_in_gbs = var.boot_volume_size_in_gbs    # default 50 GB if no size provided
   }
 
   create_vnic_details {

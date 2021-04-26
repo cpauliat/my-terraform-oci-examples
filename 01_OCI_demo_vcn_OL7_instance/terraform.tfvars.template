@@ -27,5 +27,6 @@ AD               = "1"
 cidr_vcn         = [ "10.0.0.0/16" ]
 cidr_subnet1     = "10.0.0.0/24"
 
-# ---- Compute instances
+# ---- Compute instance
+boot_volume_size_in_gbs = "100"
 BootStrapFile_ol7       = "userdata/bootstrap_ol7.sh"
