@@ -21,7 +21,7 @@ To use the demos:
 ### 01_OCI_demo_vcn_OL7_instance
 
 ```
-Summary: basic VCN + basic Oracle Linux 7 compute instance for Oracle Linux 7
+Summary: basic VCN + basic Oracle Linux 7 compute instance
 
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
@@ -649,4 +649,18 @@ Avanced features used:
 - count
 
 Last update: April 2, 2021
+```
+
+### 48_OCI_demo_vcn_instance_vulnerability_scanning
+
+```
+Summary: basic VCN + basic Oracle Linux 7 compute instance + Vulnerability Scanning service enabled for it
+
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- 1 compute instance Oracle Linux 7 with public IP and Cloud-init post provisioning actions
+- after provisioning, print instructions to connect to the compute instance
+- Vulnerability Scanning Service (VSS): recipe and target containing the instance
+
+Last update: April 27, 2021
 ```
