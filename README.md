@@ -374,7 +374,7 @@ Details:
   1 public regional subnet + 1 private regional subnet + 1 internet gateway + 2 route tables + 2 security lists
 - Remote VCN peering configured between the 2 VCNs.
 - 2 compute instances Oracle Linux 7 (public IP), 1 per VCN
-- DNS resolver endpoints and rules to allow DNS resolution between the 2 VCNs
+- DNS resolver endpoints (listeners and forwarders) and rules to allow DNS resolution between the 2 VCNs
 - after instances provisioning, you can test access (ping private IP address or ping private DNS hostnames) between the 2 instances in different VCNs / REGIONs
 
 Reminder: the 2 VCNs must have non overlapping CIDRs
