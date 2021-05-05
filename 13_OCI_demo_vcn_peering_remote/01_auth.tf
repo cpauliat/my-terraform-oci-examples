@@ -24,6 +24,10 @@ variable "dns_label_private1" {}
 variable "dns_label_private2" {}
 variable "dns_hostname1" {}
 variable "dns_hostname2" {}
+variable "dns_listener1" {}
+variable "dns_forwarder1" {}
+variable "dns_listener2" {}
+variable "dns_forwarder2" {}
 variable "r1_AD" {}
 variable "r2_AD" {}
 variable "BootStrapFile" {}
