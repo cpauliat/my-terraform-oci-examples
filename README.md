@@ -364,6 +364,17 @@ Reminder: the 2 VCNs must have non overlapping CIDRs
 Last update: April 7, 2021
 ```
 
+### 12b_OCI_demo_vcn_peering_local_2_tenants
+
+```
+Summary: Local VCN peering between 2 VCNs in different tenants and same region
+
+Details:
+- same as 12_OCI_demo_vcn_peering_local except we use 2 tenants here
+
+Last update: May 6, 2021
+```
+
 ### 13_OCI_demo_vcn_peering_local
 
 ```
