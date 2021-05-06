@@ -34,8 +34,8 @@ dns_label_public1  = "public"
 dns_label_public2  = "public"
 dns_label_private1 = "private"
 dns_label_private2 = "private"
-dns_hostname1      = "d12_inst1"
-dns_hostname2      = "d12_inst2"
+dns_hostname1      = "d12-inst1"
+dns_hostname2      = "d12-inst2"
 
 # ---- availability domain (1, 2 or 3) for compute instances
 vcn1_instance_AD   = "1"
