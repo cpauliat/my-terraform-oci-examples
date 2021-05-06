@@ -139,11 +139,8 @@ resource oci_core_subnet vcn1-privnet {
 
 # ------ Create a Local Peering Gateway (LPG) in the new VCN
 resource oci_core_local_peering_gateway vcn1-lpg {
-  #Required
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_vcn.vcn1-vcn.id
-
-  #Optional
-  display_name = "lpg1"
-  peer_id      = oci_core_local_peering_gateway.vcn2-lpg.id
+  display_name   = "lpg1"
+  peer_id        = oci_core_local_peering_gateway.vcn2-lpg.id
 }
