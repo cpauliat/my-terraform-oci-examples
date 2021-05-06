@@ -29,7 +29,7 @@ resource oci_dns_resolver_endpoint forwarder-r2 {
 }
 
 resource oci_dns_resolver resolver2 {
-  provider           = oci.r2
+  provider    = oci.r2
   resolver_id = data.oci_core_vcn_dns_resolver_association.resolver2.dns_resolver_id
   scope       = "PRIVATE"
     rules {
