@@ -346,10 +346,10 @@ Details:
 Last update: March  2, 2020
 ```
 
-### 12_OCI_demo_vcn_peering_local
+### 12_OCI_demo_vcn_peering_local_LPGs
 
 ```
-Summary: Local VCN peering between 2 VCNs in same tenant and same region
+Summary: Local VCN peering between 2 VCNs in same tenant and same region using LPGs
 
 Details:
 - 2 VCNs with following objects in each:
