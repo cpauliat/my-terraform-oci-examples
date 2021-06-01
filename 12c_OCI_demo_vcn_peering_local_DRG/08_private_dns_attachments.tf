@@ -20,7 +20,7 @@ data oci_dns_views vcn1 {
 
 resource oci_dns_resolver vcn2-dns-resolver {
   attached_views { view_id = data.oci_dns_views.vcn1.views[0].id }
-  display_name = "resolver-for-VCN1"
+  display_name = "VCN2-resolver"
   resolver_id  = data.oci_core_vcn_dns_resolver_association.vcn2.dns_resolver_id
   scope        = "PRIVATE"
 }
@@ -40,7 +40,7 @@ data oci_dns_views vcn2 {
 
 resource oci_dns_resolver vcn1-dns-resolver {
   attached_views { view_id = data.oci_dns_views.vcn2.views[0].id }
-  display_name = "resolver-for-VCN2"
+  display_name = "VCN1-resolver"
   resolver_id  = data.oci_core_vcn_dns_resolver_association.vcn1.dns_resolver_id
   scope        = "PRIVATE"
 }
