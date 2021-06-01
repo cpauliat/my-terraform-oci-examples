@@ -8,8 +8,9 @@ resource oci_core_vcn vcn3-vcn {
 
 # ------ Attach common DRG to VCN
 resource oci_core_drg_attachment vcn3 {
-  drg_id   = oci_core_drg.commong_drg.id
-  vcn_id   = oci_core_vcn.vcn3-vcn.id
+  drg_id       = oci_core_drg.commong_drg.id
+  vcn_id       = oci_core_vcn.vcn3-vcn.id
+  display_name = "common-drg_to_vcn3"
 }
 
 # ------ Create a new Internet Gategay
