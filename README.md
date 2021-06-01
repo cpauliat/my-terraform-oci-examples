@@ -349,7 +349,7 @@ Last update: March  2, 2020
 ### 12_OCI_demo_vcn_peering_local_LPGs
 
 ```
-Summary: Local VCN peering between 2 VCNs in same tenant and same region using LPGs
+Summary: Local VCN peering between 2 VCNs in same tenant and same region using LPGs (Soon deprecated, uses 12c)
 
 Details:
 - 2 VCNs with following objects in each:
@@ -373,6 +373,28 @@ Details:
 - same as 12_OCI_demo_vcn_peering_local except we use 2 tenants here
 
 Last update: May 6, 2021
+```
+
+### 12c_OCI_demo_2_vcns_peering_local_1_DRG
+
+```
+Summary: Local VCN peering between 2 VCNs in same tenant and same region using 1 DRG
+
+Details:
+- same as 12_OCI_demo_vcn_peering_local except we use 1 DRG instead of 2 LPGs (improvements May 2021)
+
+Last update: June 1, 2021
+```
+
+### 12d_OCI_demo_3_vcns_peering_local_1_DRG
+
+```
+Summary: Local VCN peering between 3 VCNs in same tenant and same region using 1 DRG
+
+Details:
+- same as 12c_OCI_demo_2_vcns_peering_local_1_DRG except we use 3 VCNs instead of 2
+
+Last update: June 1, 2021
 ```
 
 ### 13_OCI_demo_vcn_peering_local
