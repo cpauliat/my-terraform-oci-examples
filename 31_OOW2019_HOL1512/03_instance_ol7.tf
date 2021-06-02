@@ -4,7 +4,7 @@ data oci_core_images ImageOCID-ol7 {
   operating_system         = "Oracle Linux"
   operating_system_version = "7.6"
 
-  # filter to avoid Oracle Linux 7.x images for GPU
+  # filter to avoid Oracle Linux 7.x images for GPU and ARM
   filter {
     name   = "display_name"
     values = ["^.*Oracle-Linux-7.6-[^G].*$"]

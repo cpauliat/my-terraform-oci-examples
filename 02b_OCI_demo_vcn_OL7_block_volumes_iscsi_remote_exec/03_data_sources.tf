@@ -7,7 +7,7 @@ data oci_core_images ImageOCID-ol7 {
   # filter to keep only Oracle Linux 7.x images for GPU
   filter {
     name   = "display_name"
-    values = ["^.*Oracle-Linux-7.9-[^G].*$"]
+    values = ["^.*Oracle-Linux-7.9-202.*$"]
     regex  = true
   }
 }
