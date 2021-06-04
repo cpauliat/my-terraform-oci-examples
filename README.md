@@ -698,3 +698,18 @@ Details:
 
 Last update: April 27, 2021
 ```
+
+### 49_OCI_demo_vcn_private_instance_bastion_aas
+
+```
+Summary: 1 VCN + 1 private subnet + Oracle Linux 7 compute instance + Bastion as a service
+
+Details:
+- 1 VCN with 1 private regional subnet + 1 NAT gateway + 1 service gateway + 1 route table + 1 security list
+- 1 compute instance Oracle Linux 7 on private subnet (without public IP) and Cloud-init post provisioning actions
+- 1 OCI Bastion for the private subnet
+- 1 session in the OCI Bastion to connect to compute instance from Internet
+- after provisioning, print instructions to connect to the compute instance
+
+Last update: June 4, 2021
+```
