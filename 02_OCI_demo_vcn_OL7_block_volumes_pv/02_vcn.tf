@@ -23,8 +23,9 @@ resource oci_core_route_table tf-demo02-rt {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_vcn.tf-demo02-vcn.id
   display_name   = "tf-demo02-route-table"
+
   route_rules {
-    cidr_block        = "0.0.0.0/0"
+    destination       = "0.0.0.0/0"
     network_entity_id = oci_core_internet_gateway.tf-demo02-ig.id
     description       = "single route rule to Internet gateway for all traffic"
   }
@@ -35,9 +36,11 @@ resource oci_core_security_list tf-demo02-subnet1-sl {
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo02-subnet1-security-list"
   vcn_id         = oci_core_vcn.tf-demo02-vcn.id
+
   egress_security_rules {
     protocol    = "all"
     destination = "0.0.0.0/0"
+    description = "Allow all outgoing traffic"
   }
 
   ingress_security_rules {
