@@ -32,10 +32,10 @@ resource oci_dns_resolver tenant1-resolver {
   provider    = oci.tenant1
   resolver_id = data.oci_core_vcn_dns_resolver_association.tenant1-resolver.dns_resolver_id
   scope       = "PRIVATE"
-    rules {
-      action                 = "FORWARD"
-      destination_addresses  = [ var.dns_listener2 ]
-      source_endpoint_name   = oci_dns_resolver_endpoint.tenant1-forwarder.name
-      qname_cover_conditions = [ "${var.dns_label_tenant2}.oraclevcn.com" ]
-    }
+  rules {
+    action                 = "FORWARD"
+    destination_addresses  = [ var.dns_listener2 ]
+    source_endpoint_name   = oci_dns_resolver_endpoint.tenant1-forwarder.name
+    qname_cover_conditions = [ "${var.dns_label_tenant2}.oraclevcn.com" ]
+  }
 }
