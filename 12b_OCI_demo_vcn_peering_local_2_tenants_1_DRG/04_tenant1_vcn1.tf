@@ -164,6 +164,7 @@ resource oci_core_subnet tenant1-privnet {
 resource oci_core_drg tenant1-drg {
   provider       = oci.tenant1
   compartment_id = var.compartment_ocid1
+  display_name   = "demo12b_DRG"
 }
 
 resource oci_core_drg_attachment tenant1-drg-attachment {
