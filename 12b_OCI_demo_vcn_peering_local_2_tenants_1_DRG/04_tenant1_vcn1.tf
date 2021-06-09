@@ -170,6 +170,9 @@ resource oci_core_drg tenant1-drg {
 resource oci_core_drg_attachment tenant1-drg-attachment {
   provider     = oci.tenant1
   drg_id       = oci_core_drg.tenant1-drg.id
-  vcn_id       = oci_core_vcn.tenant1-vcn.id
   display_name = "attachment_to_local_drg"
+  network_details {
+    type = "VCN"
+    id   = oci_core_vcn.tenant1-vcn.id
+  }  
 }

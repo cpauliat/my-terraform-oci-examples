@@ -167,6 +167,9 @@ resource oci_core_subnet tenant2-privnet {
 resource oci_core_drg_attachment tenant2-drg-attachment {
   provider     = oci.tenant2
   drg_id       = oci_core_drg.tenant1-drg.id
-  vcn_id       = oci_core_vcn.tenant2-vcn.id
   display_name = "attachment_to_drg_in_tenant1"
+  network_details {
+    type = "VCN"
+    id   = oci_core_vcn.tenant2-vcn.id
+  }  
 }
