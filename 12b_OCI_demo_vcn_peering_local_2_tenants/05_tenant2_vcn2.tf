@@ -35,7 +35,9 @@ resource oci_core_route_table tenant2-pubnet-rt {
 
   route_rules {
     destination       = var.tenant1_cidr_vcn
-    network_entity_id = oci_core_local_peering_gateway.tenant2-lpg.id
+    network_entity_id = oci_core_drg.tenant1-drg.id
+    #OLD: using LPGs instead of DRG (soon deprecated)
+    #network_entity_id = oci_core_local_peering_gateway.tenant2-lpg.id
   }
 }
 
@@ -48,7 +50,9 @@ resource oci_core_route_table tenant2-privnet-rt {
 
   route_rules {
     destination       = var.tenant1_cidr_vcn
-    network_entity_id = oci_core_local_peering_gateway.tenant2-lpg.id
+    network_entity_id = oci_core_drg.tenant1-drg.id
+    #OLD: using LPGs instead of DRG (soon deprecated)
+    #network_entity_id = oci_core_local_peering_gateway.tenant2-lpg.id
   }
 }
 
@@ -150,10 +154,19 @@ resource oci_core_subnet tenant2-privnet {
   dhcp_options_id     = oci_core_vcn.tenant2-vcn.default_dhcp_options_id
 }
 
-# ------ Create a Local Peering Gateway (LPG) in the new VCN (ACCEPTOR)
-resource oci_core_local_peering_gateway tenant2-lpg {
-  provider       = oci.tenant2
-  compartment_id = var.compartment_ocid2
-  vcn_id         = oci_core_vcn.tenant2-vcn.id
-  display_name   = "tenant2-lpg"
+#OLD: using LPGs instead of DRG (soon deprecated)
+# # ------ Create a Local Peering Gateway (LPG) in the new VCN (ACCEPTOR)
+# resource oci_core_local_peering_gateway tenant2-lpg {
+#   provider       = oci.tenant2
+#   compartment_id = var.compartment_ocid2
+#   vcn_id         = oci_core_vcn.tenant2-vcn.id
+#   display_name   = "tenant2-lpg"
+# }
+
+# ------ Attach DRG in tenant1 to the VCN in tenant2
+resource oci_core_drg_attachment tenant2-drg-attachment {
+  provider     = oci.tenant2
+  drg_id       = oci_core_drg.tenant1-drg.id
+  vcn_id       = oci_core_vcn.tenant2-vcn.id
+  display_name = "attachment_to_drg_in_tenant1"
 }

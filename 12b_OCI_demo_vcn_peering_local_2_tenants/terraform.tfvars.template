@@ -1,6 +1,6 @@
 # ============== UPDATE INFORMATION BELOW BEFORE USE
 
-# ---- Tenant #1 (LPG REQUESTOR)
+# ---- Tenant #1 (CONTAINS DRG)
 tenancy_ocid1     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 user_ocid1        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 fingerprint1      = "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx"
@@ -8,12 +8,13 @@ private_key_path1 = "/Users/cpauliat/.oci/api_key.pem"
 compartment_ocid1 = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
 iam_group_ocid1   = "ocid1.group.xxxxxxxx"   # OCI of IAM group (Administrators or other) in tenant 1
 
-# ---- Tenant #2 (LPG ACCEPTOR)
+# ---- Tenant #2
 tenancy_ocid2     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 user_ocid2        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 fingerprint2      = "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx"
 private_key_path2 = "/Users/cpauliat/.oci/api_key.pem"
 compartment_ocid2 = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+iam_group_ocid2   = "ocid1.group.xxxxxxxx"   # OCI of IAM group (Administrators or other) in tenant 2
 
 # ---- Common region for the 2 tenants
 region            = "eu-frankfurt-1"

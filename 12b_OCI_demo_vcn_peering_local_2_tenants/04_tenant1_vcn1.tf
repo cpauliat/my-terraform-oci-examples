@@ -35,7 +35,9 @@ resource oci_core_route_table tenant1-pubnet-rt {
 
   route_rules {
     destination       = var.tenant2_cidr_vcn
-    network_entity_id = oci_core_local_peering_gateway.tenant1-lpg.id
+    network_entity_id = oci_core_drg.tenant1-drg.id
+    #OLD: using LPGs instead of DRG (soon deprecated)
+    #network_entity_id = oci_core_local_peering_gateway.tenant1-lpg.id
   }
 }
 
@@ -48,7 +50,9 @@ resource oci_core_route_table tenant1-privnet-rt {
 
   route_rules {
     destination       = var.tenant2_cidr_vcn
-    network_entity_id = oci_core_local_peering_gateway.tenant1-lpg.id
+    network_entity_id = oci_core_drg.tenant1-drg.id
+    #OLD: using LPGs instead of DRG (soon deprecated)
+    # network_entity_id = oci_core_local_peering_gateway.tenant1-lpg.id
   }
 }
 
@@ -146,11 +150,25 @@ resource oci_core_subnet tenant1-privnet {
   dhcp_options_id     = oci_core_vcn.tenant1-vcn.default_dhcp_options_id
 }
 
-# ------ Create a Local Peering Gateway (LPG) in the new VCN (REQUESTOR)
-resource oci_core_local_peering_gateway tenant1-lpg {
+#OLD: using LPGs instead of DRG (soon deprecated)
+# # ------ Create a Local Peering Gateway (LPG) in the new VCN (REQUESTOR)
+# resource oci_core_local_peering_gateway tenant1-lpg {
+#   provider       = oci.tenant1
+#   compartment_id = var.compartment_ocid1
+#   vcn_id         = oci_core_vcn.tenant1-vcn.id
+#   display_name   = "tenant1-lpg"
+#   peer_id        = oci_core_local_peering_gateway.tenant2-lpg.id
+# }
+
+# ------ Create a Dynamic Routing Gateway (DRG) in the VCN1 and attach it to the VCN1
+resource oci_core_drg tenant1-drg {
   provider       = oci.tenant1
   compartment_id = var.compartment_ocid1
-  vcn_id         = oci_core_vcn.tenant1-vcn.id
-  display_name   = "tenant1-lpg"
-  peer_id        = oci_core_local_peering_gateway.tenant2-lpg.id
+}
+
+resource oci_core_drg_attachment tenant1-drg-attachment {
+  provider     = oci.tenant1
+  drg_id       = oci_core_drg.tenant1-drg.id
+  vcn_id       = oci_core_vcn.tenant1-vcn.id
+  display_name = "attachment_to_local_drg"
 }

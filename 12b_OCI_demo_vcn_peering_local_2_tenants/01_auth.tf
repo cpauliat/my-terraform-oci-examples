@@ -10,6 +10,7 @@ variable "user_ocid2" {}
 variable "fingerprint2" {}
 variable "private_key_path2" {}
 variable "compartment_ocid2" {}
+variable "iam_group_ocid2" {}
 variable "region" {}
 variable "ssh_public_key_file" {}
 variable "ssh_private_key_file" {}
