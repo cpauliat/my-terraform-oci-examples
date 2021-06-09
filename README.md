@@ -55,7 +55,7 @@ Details:
 - post provisioning tasks with cloud-init, passing arguments to cloud-init script.
 - after provisioning, print instructions to connect to the Linux compute instance (SSH)
 
-Last update: November 12, 2019
+Last update: June 8, 2021
 ```
 
 ### 02b_OCI_demo_vcn_OL7_block_volumes_iscsi_remote_exec
@@ -349,12 +349,12 @@ Last update: March  2, 2020
 ### 12_OCI_demo_vcn_peering_local_LPGs
 
 ```
-Summary: Local VCN peering between 2 VCNs in same tenant and same region using LPGs (Soon deprecated, uses 12c)
+Summary: Local VCN peering between 2 VCNs in same tenant and same region using LPGs (Soon deprecated, see example 12c instead)
 
 Details:
 - 2 VCNs with following objects in each:
-  1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
-- Local VCN peering configured between the 2 VCNs
+  1 public regional subnet + 1 internet gateway + 1 route table + 1 security list + 1 local peering gateway (LGP)
+- Local VCN peering configured between the 2 VCNs using 2 LPGs
 - 2 compute instances Oracle Linux 7 (public IP), 1 per VCN
 - DNS resolution between the 2 VCNs.
 - after instances provisioning, you can test access (ping using DNS hostnames) between the 2 instances in different VCNs
@@ -364,15 +364,15 @@ Reminder: the 2 VCNs must have non overlapping CIDRs
 Last update: April 7, 2021
 ```
 
-### 12b_OCI_demo_vcn_peering_local_2_tenants
+### 12b_OCI_demo_vcn_peering_local_2_tenants_1_DRG
 
 ```
-Summary: Local VCN peering between 2 VCNs in different tenants and same region
+Summary: Local VCN peering between 2 VCNs in different tenants and same region using 1 DRG
 
 Details:
-- same as 12_OCI_demo_vcn_peering_local except we use 2 tenants here
+- same as 12c_OCI_demo_2_vcns_peering_local_1_DRG except we use 2 tenants here
 
-Last update: May 6, 2021
+Last update: June 9, 2021
 ```
 
 ### 12c_OCI_demo_2_vcns_peering_local_1_DRG
