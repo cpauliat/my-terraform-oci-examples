@@ -160,7 +160,7 @@ resource oci_core_subnet tenant1-privnet {
 #   peer_id        = oci_core_local_peering_gateway.tenant2-lpg.id
 # }
 
-# ------ Create a Dynamic Routing Gateway (DRG) in the VCN1 and attach it to the VCN1
+# ------ Create a Dynamic Routing Gateway (DRG) in the TENANT1 and attach it to the VCN1
 resource oci_core_drg tenant1-drg {
   provider       = oci.tenant1
   compartment_id = var.compartment_ocid1
