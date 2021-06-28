@@ -6,7 +6,7 @@ resource oci_containerengine_cluster tf-demo17-oke {
   vcn_id             = oci_core_vcn.tf-demo17-vcn.id
 
   options {
-    service_lb_subnet_ids = [oci_core_subnet.tf-demo17-lb.id]
+    service_lb_subnet_ids = [ oci_core_subnet.tf-demo17-lb.id ]
 
     add_ons {
       is_kubernetes_dashboard_enabled = var.oke_cluster_k8s_dashboard_enabled
