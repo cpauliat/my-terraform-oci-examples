@@ -1,0 +1,14 @@
+# ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# ---- Tenant
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "80:8d:62:02:9a:0f:95:e0:29:79:90:78:8a:4e:9d:bb"
+private_key_path = "/Users/cpauliat/.oci/oci_api_key_EMEAOSC_20190430_private.pem"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+region           = "eu-frankfurt-1"
+
+# ---- Pluggable database
+cdb_id                  = "ocid1.database.oc1.eu-frankfurt-1.abtheljs4ccpy5v57witkg44mxpei57tzxtj64ub5swlslvhzoobah5bn4kq"
+cdb_tde_wallet_password = "TDEpasswordCDB"   
+pdb_admin_password      = "PDBpwd123--"   # can only contain alphanumeric, hyphen(-), underscore(_), pound(#)
