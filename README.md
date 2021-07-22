@@ -498,10 +498,10 @@ Summary: Serverless Autonomous Database instance (ATP or ADW)
 Details:
 - 1 Serverless Autonomous Database instance (shared): ATP or ADW with password generated using random provider
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
-- 1 compute instance Oracle Linux 7 (public IP) with Oracle Instant Client 19.3 installed by cloud-init
+- 1 compute instance Oracle Linux 7 (public IP) with Oracle Instant Client 21 installed by cloud-init
 - manual download of wallet file and manual configuration for sqlplus access
 
-Last update: January 26, 2021
+Last update: July 22, 2021
 ```
 
 ### 21_OCI_demo_autonomous_DB_serverless_ADVANCED
@@ -514,11 +514,11 @@ Details:
 - 1 VCN with:
   - 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list for BASTION HOST
   - 1 private regional subnet + 1 NAT gateway + 1 service gateway + 1 route table + 1 security list for DB CLIENT HOST
-- 1 compute instance (DB CLIENT) Oracle Linux 7 (private IP) with Oracle Instant Client 18.5 or 19.3 installed by cloud-init
+- 1 compute instance (DB CLIENT) Oracle Linux 7 (private IP) with Oracle Instant Client 21 installed by cloud-init
 - 1 compute instance (BASTION HOST) Oracle Linux 7 (public IP)
 - automatic download of wallet file and automatic configuration of sqlplus using cloud-init
 
-Last update: January 13, 2021
+Last update: July 22, 2021
 ```
 
 ### 22_OCI_demo_autonomous_DB_serverless_SIMPLE_within_VCN
@@ -531,10 +531,10 @@ Details:
 - 1 Serverless Autonomous Database instance (shared) with private endpoint in VCN
   ATP or ADW with password generated using random provider
   https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/adbsprivateaccess.htm
-- 1 compute instance (DB CLIENT) Oracle Linux 7 (public IP) with Oracle Instant Client 19.5 installed by cloud-init
+- 1 compute instance (DB CLIENT) Oracle Linux 7 (public IP) with Oracle Instant Client 21 installed by cloud-init
 - automatic download of wallet file and automatic configuration of sqlplus using cloud-init
 
-Last update: January 13, 2021
+Last update: July 22, 2021
 ```
 
 https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/adbsprivateaccess.htm
