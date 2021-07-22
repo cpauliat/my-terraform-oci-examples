@@ -40,12 +40,13 @@ resource oci_core_security_list tf-demo22-subnet1-sl {
     protocol    = "all"
     destination = "0.0.0.0/0"
   }
-/*
-  ingress_security_rules {
-    protocol = "all"
-    source   = var.cidr_vcn
-  }
-  */
+
+  # -- not needed as NSG in place for DB sqlnet connection from instance to ADB
+  # ingress_security_rules {
+  #   protocol = "all"
+  #   source   = var.cidr_vcn
+  # }
+  
   ingress_security_rules {
     protocol = "6" # tcp
     source   = var.authorized_ips
@@ -92,13 +93,28 @@ resource oci_core_network_security_group_security_rule tf-demo22-nsg-adb-ingress
     network_security_group_id = oci_core_network_security_group.tf-demo22-nsg-adb.id
     direction                 = "INGRESS"
     protocol                  = "6"       # for ICMP ("1"), TCP ("6"), UDP ("17"), and ICMPv6 ("58")
-    description               = "Allow SQLNET connection only from VCN subnet"
+    description               = "Allow SQLNET connection from VCN subnet"
     source                    = var.cidr_subnet1
     source_type               = "CIDR_BLOCK"
     tcp_options {
         destination_port_range {
+            min = "1521"
             max = "1522"
-            min = "1522"
+        }
+    }
+}
+
+resource oci_core_network_security_group_security_rule tf-demo22-nsg-adb-ingress-secrule2 {
+    network_security_group_id = oci_core_network_security_group.tf-demo22-nsg-adb.id
+    direction                 = "INGRESS"
+    protocol                  = "6"       # for ICMP ("1"), TCP ("6"), UDP ("17"), and ICMPv6 ("58")
+    description               = "Allow HTTPS connection from VCN subnet"
+    source                    = var.cidr_subnet1
+    source_type               = "CIDR_BLOCK"
+    tcp_options {
+        destination_port_range {
+            min = "443"
+            max = "443"
         }
     }
 }
