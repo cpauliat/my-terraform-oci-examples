@@ -516,7 +516,9 @@ Details:
   - 1 private regional subnet + 1 NAT gateway + 1 service gateway + 1 route table + 1 security list for DB CLIENT HOST
 - 1 compute instance (DB CLIENT) Oracle Linux 7 (private IP) with Oracle Instant Client 21 installed by cloud-init
 - 1 compute instance (BASTION HOST) Oracle Linux 7 (public IP)
+- 1 object storage bucket backup_<adb_name> and configure ADB to use it for manual backups
 - automatic download of wallet file and automatic configuration of sqlplus using cloud-init
+
 
 Last update: July 22, 2021
 ```
