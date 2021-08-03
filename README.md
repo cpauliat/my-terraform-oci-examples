@@ -514,13 +514,13 @@ Details:
 - 1 VCN with:
   - 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list for BASTION HOST
   - 1 private regional subnet + 1 NAT gateway + 1 service gateway + 1 route table + 1 security list for DB CLIENT HOST
-- 1 compute instance (DB CLIENT) Oracle Linux 7 (private IP) with Oracle Instant Client 21 installed by cloud-init
+- 1 compute instance (DB CLIENT) Oracle Linux 7 (private IP) with Oracle Instant Client 21 and SQL Developer command line (SQLcl) installed by cloud-init
 - 1 compute instance (BASTION HOST) Oracle Linux 7 (public IP)
 - 1 object storage bucket backup_<adb_name> and configure ADB to use it for manual backups
 - automatic download of wallet file and automatic configuration of sqlplus using cloud-init
 
 
-Last update: July 22, 2021
+Last update: August 3, 2021
 ```
 
 ### 22_OCI_demo_autonomous_DB_serverless_SIMPLE_within_VCN
@@ -533,10 +533,10 @@ Details:
 - 1 Serverless Autonomous Database instance (shared) with private endpoint in VCN
   ATP or ADW with password generated using random provider
   https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/adbsprivateaccess.htm
-- 1 compute instance (DB CLIENT) Oracle Linux 7 (public IP) with Oracle Instant Client 21 installed by cloud-init
+- 1 compute instance (DB CLIENT) Oracle Linux 7 (public IP) with Oracle Instant Client 21 and SQL Developer command line (SQLcl) installed by cloud-init
 - automatic download of wallet file and automatic configuration of sqlplus using cloud-init
 
-Last update: July 22, 2021
+Last update: August 3, 2021
 ```
 
 https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/adbsprivateaccess.htm
