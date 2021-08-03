@@ -35,9 +35,13 @@ output DB_client {
 
      note: you can connect to bastion host with:    ssh -F sshcfg d21bastion
 
-  2) ---- Connection to ADB instance with sqlplus
+  2) ---- Connection to ADB instance (medium service) with sqlplus
      ssh -F sshcfg d21dbclient-oracle
      ./sqlplus.sh
+
+  3) ---- Connection to ADB instance (medium service) with SQLcl (SQL Developer command line)
+     ssh -F sshcfg d21dbclient-oracle
+     ./sqlcl.sh
 
 EOF
 

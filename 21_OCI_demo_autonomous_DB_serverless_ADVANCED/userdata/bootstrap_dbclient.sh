@@ -73,6 +73,22 @@ mkdir -p 700 /home/oracle/.ssh
 cp -p /home/opc/.ssh/authorized_keys /home/oracle/.ssh/authorized_keys
 chown -R oracle:dba /home/oracle/.ssh
 
+echo "========== Install Java 12 (version 8 or later needed by SQL Developer Command Line)"
+yum -y install jre-12
+
+echo "========== Install SQL Developer Command Line (sqlcl)"
+wget -O /home/oracle/sqlcl-latest.zip https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip
+cd /home/oracle
+unzip sqlcl-latest.zip
+chown -R oracle:dba /home/oracle/sqlcl*
+
+echo "========== Create a script to connect to ADB instance with SQLcl"
+cat << EOF > /home/oracle/sqlcl.sh
+/home/oracle/sqlcl/bin/sql admin/${DB_PASSWORD}@${DB_NAME}_medium
+EOF
+chown oracle:dba /home/oracle/sqlcl.sh
+chmod 700 /home/oracle/sqlcl.sh
+
 echo "========== Create a script to connect to ADB instance with sqlplus"
 cat << EOF > /home/oracle/sqlplus.sh
 sqlplus admin/${DB_PASSWORD}@${DB_NAME}_medium

@@ -86,6 +86,10 @@ output DB_client {
      ssh -F sshcfg d22dbclient-oracle
      ./sqlplus.sh
 
+  3) ---- Connection to ADB instance (medium service) with SQLcl (SQL Developer command line)
+     ssh -F sshcfg d22dbclient-oracle
+     ./sqlcl.sh
+
 EOF
 
 }
