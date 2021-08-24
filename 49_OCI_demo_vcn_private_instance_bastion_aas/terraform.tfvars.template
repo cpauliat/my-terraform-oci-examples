@@ -33,5 +33,5 @@ AD_private           = "1"
 BootStrapFile        = "userdata/bootstrap.sh"
 
 # ---- Bastion as a service
-bastion_max_session_ttl_in_seconds = "3600"
-session_max_session_ttl_in_seconds = "1800"
+bastion_max_session_ttl_in_seconds = "3600"     # min = 1800 seconds (0h30), max = 10800 seconds (3h)
+session_max_session_ttl_in_seconds = "1800"     # min = 1800 seconds (0h30), max = bastion_max_session_ttl_in_seconds
