@@ -8,7 +8,16 @@ resource oci_bastion_bastion demo49 {
 }
 
 # -- specific session to connect to the private instance
+# -- Wait 4 minutes so that Bastion plugin is enabled on compute instance
+resource null_resource wait {
+  provisioner "local-exec" {
+    command = "sleep 240"
+  }
+}
+
 resource oci_bastion_session demo49-private {
+  depends_on = [ null_resource.wait ]    
+
   bastion_id = oci_bastion_bastion.demo49.id
   key_details {
     public_key_content = file(var.ssh_public_key_file_bastion)
