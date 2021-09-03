@@ -111,8 +111,9 @@ Details
 - 1 DB system on VM.Standard* shape with 1 DB instance
 - 1 filesystem (File Storage) that will be used on the DB system to store staging files, backups...
 - Filesystem NFS-mounted automatically on the DB system using remote-exec provisioner
+- Provisioning additonal PDB using Terraform
 
-Last update: August 5, 2020
+Last update: September 3, 2021
 ```
 
 ### 05b_OCI_demo_vcn_DB_BM_dataguard

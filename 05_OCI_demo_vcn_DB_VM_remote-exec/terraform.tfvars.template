@@ -17,7 +17,7 @@ ssh_private_key_file = "/Users/cpauliat/.ssh/id_rsa"
 #authorized_ips         = "129.156.0.0/16"          # a specific Class B network on Internet
 authorized_ips          = "0.0.0.0/0"               # all Internet
 
-# ---- variables for DB system with shape VM.Standard.x
+# ---- DB system with shape VM.Standard.x
 VM-StorageMgt         = "LVM"                   # LVM or ASM, LVM available for 18c and 19c versions only
 VM-DBNodeShape        = "VM.Standard2.2"
 VM-CPUCoreCount       = "2"
@@ -40,6 +40,9 @@ VM-DataStorageSizeInGB= "256"
   # - For ASM: 256, 512, 1024, 2048, 4096, 6144, 8192, 10240, 12288, 14336, 16384, 18432, 20480, 22528, 24576, 26624, 28672, 30720, 32768, 34816, 36864, 38912, 40960
 VM-LicenseModel       = "LICENSE_INCLUDED"
 VM-NodeCount          = "1"
+
+# ---- Additional PDB
+VM-PDB2-Name          = "PDB2"
 
 # ============== NO UPDATE NEEDED BELOW
 

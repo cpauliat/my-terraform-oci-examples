@@ -30,6 +30,7 @@ variable "VM-PDBName" {}
 variable "VM-DataStorageSizeInGB" {}
 variable "VM-LicenseModel" {}
 variable "VM-NodeCount" {}
+variable "VM-PDB2-Name" {}
 
 # ---- provider
 provider "oci" {
