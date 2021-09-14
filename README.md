@@ -735,3 +735,14 @@ Details:
 
 Last update: June 4, 2021
 ```
+
+### 50_OCI_demo_vcn_default_route_table
+
+```
+Summary: 1 VCN + 1 public subnet using default route table and default security list
+
+Details:
+- 1 VCN with 1 public regional subnet using default route table and default security list
+
+Last update: September 14, 2021
+```
