@@ -125,9 +125,10 @@ Details
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
 - 2 DB systems in different availability domains on bare metal BM.DenseIO2.52 shape with 1 DB instance each (DB1 and DB2)
 - Data Guard enabled on DB1 (creates DB1 standby instance in DB system #2)
+- 1 additional dbhome+database in DB system #1 without data guard
 - Copy local file to remote DB system using file provisioner
 
-Last update: August 5, 2020
+Last update: September 23, 2021
 ```
 
 ## 05c_OCI_demo_vcn_DB_VM_dataguard
