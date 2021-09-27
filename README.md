@@ -462,21 +462,38 @@ Details:
 Last update: December 30, 2019
 ```
 
-### 16_OCI_demo_vcn_remote_state_s3
+### 16_OCI_demo_vcn_remote_state_bucket_s3
 
 ```
-Summary: basic VCN with Terraform State file stored in OCI Object Storage bucket using S3 compatibility
+Summary: basic VCN with Terraform State file stored in OCI Object Storage bucket using Terraform S3 backend
 
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
-- Terraform state file stored in OCI object storage
+- Terraform state file stored in OCI object storage bucket
 
 Prerequisites:
-- Create an object storage bucket in a OCI tenant (can be a different OCI tenant)
+- Create an object storage bucket in a OCI tenant with version enabled (can be a different OCI tenant)
 - Create a customer secret key for the OCI user, update s3key.template file, then copy it to s3key
 - Run terraform init to initialize remote state file
 
-Last update: January 20, 2020
+Last update: September 27, 2021
+```
+
+### 16b_OCI_demo_vcn_remote_state_bucket_http
+
+```
+Summary: basic VCN with Terraform State file stored in OCI Object Storage bucket using Terraform HTTP backend
+
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
+- Terraform state file stored in OCI object storage bucket
+
+Prerequisites:
+- Create an object storage bucket in a OCI tenant with version enabled (can be a different OCI tenant)
+- Create a PAR (pre-authenticated request) for the bucket (read/write) and use it in 02_provider.tf
+- Run terraform init to initialize remote state file
+
+Last update: September 27, 2021
 ```
 
 ### 17_OCI_demo_vcn_OKE_managed_Kubernetes
