@@ -1,14 +1,3 @@
-# ---- use variables defined in terraform.tfvars file
-variable "tenancy_ocid" {}
-variable "user_ocid" {}
-variable "fingerprint" {}
-variable "private_key_path" {}
-variable "compartment_ocid" {}
-variable "region" {}
-variable "authorized_ips" {}
-variable "cidr_vcn" {}
-variable "cidr_subnet1" {}
-
 # ---- provider
 provider "oci" {
   region           = var.region
@@ -18,8 +7,11 @@ provider "oci" {
   private_key_path = var.private_key_path
 }
 
-# ---- Terraform State file stored in an existing OCI object storage bucket
+# See https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/terraformUsingObjectStore.htm
+
+# ---- Terraform State file stored in an existing OCI object storage bucket 
 # ---- accessed using S3 compatible API (Customer secret key needed)
+# ---- Recommended: enabled versioning on this bucket
 # ---- Use of variables not allowed here
 # ---- You can use a different tenant and/or different region
 terraform {
@@ -28,7 +20,7 @@ terraform {
     key                         = "terraform.state.demo16"
     region                      = "eu-frankfurt-1"
     # format for endpoint is https://<namespace>.compat.objectstorage.<region>.oraclecloud.com
-    endpoint                    = "https://oci_core_emea_osc_pauliat.compat.objectstorage.eu-frankfurt-1.oraclecloud.com"
+    endpoint                    = "https://oscemea001.compat.objectstorage.eu-frankfurt-1.oraclecloud.com"
     shared_credentials_file     = "s3key"        # not needed if you use shell variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
     skip_region_validation      = true
     skip_credentials_validation = true
@@ -36,3 +28,4 @@ terraform {
     force_path_style            = true
   }
 }
+
