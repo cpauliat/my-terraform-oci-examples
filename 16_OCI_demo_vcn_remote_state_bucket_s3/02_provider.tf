@@ -17,7 +17,7 @@ provider "oci" {
 terraform {
   backend "s3" {
     bucket                      = "terraform-remote-state"
-    key                         = "terraform.state.demo16"
+    key                         = "terraform.tfstate.demo16"
     region                      = "eu-frankfurt-1"
     # format for endpoint is https://<namespace>.compat.objectstorage.<region>.oraclecloud.com
     endpoint                    = "https://oscemea001.compat.objectstorage.eu-frankfurt-1.oraclecloud.com"
