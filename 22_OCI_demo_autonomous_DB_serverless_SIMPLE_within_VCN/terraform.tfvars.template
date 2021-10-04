@@ -17,7 +17,10 @@ ssh_private_key_file_dbclient= "/Users/cpauliat/.ssh/id_rsa"
 #authorized_ips         = "129.156.0.0/16"          # a specific Class B network on Internet
 authorized_ips          = "0.0.0.0/0"               # all Internet
 
-# -- Autonomous Database (ADW or ATP)
+# ---- Autonomous Database (ADW or ATP)
+# - Always Free Autonomous Databases do not offer the following features and operations: 
+#   CPU scaling, storage scaling, storage shrinking, private endpoints, manual backups, 
+#   restore, preview version software, oracle service gateway connect, and license updating.
 adb_type                = "OLTP"    # OLTP for ATP or DW for ADW
 adb_is_free_tier        = "true"
 adb_cpu_core_count      = "1"       # not used with free tier
