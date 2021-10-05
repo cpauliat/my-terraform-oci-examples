@@ -1,0 +1,66 @@
+## ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# ---- Tenant
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:
+private_key_path = "/Users/cpauliat/.oci/oci_api_key.pem"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+region           = "eu-frankfurt-1"
+
+# ---- for ADB manual backups configuration
+user_name            = "christophe.pauliat@oracle.com"
+auth_token           = "xxxxxxxxxxxxxxxxxxxxx"         
+auth_token_secret_id = "ocid1.vaultsecret.oc1.eu-frankfurt-1.amaaaaaanmvrxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# ---- SSH key pair (UPDATE INFORMATION HERE BEFORE USE)
+ssh_public_key_file_dbclient = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+ssh_private_key_file_dbclient= "/Users/cpauliat/.ssh/id_rsa"
+
+# ---- Authorized public IPs ingress for DB Client
+#authorized_ips         = "90.119.77.177/32"        # a specific public IP on Internet
+#authorized_ips         = "129.156.0.0/16"          # a specific Class B network on Internet
+authorized_ips          = "0.0.0.0/0"               # all Internet
+
+# ---- Autonomous Database (ADW or ATP)
+# - Always Free Autonomous Databases do not offer the following features and operations: 
+#   CPU scaling, storage scaling, storage shrinking, private endpoints, manual backups, 
+#   restore, preview version software, oracle service gateway connect, and license updating.
+# - Cannot enable Autonomous Data Guard during database creation
+adb_type                = "OLTP"    # OLTP for ATP or DW for ADW
+adb_is_free_tier        = "false"
+adb_cpu_core_count      = "1"       # not used with free tier
+adb_data_storage_tbs    = "1"       # not used with free tier
+adb_db_name             = "atp23"
+adb_password            = "ADB#2021#pwd"
+adb_display_name        = "tf-demo23-atp"
+adb_license_model       = "LICENSE_INCLUDED"        # LICENSE_INCLUDED or BRING_YOUR_OWN_LICENSE
+adb_autoscaling_enabled = "false"                   # "true" or "false"
+adb_data_safe_status    = "REGISTERED"              # REGISTERED or NOT_REGISTERED
+adb_wallet_password     = "WAL#2021#let"            # Wallet password
+adb_wallet_type         = "SINGLE"                  # SINGLE for instance wallet or ALL for regional wallet
+adb_wallet_filename     = "wallet.zip"
+adb_dataguard_enabled   = "true"                    # "true" or "false"
+
+# ---- ADB password stored as secret in OCI Vault: 
+# PREREQUISITES: 
+# - OCI CLI installed and configured with profile
+# - Operating System on Terraform machine: Linux or MacOS
+adb_password_secret_id  = "ocid1.vaultsecret.oc1.eu-frankfurt-1.amaaaaaanmvrbeaaz6xxxxxxxxxxxxxxxxxxxxxxxxa"
+oci_cli_profile         = "MYPROFILE"
+
+# ============== NO UPDATE NEEDED BELOW
+
+# ---- availability domain (1, 2 or 3)
+AD               = "1"
+
+# ---- IP addresses
+cidr_vcn         = "10.0.0.0/16"
+cidr_subnet1     = "10.0.0.0/24"
+
+# ---- OL7 DB client
+BootStrapFile_dbclient = "userdata/bootstrap_dbclient.sh"
+
+# ---- Filename of temporary bash scripts to get secrets
+script_get_secret1 = "/tmp/get_secret1.sh"
+script_get_secret2 = "/tmp/get_secret2.sh"

@@ -553,12 +553,28 @@ Details:
   ATP or ADW with password generated using random provider
   https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/adbsprivateaccess.htm
 - 1 compute instance (DB CLIENT) Oracle Linux 7 (public IP) with Oracle Instant Client 21 and SQL Developer command line (SQLcl) installed by cloud-init
-- automatic download of wallet file and automatic configuration of sqlplus using cloud-init
+- automatic download of wallet file and automatic configuration of sqlplus and sqlcl using cloud-init
 
 Last update: August 3, 2021
 ```
 
 https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/adbsprivateaccess.htm
+
+### 23_OCI_demo_autonomous_DB_serverless_vcn_dataguard_vault_secret
+
+```
+Summary: Serverless Autonomous Database instance (ATP or ADW) with private endpoint in VCN, Data Guard enabled,
+Details:
+- 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list + 1 network security group
+- 1 Serverless Autonomous Database instance (shared): ATP or ADW with password retrieved from OCI Vault secret
+- Data Guard enabled for the Autonomous DB
+- 1 compute instance (DB CLIENT) Oracle Linux 7 with Oracle Instant Client 21 and SQL Developer command line (SQLcl) installed by cloud-init
+- 1 object storage bucket backup_<adb_name> and configure ADB to use it for manual backups (Auth Token retrieved from OCI Vault secret)
+- automatic download of wallet file and automatic configuration of sqlplus and sqlcl using cloud-init
+- use of OCI CLI from Terraform to retrieve Vault secrets and enable Data Guard
+
+Last update: October 4, 2021
+```
 
 ### 26_OCI_demo_DNS_webserver_https
 
