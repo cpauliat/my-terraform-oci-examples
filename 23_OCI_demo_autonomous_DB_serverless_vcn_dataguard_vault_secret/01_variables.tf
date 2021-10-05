@@ -5,7 +5,6 @@ variable "private_key_path" {}
 variable "compartment_ocid" {}
 variable "region" {}
 variable "user_name" {}
-variable "auth_token" {}
 variable "auth_token_secret_id" {}
 variable "ssh_public_key_file_dbclient" {}
 variable "ssh_private_key_file_dbclient" {}

@@ -33,7 +33,7 @@ resource oci_core_instance tf-demo23-dbclient {
   metadata = {
     ssh_authorized_keys   = file(var.ssh_public_key_file_dbclient)
     user_data             = base64encode(file(var.BootStrapFile_dbclient))
-    myarg_auth_token      = var.auth_token
+    myarg_auth_token      = local.auth_token
     myarg_username        = var.user_name
     myarg_region          = var.region
     myarg_namespace       = data.oci_objectstorage_namespace.tf-demo23-ns.namespace
