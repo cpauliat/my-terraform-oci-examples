@@ -21,6 +21,7 @@ resource oci_database_autonomous_database tf-demo23-adb {
 # so, we enable it after provisioning using OCI cli.
 resource null_resource tf-demo23-adb {
   depends_on = [ oci_database_autonomous_database.tf-demo23-adb ]
+  count      = var.adb_dataguard_enabled ? 1 : 0
   provisioner local-exec {
     command = "oci --profile ${var.oci_cli_profile} db autonomous-database update --autonomous-database-id ${oci_database_autonomous_database.tf-demo23-adb.id} --is-data-guard-enabled true"
   }
