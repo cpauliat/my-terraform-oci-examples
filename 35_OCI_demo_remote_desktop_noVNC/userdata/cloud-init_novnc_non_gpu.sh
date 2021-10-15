@@ -19,11 +19,21 @@ echo "========== Create the VNC password for user opc"
 mkdir -p /home/opc/.vnc
 echo $VNC_PASSWORD | vncpasswd -f > /home/opc/.vnc/passwd
 chmod 600 /home/opc/.vnc/passwd
+echo "geometry=1900x900" > /home/opc/.vnc/config    # default resolution in NoVNC
 chown -R opc:opc /home/opc/.vnc
+
+echo "========== Set a password for user opc (needed for unlocking graphical session in noVNC)"
+echo $VNC_PASSWORD | passwd --stdin opc
 
 echo "========== Configure Linux Firewall for VNC"
 firewall-offline-cmd --zone=public --add-service vnc-server
 systemctl restart firewalld
+
+echo "========== If GPU shape, Install and configure VirtualGL"
+SHAPE=`curl -L http://169.254.169.254/opc/v1/instance/shape`
+if [[ $SHAPE == *"GPU"* ]]; then 
+    yum install -y https://downloads.sourceforge.net/project/virtualgl/2.6.5/VirtualGL-2.6.5.x86_64.rpm
+fi
 
 echo "========== Start VNC server"
 systemctl daemon-reload

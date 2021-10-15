@@ -1,0 +1,19 @@
+variable "tenancy_ocid" {}
+variable "user_ocid" {}
+variable "fingerprint" {}
+variable "private_key_path" {}
+variable "compartment_ocid" {}
+variable "region" {}
+variable "vnc_password_opc" {}
+variable "cidr_vcn" {}
+variable "cidr_subnet1" {}
+variable "authorized_ips" {}
+variable "AD" {}
+variable "shape" {}
+variable "flex_shape_ocpus" {}
+variable "flex_shape_memory_in_gbs" {}
+variable "ssh_public_key_file_rdesktop" {}
+variable "ssh_private_key_file_rdesktop" {}
+variable "BootStrapFile_rdesktop_gpu" {}
+variable "BootStrapFile_rdesktop_non_gpu" {}
+

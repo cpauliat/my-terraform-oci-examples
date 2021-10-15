@@ -58,3 +58,40 @@ resource oci_core_subnet demo35-subnet1 {
   security_list_ids   = [oci_core_security_list.demo35-sl.id]
   dhcp_options_id     = oci_core_vcn.demo35-vcn.default_dhcp_options_id
 }
+
+# ------ Create a network security group to allow SSH connections from specific public IPs 
+resource oci_core_network_security_group demo35 {
+    compartment_id = var.compartment_ocid
+    vcn_id         = oci_core_vcn.demo35-vcn.id
+    display_name   = "demo35"
+}
+
+resource oci_core_network_security_group_security_rule demo35-secrule1 {
+    network_security_group_id = oci_core_network_security_group.demo35.id
+    direction                 = "INGRESS"
+    protocol                  = "6"       # for ICMP ("1"), TCP ("6"), UDP ("17"), and ICMPv6 ("58")
+    description               = "Allow SSH connection from C. Pauliat's public IP"
+    source                    = var.authorized_ips
+    source_type               = "CIDR_BLOCK"
+    tcp_options {
+        destination_port_range {
+            max = "22"
+            min = "22"
+        }
+    }
+}
+
+resource oci_core_network_security_group_security_rule demo35-secrule2 {
+    network_security_group_id = oci_core_network_security_group.demo35.id
+    direction                 = "INGRESS"
+    protocol                  = "6"       # for ICMP ("1"), TCP ("6"), UDP ("17"), and ICMPv6 ("58")
+    description               = "Allow Remote Desktop connection to noVNC on port HTTPS 443"
+    source                    = var.authorized_ips
+    source_type               = "CIDR_BLOCK"
+    tcp_options {
+        destination_port_range {
+            max = "443"
+            min = "443"
+        }
+    }
+}
