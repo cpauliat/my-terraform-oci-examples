@@ -65,7 +65,6 @@ sudo rm -f /tmp/.X*-lock /tmp/.X11-unix/X*
 export VGL_DISPLAY=:0
 /opt/TurboVNC/bin/vncserver -wm mate-session -geometry $DEFAULT_RESOLUTION -vgl
 EOF
-chmod +x /home/opc/start_vnc.sh
 
 cat > /home/opc/stop_vnc.sh << EOF
 #!/bin/bash
@@ -73,7 +72,8 @@ cat > /home/opc/stop_vnc.sh << EOF
 /opt/TurboVNC/bin/vncserver -kill :1
 sudo rm -f /tmp/.X*-lock /tmp/.X11-unix/X*
 EOF
-chmod +x /home/opc/stop_vnc.sh
+chmod +x /home/opc/stop_vnc.sh /home/opc/start_vnc.sh
+chown opc:opc /home/opc/stop_vnc.sh /home/opc/start_vnc.sh
 
 # [root@demo35 ~]# vglserver_config -config +s +f -t       # problem: not persistent accross reboot
 # ... Modifying /etc/security/console.perms to disable automatic permissions

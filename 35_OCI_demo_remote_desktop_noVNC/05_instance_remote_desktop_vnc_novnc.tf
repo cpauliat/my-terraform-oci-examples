@@ -39,6 +39,9 @@ resource oci_core_instance demo35 {
 output demo35 {
   value = <<EOF
 
+  VNC/noVNC password = ${local.vnc_password_opc}
+  opc user password  = ${local.vnc_password_opc} (to unlock screen after inactivity)
+
   ---- You can SSH directly to the demo35 compute instance by typing the following ssh command
   ssh -i ${var.ssh_private_key_file_rdesktop} opc@${oci_core_instance.demo35.public_ip}
 
@@ -47,10 +50,11 @@ output demo35 {
   ---- Or   connect to ip-address:5901 if running Terraform on a different machine
   ssh -i ${var.ssh_private_key_file_rdesktop} opc@${oci_core_instance.demo35.public_ip} -L 5901:localhost:5901
 
-  ---- You can also connect to NoVNC using your Web Browser
-  Open https://${oci_core_instance.demo35.public_ip} in your web browser  (Self signed certificate)
-    then use
-    opc password = ${local.vnc_password_opc}
-
+  ---- You can also connect to NoVNC using your Web Browser (Self signed certificate) 
+  In your web browser, 
+       open https://${oci_core_instance.demo35.public_ip} then enter the VNC password
+    or open https://${oci_core_instance.demo35.public_ip}/vnc.html?password=${local.vnc_password_opc}&autoconnect=true
   EOF
 }
+
+#    or open https://${oci_core_instance.demo35.public_ip}/vnc.html?password=${local.vnc_password_opc}&resize=scale&quality=9&autoconnect=true
