@@ -3,8 +3,13 @@ resource oci_core_instance tf-demo01-ol7 {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo01-ol7"
-  shape                = "VM.Standard.E2.1"
   preserve_boot_volume = "false"
+  shape                = "VM.Standard.E4.Flex"
+  # Comment the shape_config following lines for non-flexible shape
+  shape_config {
+    ocpus         = "4"
+    memory_in_gbs = "17"  # total amount of memory for the instance
+  }
 
   source_details {
     source_type             = "image"
@@ -34,7 +39,7 @@ output Instance_OL7 {
 
   ---- Alternatively, you can add the following lines to your file $HOME/.ssh/config and then just run "ssh ol7"
 
-  Host ol7
+  Host d01ol7
           Hostname ${oci_core_instance.tf-demo01-ol7.public_ip}
           User opc
           IdentityFile ${var.ssh_private_key_file_ol7}
