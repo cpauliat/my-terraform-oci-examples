@@ -60,6 +60,8 @@ output demo35b {
     user     = ${local.user}
     password = ${random_string.password.result}
 
+  ---- Alternatively, you can connect to Nice DCV server using Nice DCV client if it is installed on your local machine
+
   ---- NOTE: there is no Nice DCV license server configured, so here we use the 15 day demo license.
 
   EOF

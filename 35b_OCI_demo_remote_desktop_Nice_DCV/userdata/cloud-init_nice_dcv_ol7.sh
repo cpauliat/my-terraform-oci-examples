@@ -7,7 +7,7 @@ echo "========== Get argument(s) passed thru metadata"
 PASSWORD=`curl -L http://169.254.169.254/opc/v1/instance/metadata/myarg_password`
 
 echo "========== Install latest updates"
-yum update -y
+#yum update -y
 
 echo "========== Configure Linux Firewall for Nice DCV"
 firewall-offline-cmd --zone=public --add-port=8443/tcp
