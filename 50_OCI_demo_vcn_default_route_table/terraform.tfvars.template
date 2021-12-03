@@ -1,18 +1,15 @@
-
 # ============== UPDATE INFORMATION BELOW BEFORE USE
 
-# ---- Tenant 
-tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-fingerprint      = "80:8d:62:02:9a:0f:95:xx:xx:xx:xx:xx:fa:4e:9d:bb"
-private_key_path = "/Users/cpauliat/.oci/oci_api_key_TENANT1_private.pem"
+# -- Tenant OSCEMEA001
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaaaaafipe4lmow7rfrn5f3egpg3xgur6v2q2wgvb3id4ehwujnpu5mb5q"
+user_ocid        = "ocid1.user.oc1..aaaaaaaamotj4cs75a2royihvyzbj435jca4mw4wlqrot36nzqo5h3zzvluq"
+fingerprint      = "7c:1d:a0:04:b7:1f:f2:5a:7e:81:3c:c9:88:18:13:b2"
+private_key_path = "/Users/cpauliat/.oci/apikey_OSCEMEA001_20200803.pem"
 region           = "eu-frankfurt-1"
-compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaafbaqbcjgz6xm4uxwnnyk3aiwxoh6qfxwouuh5b6jjayxmkuirzja"
 
 # ---- Authorized public IPs ingress
-#authorized_ips		= "90.119.77.177/32"	# a specific public IP on Internet
-#authorized_ips		= "129.156.0.0/16"	    # a specific Class B network on Internet
-authorized_ips		= "0.0.0.0/0"		    # all Internet
+authorized_ips   = "86.241.159.164/32" #"92.150.164.88/32"
 
 # ============== NO UPDATE NEEDED BELOW 
 
