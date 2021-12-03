@@ -1,0 +1,61 @@
+# ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# -- Tenant
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "80:8d:62:02:9a:0f:95:xx:xx:xx:xx:xx:fa:4e:9d:bb"
+private_key_path = "/Users/cpauliat/.oci/oci_api_key_TENANT1_private.pem"
+region           = "eu-frankfurt-1"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# ---- Authorized public IPs ingress
+#authorized_ips         = "90.119.77.177/32"    # a specific public IP on Internet
+#authorized_ips         = "129.156.0.0/16"          # a specific Class B network on Internet
+authorized_ips          = "0.0.0.0/0"               # all Internet
+
+# ---- SSH key pair
+ssh_public_key_file  = "sshkeys/ssh_key_demo51.pub"
+ssh_private_key_file = "sshkeys/ssh_key_demo51"
+
+# ============== NO UPDATE NEEDED BELOW 
+
+# ---- DNS labels
+dns_label_vcn     = "demo51"
+dns_label_public  = "public"
+dns_label_private = "private"
+
+# ---- IP addresses
+cidr_vcn            = "10.0.0.0/16"
+cidr_subnet_public  = "10.0.0.0/24"
+cidr_subnet_private = "10.0.1.0/24"
+
+# ---- Availability domain
+AD                  = "1"
+
+# ---- MySQL
+mysql_display_name       = "demo51"
+mysql_description        = "Description for MySQL demo51"
+mysql_username           = "admin"
+mysql_shape_name         = "MySQL.VM.Standard.E3.1.8GB"
+mysql_storage_size_in_gb = "50"
+mysql_hostname           = "mysql51"
+
+mysql_backup_policy_is_enabled        = "true"
+mysql_backup_policy_retention_in_days = "7"
+
+# ---- Available shapes for MySQL
+#    VM.Standard.E2.1
+#	VM.Standard.E2.2
+#	VM.Standard.E2.4
+#	VM.Standard.E2.8
+#	MySQL.VM.Standard.E3.1.8GB
+#	MySQL.VM.Standard.E3.1.16GB
+#	MySQL.VM.Standard.E3.2.32GB
+#	MySQL.VM.Standard.E3.4.64GB
+#	MySQL.VM.Standard.E3.8.128GB
+#	MySQL.VM.Standard.E3.16.256GB
+#	MySQL.VM.Standard.E3.24.384GB
+#	MySQL.VM.Standard.E3.32.512GB
+#	MySQL.VM.Standard.E3.48.768GB
+#	MySQL.VM.Standard.E3.64.1024GB
+#	MySQL.HeatWave.VM.Standard.E3
