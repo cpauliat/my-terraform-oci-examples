@@ -25,5 +25,5 @@ cidr_subnet1     = "10.0.0.0/24"
 
 # ---- Compute instances
 BootStrapFile_win2016   = "userdata/bootstrap_win2016.ps1"
-WinRMFile_win2016       = "winrm.ps1"
+WinRMFile_win2016       = "templates/winrm.ps1"
 winrm_https_port        = 5986
