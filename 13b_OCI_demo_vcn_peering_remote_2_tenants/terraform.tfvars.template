@@ -1,0 +1,60 @@
+# ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# ---- Tenant #1 (LPG REQUESTOR)
+tenancy_ocid1     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid1        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint1      = "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx"
+private_key_path1 = "/Users/cpauliat/.oci/api_key.pem"
+compartment_ocid1 = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+iam_group_ocid1   = "ocid1.group.xxxxxxxx"   # OCI of IAM group (Administrators or other) in tenant 1
+region1            = "eu-amsterdam-1"        # any subscribed region for tenant1
+region1_home       = "eu-frankfurt-1"        # home region for tenant2
+
+# ---- Tenant #2 (LPG ACCEPTOR)
+tenancy_ocid2     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid2        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint2      = "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx"
+private_key_path2 = "/Users/cpauliat/.oci/api_key.pem"
+compartment_ocid2 = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+region2           = "eu-frankfurt-1"         # any subscribed region for tenant2
+region2_home      = "eu-frankfurt-1"         # home region for tenant2
+
+# ---- SSH key pair
+ssh_public_key_file  = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+ssh_private_key_file = "/Users/cpauliat/.ssh/id_rsa"
+
+# ---- Authorized public IPs ingress
+#authorized_ips  = "90.119.77.177/32"        # a specific public IP on Internet
+#authorized_ips  = "129.156.0.0/16"          # a specific Class B network on Internet
+authorized_ips   = "0.0.0.0/0"               # all Internet
+
+# ============== NO UPDATE NEEDED BELOW
+
+# ---- CIDR VCNs and SUBNETs
+tenant1_cidr_vcn      = "10.0.0.0/16"
+tenant1_cidr_pubnet   = "10.0.0.0/24"
+tenant1_cidr_privnet  = "10.0.7.0/24"
+
+tenant2_cidr_vcn      = "172.16.0.0/16"
+tenant2_cidr_pubnet   = "172.16.0.0/24"
+tenant2_cidr_privnet  = "172.16.7.0/24"
+
+dns_label_tenant1  = "tenant1"
+dns_label_tenant2  = "tenant2"
+dns_label_public1  = "public"
+dns_label_public2  = "public"
+dns_label_private1 = "private"
+dns_label_private2 = "private"
+dns_hostname1      = "d12binst1"
+dns_hostname2      = "d12binst2"
+dns_listener1      = "10.0.0.251"
+dns_forwarder1     = "10.0.0.252"
+dns_listener2      = "172.16.0.251"
+dns_forwarder2     = "172.16.0.252"
+
+# ---- availability domain (1, 2 or 3) for compute instances
+tenant1_instance_AD   = "1"
+tenant2_instance_AD   = "2"
+
+# ---- compute instances
+BootStrapFile      = "userdata/bootstrap_ol7.sh"

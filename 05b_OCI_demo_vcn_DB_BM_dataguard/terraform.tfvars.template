@@ -1,0 +1,71 @@
+# ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# ---- Tenant
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "80:8d:62:02:9a:0f:95:e0:29:79:90:78:8a:4e:9d:bb"
+private_key_path = "/Users/cpauliat/.oci/oci_api_key_EMEAOSC_20190430_private.pem"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+region           = "eu-frankfurt-1"
+
+# ---- SSH key pair
+ssh_public_key_file  = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+ssh_private_key_file = "/Users/cpauliat/.ssh/id_rsa"
+
+# ---- Authorized public IPs ingress
+#authorized_ips         = "90.99.77.177/32"       # a specific public IP on Internet
+#authorized_ips         = "129.156.0.0/16"          # a specific Class B network on Internet
+authorized_ips          = "0.0.0.0/0"               # all Internet
+
+# ---- variables for bare metal DB system 1
+BM1-DBNodeShape       = "BM.DenseIO2.52"
+BM1-CPUCoreCount      = "4"
+BM1-DBEdition         = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
+BM1-DBAdminPassword   = "MY#2021#passwd"
+BM1-DBName            = "DB1"
+BM1-DBVersion         = "19.0.0.0"
+BM1-DBDisplayName     = "tf-demo05b-db1"
+BM1-DBDiskRedundancy  = "HIGH"
+BM1-DBNodeDisplayName = "tf-demo05b-dbs-bm1"
+BM1-DBNodeHostName    = "dbsbm1"
+BM1-NCharacterSet     = "AL16UTF16"
+BM1-CharacterSet      = "AL32UTF8"
+BM1-DBWorkload        = "OLTP"
+BM1-PDBName           = "PDB1"
+BM1-LicenseModel      = "LICENSE_INCLUDED"
+BM1-NodeCount         = "1"
+
+# ---- variables for bare metal DB system 2
+BM2-DBNodeShape       = "BM.DenseIO2.52"
+BM2-CPUCoreCount      = "2"
+BM2-DBEdition         = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
+BM2-DBAdminPassword   = "MY#2021#passwd"
+BM2-DBName            = "DB2"
+BM2-DBVersion         = "19.0.0.0"
+BM2-DBDisplayName     = "tf-demo05b-db2"
+BM2-DBDiskRedundancy  = "HIGH"
+BM2-DBNodeDisplayName = "tf-demo05b-dbs-bm2"
+BM2-DBNodeHostName    = "dbsbm2"
+BM2-NCharacterSet     = "AL16UTF16"
+BM2-CharacterSet      = "AL32UTF8"
+BM2-DBWorkload        = "OLTP"
+BM2-PDBName           = "PDB2"
+BM2-LicenseModel      = "LICENSE_INCLUDED"
+BM2-NodeCount         = "1"
+
+# ============== NO UPDATE NEEDED BELOW
+
+# ---- availability domain (1, 2 or 3)
+AD1          = "1"
+AD2          = "2"
+
+# ---- DNS
+dns_vcn      = "demo05b"
+dns_subnet1  = "subnet1"
+
+# ---- CIDR
+cidr_vcn     = "10.0.0.0/16"
+cidr_subnet1 = "10.0.0.0/24"
+
+# ----
+ScriptFile_db = "./scripts/remote-exec-db.sh"

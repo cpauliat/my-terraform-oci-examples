@@ -1,0 +1,67 @@
+# ------ Create a SSH config file
+resource local_file sshconfig {
+  content = <<EOF
+Host d07f-bastion
+          Hostname ${oci_core_instance.tf-demo07f-bastion.public_ip}
+          User opc
+          IdentityFile ${var.ssh_private_key_file_bastion}
+          StrictHostKeyChecking no
+Host d07f-ws1
+          Hostname ${oci_core_instance.tf-demo07f-ws[0].private_ip}
+          User opc
+          IdentityFile ${var.ssh_private_key_file_websrv}
+          StrictHostKeyChecking no
+          proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07f-bastion
+Host d07f-ws2
+          Hostname ${oci_core_instance.tf-demo07f-ws[1].private_ip}
+          User opc
+          IdentityFile ${var.ssh_private_key_file_websrv}
+          StrictHostKeyChecking no
+          proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07f-bastion
+Host d07f-ws3
+          Hostname ${oci_core_instance.tf-demo07f-ws[2].private_ip}
+          User opc
+          IdentityFile ${var.ssh_private_key_file_websrv}
+          StrictHostKeyChecking no
+          proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07f-bastion
+Host d07f-ws4
+          Hostname ${oci_core_instance.tf-demo07f-ws[3].private_ip}
+          User opc
+          IdentityFile ${var.ssh_private_key_file_websrv}
+          StrictHostKeyChecking no
+          proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07f-bastion
+Host d07f-ws5
+          Hostname ${oci_core_instance.tf-demo07f-ws[4].private_ip}
+          User opc
+          IdentityFile ${var.ssh_private_key_file_websrv}
+          StrictHostKeyChecking no
+          proxycommand /usr/bin/ssh -F sshcfg -W %h:%p d07f-bastion
+EOF
+
+  filename = "sshcfg"
+}
+
+# ------ Display the complete ssh commands needed to connect to the compute instances
+output CONNECTIONS {
+  value = <<EOF
+
+  Wait a few minutes so that post-provisioning scripts can run on the compute instances and also for the load balancer health check to be successful
+  Then you can use instructions below to connect
+
+  1) ---- SSH connection to compute instances
+     Run one of following commands on your Linux/MacOS desktop/laptop
+
+     ssh -F sshcfg d07f-bastion             to connect to bastion host
+     ssh -F sshcfg d07f-ws1                 to connect to Web server #1 (backend set #1)
+     ssh -F sshcfg d07f-ws2                 to connect to Web server #2 (backend set #2)
+     ssh -F sshcfg d07f-ws3                 to connect to Web server #3 (backend set #1)
+     ssh -F sshcfg d07f-ws4                 to connect to Web server #4 (backend set #2)
+     ssh -F sshcfg d07f-ws5                 to connect to Web server #5 (backend set #3 / default)
+
+  2) ---- HTTP connection to public load balancer
+     Open following URLs in your Web browser:
+     http://${oci_load_balancer.tf-demo07f-lb.ip_addresses[0]} 
+
+EOF
+
+}

@@ -1,0 +1,9 @@
+variable "tenancy_ocid" {}
+variable "user_ocid" {}
+variable "fingerprint" {}
+variable "private_key_path" {}
+variable "compartment_ocid" {}
+variable "region" {}
+variable "cdb_id" {}
+variable "cdb_tde_wallet_password" {}
+variable "pdb_admin_password" {}

@@ -1,0 +1,45 @@
+# ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# ---- Tenant
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx"
+private_key_path = "/Users/cpauliat/.oci/api_key.pem"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+region           = "eu-frankfurt-1"
+
+# ---- SSH key pair
+ssh_public_key_file  = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+ssh_private_key_file = "/Users/cpauliat/.ssh/id_rsa"
+
+# ---- Authorized public IPs ingress
+#authorized_ips  = "90.119.77.177/32"    # a specific public IP on Internet
+#authorized_ips  = "129.156.0.0/16"          # a specific Class B network on Internet
+authorized_ips   = "0.0.0.0/0"               # all Internet
+
+# ============== NO UPDATE NEEDED BELOW
+
+# ---- CIDR VCNs and SUBNETs
+vcn1_cidr_vcn      = "10.0.0.0/16"
+vcn1_cidr_pubnet   = "10.0.0.0/24"
+vcn1_cidr_privnet  = "10.0.7.0/24"
+
+vcn2_cidr_vcn      = "172.16.0.0/16"
+vcn2_cidr_pubnet   = "172.16.0.0/24"
+vcn2_cidr_privnet  = "172.16.7.0/24"
+
+dns_label_vcn1     = "vcn1"
+dns_label_vcn2     = "vcn2"
+dns_label_public1  = "public"
+dns_label_public2  = "public"
+dns_label_private1 = "private"
+dns_label_private2 = "private"
+dns_hostname1      = "d12-inst1"
+dns_hostname2      = "d12-inst2"
+
+# ---- availability domain (1, 2 or 3) for compute instances
+vcn1_instance_AD   = "1"
+vcn2_instance_AD   = "2"
+
+# -- variables for BM/VM creation
+BootStrapFile      = "userdata/bootstrap_ol7.sh"

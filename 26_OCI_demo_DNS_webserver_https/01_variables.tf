@@ -1,0 +1,17 @@
+variable "tenancy_ocid" {}
+variable "user_ocid" {}
+variable "fingerprint" {}
+variable "private_key_path" {}
+variable "compartment_ocid" {}
+variable "region" {}
+variable "ssh_public_key_file" {}
+variable "ssh_private_key_file" {}
+variable "authorized_ips" {}
+variable "dns_domain_name" {}
+variable "dns_hostname" {}
+variable "shape" {}
+variable "AD" {}
+variable "cidr_vcn" {}
+variable "cidr_subnet1" {}
+variable "BootStrapFile" {}
+variable "web_page_zip" {}

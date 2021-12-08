@@ -1,0 +1,52 @@
+# ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# ---- Tenant
+tenancy_ocid        = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid           = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint         = "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx"
+private_key_path    = "/Users/cpauliat/.oci/api_key.pem"
+r1_compartment_ocid = "ocid1.compartment.oc1..aaaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxq"
+r2_compartment_ocid = "ocid1.compartment.oc1..aaaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxq"
+region1             = "us-phoenix-1"
+region2             = "us-ashburn-1"
+
+# ---- SSH key pair
+ssh_public_key_file  = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+ssh_private_key_file = "/Users/cpauliat/.ssh/id_rsa"
+
+# ---- Authorized public IPs ingress
+#authorized_ips  = "90.119.77.177/32"    # a specific public IP on Internet
+#authorized_ips  = "129.156.0.0/16"          # a specific Class B network on Internet
+authorized_ips   = "0.0.0.0/0"               # all Internet
+
+# ============== NO UPDATE NEEDED BELOW
+
+# ---- CIDR VCNs and SUBNETs
+r1_cidr_vcn        = "10.0.0.0/16"
+r1_cidr_pubnet     = "10.0.0.0/24"
+r1_cidr_privnet    = "10.0.7.0/24"
+
+r2_cidr_vcn        = "172.16.0.0/16"
+r2_cidr_pubnet     = "172.16.0.0/24"
+r2_cidr_privnet    = "172.16.7.0/24"
+
+# ---- DNS
+dns_label_vcn1     = "vcnregion1"
+dns_label_vcn2     = "vcnregion2"
+dns_label_public1  = "public"
+dns_label_public2  = "public"
+dns_label_private1 = "private"
+dns_label_private2 = "private"
+dns_hostname1      = "inst-reg1"
+dns_hostname2      = "inst-reg2"
+dns_listener1      = "10.0.0.251"
+dns_forwarder1     = "10.0.0.252"
+dns_listener2      = "172.16.0.251"
+dns_forwarder2     = "172.16.0.252"
+
+# ---- availability domain (1, 2 or 3)
+r1_AD               = "1"
+r2_AD               = "1"
+
+# -- variables for BM/VM creation
+BootStrapFile       = "userdata/bootstrap_ol7.sh"

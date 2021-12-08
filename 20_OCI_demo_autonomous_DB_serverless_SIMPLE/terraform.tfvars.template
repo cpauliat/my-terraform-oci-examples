@@ -1,0 +1,43 @@
+## ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# ---- Tenant
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:
+private_key_path = "/Users/cpauliat/.oci/oci_api_key.pem"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+region           = "eu-frankfurt-1"
+
+# ---- SSH key pair (UPDATE INFORMATION HERE BEFORE USE)
+ssh_public_key_file_ol7 = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+ssh_private_key_file_ol7= "/Users/cpauliat/.ssh/id_rsa"
+
+# ---- Authorized public IPs ingress for DB Client
+#authorized_ips         = "90.119.77.177/32"        # a specific public IP on Internet
+#authorized_ips         = "129.156.0.0/16"          # a specific Class B network on Internet
+authorized_ips          = "0.0.0.0/0"               # all Internet
+
+# -- Autonomous Database (ADW or ATP)
+adb_type                = "OLTP"    # OLTP for ATP or DW for ADW
+adb_is_free_tier        = "true"
+adb_cpu_core_count      = "1"       # not used with free tier
+adb_data_storage_tbs    = "1"       # not used with free tier
+adb_db_name             = "atp20"
+adb_password            = "OCI2021##atp"
+adb_display_name        = "tf-demo20-atp"
+adb_license_model       = "LICENSE_INCLUDED"        # LICENSE_INCLUDED or BRING_YOUR_OWN_LICENSE
+adb_autoscaling_enabled = "false"                   # or "true"
+adb_whitelisted_ips     = [ "0.0.0.0/0" ]           # or [ "0.0.0.0/0" ]
+adb_data_safe_status    = "REGISTERED"              # REGISTERED or NOT_REGISTERED
+
+# ============== NO UPDATE NEEDED BELOW
+
+# ---- availability domain (1, 2 or 3)
+AD                = "1"
+
+# ---- IP addresses
+cidr_vcn          = "10.0.0.0/16"
+cidr_subnet1      = "10.0.0.0/24"
+
+# -- OL 7 VM
+BootStrapFile_ol7 = "userdata/bootstrap_ol7.sh"

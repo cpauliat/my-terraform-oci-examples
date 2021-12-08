@@ -1,0 +1,19 @@
+
+# ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# ---- Tenant 
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "80:8d:62:02:9a:0f:95:xx:xx:xx:xx:xx:fa:4e:9d:bb"
+private_key_path = "/Users/cpauliat/.oci/oci_api_key_TENANT1_private.pem"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+region           = "eu-frankfurt-1"
+
+# ============== NO UPDATE NEEDED BELOW 
+
+# ---- VCN and subnets
+cidr_vcn         = "10.0.0.0/16"
+nb_subnets       = 3
+subnets_cidr     = [ "10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+subnets_name     = [ "production", "pre-production", "development" ]
+subnets_dnslabel = [ "prod", "preprod", "dev" ]

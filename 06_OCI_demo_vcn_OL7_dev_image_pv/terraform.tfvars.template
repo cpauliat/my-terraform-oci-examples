@@ -1,0 +1,38 @@
+# ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# ---- Tenant 
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx"
+private_key_path = "/Users/cpauliat/.oci/oci_api_key.pem"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+region           = "eu-frankfurt-1"
+
+# ---- SSH key pair (UPDATE INFORMATION HERE BEFORE USE)
+ssh_public_key_file_ol7 = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+ssh_private_key_file_ol7= "/Users/cpauliat/.ssh/id_rsa"
+
+# ---- Authorized public IPs ingress
+#authorized_ips     = "90.119.77.177/32"	# a specific public IP on Internet
+#authorized_ips     = "129.156.0.0/16"	    # a specific Class B network on Internet
+authorized_ips      = "0.0.0.0/0"		    # all Internet
+
+
+# ============== NO UPDATE NEEDED BELOW 
+
+# ---- availability domain (1, 2 or 3)
+AD              = "1"
+
+# ---- CIDR vcn and subnets
+cidr_vcn         = "192.168.0.0/16"
+cidr_subnet1     = "192.168.0.0/24"
+
+# ---- variables for BM/VM creation
+BootStrapFile_ol7   = "userdata/bootstrap_ol7.sh" 
+
+# ---- Image OCID for Developer image
+ol7dev_ocid           = "ocid1.image.oc1..aaaaaaaa2es7kqqgmmjyymzdaaeqmmehrprg6gdjxs4on5lpzwiv64przksa"
+
+# -- Storage
+bkvol_attachment_name = "/dev/oracleoci/oraclevdb"          # set a permanent name for device in Linux (don't change after reboots)
+bkvol_mount_point     = "/mnt/vol1"

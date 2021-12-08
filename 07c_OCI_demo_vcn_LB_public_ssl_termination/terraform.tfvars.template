@@ -1,0 +1,62 @@
+# ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# ---- Tenant
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "80:8d:62:02:9a:0f:95:xx:xx:xx:xx:xx:fa:4e:9d:bb"
+private_key_path = "/Users/cpauliat/.oci/oci_api_key_TENANT1_private.pem"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+region           = "eu-frankfurt-1"
+
+# ---- List of authorized public IPs for security ingress rules
+authorized_ips_list = [ 
+    { cidr = "123.123.123.123/32", desc = "C. Pauliat's home office" },
+    { cidr = "130.61.123.123/32",  desc = "my OCI compute instance" }
+]
+
+# ---- SSH key pairs
+ssh_public_key_file_websrv   = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+ssh_private_key_file_websrv  = "/Users/cpauliat/.ssh/id_rsa"
+ssh_public_key_file_bastion  = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+ssh_private_key_file_bastion = "/Users/cpauliat/.ssh/id_rsa"
+
+# ---- reserved public IP for load balancer
+lb_reserved_public_ip_id     = "ocid1.publicip.oc1.eu-frankfurt-1.amaaaaxxxxxxxxxx"  
+dns_hostname                 = "lb07c.example.com"
+
+# ---- Certificate for Load Balancer listener in HTTPS mode
+# false: create and use a "Load Balancer Managed Certificate"
+# true:  use an exising "Certificate Service Managed Certificate" (already created/imported)
+use_cert_cs    = "false"
+
+# ---- Create certificate at LB level (only used if use_cert_cs = true)
+oci_cs_cert_id = "ocid1.certificate.oc1.eu-frankfurt-1.amaaaaaanmvrbeaavbhfvv2i43tcsc7sidwzn5g54j2iyftssafjoxareoca"   
+
+# ---- Create certificate at LB level (only used if use_cert_cs = false)
+file_lb_cert   = "cert-sslforfree/certificate.crt"
+file_ca_cert   = "cert-sslforfree/ca_bundle.crt"
+file_lb_key    = "cert-sslforfree/private.key"
+# for self-signed certicate created by script 91*.sh
+#file_lb_cert = "cert-selfsigned/loadbalancer.crt"
+#file_ca_cert = "cert-selfsigned/ca.crt"
+#file_lb_key  = "cert-selfsigned/loadbalancer.key"
+
+# ============== NO UPDATE NEEDED BELOW
+
+# ---- IP addresses
+cidr_vcn             = "10.0.0.0/16"
+cidr_public_subnet   = "10.0.0.0/24"
+cidr_private_subnet  = "10.0.1.0/24"
+bastion_private_ip   = "10.0.0.2"
+websrv_private_ips   = [ "10.0.1.2", "10.0.1.3" ]
+
+# ---- IP addresses
+AD_bastion           = "1"
+AD_websrvs           = [ "1", "2" ]
+
+# ---- Cloud-init post-provisioning scripts
+BootStrapFile_websrv         = "userdata/bootstrap_websrv.sh"
+BootStrapFile_bastion        = "userdata/bootstrap_bastion.sh"
+
+# ---- Verify certificate on Client browser
+verify_peer_certificate = "false"

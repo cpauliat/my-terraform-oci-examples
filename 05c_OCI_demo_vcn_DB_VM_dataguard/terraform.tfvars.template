@@ -1,0 +1,57 @@
+# ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# ---- Tenant
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "80:8d:62:02:9a:0f:95:e0:29:79:90:78:8a:4e:9d:bb"
+private_key_path = "/Users/cpauliat/.oci/oci_api_key_EMEAOSC_20190430_private.pem"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+region           = "eu-frankfurt-1"
+
+# ---- SSH key pair
+ssh_public_key_file  = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+ssh_private_key_file = "/Users/cpauliat/.ssh/id_rsa"
+
+# ---- Authorized public IPs ingress
+#authorized_ips         = "90.119.77.177/32"    # a specific public IP on Internet
+#authorized_ips         = "129.156.0.0/16"          # a specific Class B network on Internet
+authorized_ips          = "0.0.0.0/0"               # all Internet
+
+# ---- variables for DB system with shape VM.Standard.x
+VM-StorageMgt         = "LVM"                   # LVM or ASM, LVM available for 18c and 19c versions only
+VM-DBNodeShape        = "VM.Standard2.2"
+VM-DBNodeShape-standby= "VM.Standard2.1"
+VM-CPUCoreCount       = "2"
+VM-DBEdition          = "STANDARD_EDITION"
+#VM-DBEdition         = "ENTERPRISE_EDITION"
+#VM-DBEdition         = "ENTERPRISE_EDITION_HIGH_PERFORMANCE"
+#VM-DBEdition         = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
+VM-DBName             = "DB1"
+VM-DBVersion          = "19.0.0.0"              # 11.2.0.4 or 12.1.0.2 or 12.2.0.1 or 18.0.0.0 or 19.0.0.0
+VM-DBDisplayName      = "tf-demo05c-db1"
+VM-DBNodeDisplayName  = "tf-demo05c-dbs-VM"
+VM-DBNodeHostName     = "tf-demo05c-dbsvm"
+VM-NCharacterSet      = "AL16UTF16"
+VM-CharacterSet       = "AL32UTF8"
+VM-DBWorkload         = "OLTP"
+VM-PDBName            = "PDB1"
+VM-DataStorageSizeInGB= "256"
+  # supported data Size:
+  # - For LVM: 256, 512, 1024, 2048, 4096 or 8192
+  # - For ASM: 256, 512, 1024, 2048, 4096, 6144, 8192, 10240, 12288, 14336, 16384, 18432, 20480, 22528, 24576, 26624, 28672, 30720, 32768, 34816, 36864, 38912, 40960
+VM-LicenseModel       = "LICENSE_INCLUDED"
+VM-NodeCount          = "1"
+
+# ============== NO UPDATE NEEDED BELOW
+
+# ---- availability domain (1, 2 or 3)
+AD               = "1"
+AD_standby       = "2"
+
+# ---- CIDR networks
+cidr_vcn         = "192.168.0.0/16"
+cidr_subnet1     = "192.168.0.0/24"
+
+# ---- DNS
+dns_vcn          = "demo05c"
+dns_subnet1      = "subnet1"
