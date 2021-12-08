@@ -62,40 +62,6 @@ data oci_containerengine_node_pool demo17-npool {
     node_pool_id = oci_containerengine_node_pool.demo17-npool.id
 }
 
-# --------- Create a SSH config file to connect to worker nodes
-resource null_resource nodes_ready {
-  depends_on = [ oci_containerengine_node_pool.demo17-npool ]
-  provisioner "local-exec" {
-    command = "echo 'Wait 5 minutes for the worker nodes to be ready'; sleep 300"
-  }
-}
-
-resource local_file sshconfig {
-  depends_on = [ null_resource.nodes_ready ]
-  content = <<EOF
-Host d17bastion
-          Hostname ${oci_core_instance.demo17-bastion.public_ip}
-          User opc
-          IdentityFile ${var.ssh_private_key_file_bastion}
-Host oke-worker${substr(strrev(data.oci_containerengine_node_pool.demo17-npool.nodes[0].name), 0, 1)}
-          Hostname ${data.oci_containerengine_node_pool.demo17-npool.nodes[0].private_ip}
-          User opc
-          IdentityFile ${var.ssh_private_key_file}
-          ProxyJump d17bastion
-Host oke-worker${substr(strrev(data.oci_containerengine_node_pool.demo17-npool.nodes[1].name), 0, 1)}
-          Hostname ${data.oci_containerengine_node_pool.demo17-npool.nodes[1].private_ip}
-          User opc
-          IdentityFile ${var.ssh_private_key_file}
-          ProxyJump d17bastion
-Host oke-worker${substr(strrev(data.oci_containerengine_node_pool.demo17-npool.nodes[2].name), 0, 1)}
-          Hostname ${data.oci_containerengine_node_pool.demo17-npool.nodes[2].private_ip}
-          User opc
-          IdentityFile ${var.ssh_private_key_file}
-          ProxyJump d17bastion
-EOF
-  filename = "sshcfg"
-}
-
 # --------- Create the Kubeconfig file
 data oci_containerengine_cluster_kube_config demo17-oke {
     cluster_id = oci_containerengine_cluster.demo17-oke.id
@@ -143,48 +109,3 @@ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | gre
 EOF
   filename = "create_oke-admin.sh"
 }
-
-output INSTRUCTIONS {
-  value = <<EOF
-
-    File kubeconfig was created
-    The worker nodes are being provisioned in the background.
-
-    You can now use Kubernetes CLI command kubectl (download the binary file for your OS) to manage your cluster
-        $ export KUBECONFIG=./kubeconfig      (kubeconfig file just created)
-        $ kubectl get nodes                   (to see status of the worker nodes)
-
-    To access Kubernetes Web Dashboard, 
-      Run the following commands:
-        $ . ./create_oke-admin.sh             (to create a service account oke-admin and get an authentication token)
-        $ kubectl proxy -p 8002 &             (to start Kubernetes Web Dashboard on port 8002)
-      Then open http://localhost:8002/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/ 
-        in your Web browser and authenticate using the provided token
-
-    Wait for worker nodes to be ready before using the cluster
-    
-    Optionally, you can SSH to the workers nodes thru bastion host with following commands:
-        $ ssh -F sshcfg oke-worker0
-        $ ssh -F sshcfg oke-worker1
-        $ ssh -F sshcfg oke-worker2
-        $ ssh -F sshcfg d17bastion
-
-    If you have HELM installed on your machine, you can deploy NGNIX in a K8s pod using the following commands:
-        $ helm repo add nginx-stable https://helm.nginx.com/stable
-        $ helm repo update
-        $ helm install nginx-ingress nginx-stable/nginx-ingress
-        $ helm list
-
-    You can then list pods and display details for pod using the following commands: 
-        $ kubectl get pods -o wide
-        $ kubectl describe pods <pod_name>    
-
-    THIS WILL DEPLOY AN OCI LOAD BALANCER WITH PUBLIC IP ADDRESS TO ACCESS NGINX
-
-    After you test, you can delete the K8s pod using the following command:
-        $ helm uninstall nginx-ingress
-
-EOF
-
-}
-
