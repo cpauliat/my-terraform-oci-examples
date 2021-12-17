@@ -1,6 +1,10 @@
 resource oci_load_balancer tf-demo07a-lb {
-  shape          = "100Mbps"
   compartment_id = var.compartment_ocid
+  shape          = "flexible"
+  shape_details {
+    maximum_bandwidth_in_mbps = "100"
+    minimum_bandwidth_in_mbps = "10"
+  }
 
   subnet_ids = [
     oci_core_subnet.tf-demo07a-public-subnet.id,

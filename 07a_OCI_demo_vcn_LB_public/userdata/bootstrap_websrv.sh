@@ -18,8 +18,8 @@ systemctl enable httpd
 echo "========== Open port 80/tcp in Linux Firewall"
 /bin/firewall-offline-cmd --add-port=80/tcp
 
-echo "========== Apply latest updates to Linux OS"
-yum update -y
+# echo "========== Apply latest updates to Linux OS"
+# yum update -y
 
 echo "========== Final reboot"
 reboot
