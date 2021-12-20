@@ -1,8 +1,3 @@
-# -------- get the list of available ADs
-data oci_identity_availability_domains ADs {
-  compartment_id = var.tenancy_ocid
-}
-
 # ------ Create a new VCN
 resource oci_core_vcn tf-demo02-vcn {
   cidr_blocks    = [ var.cidr_vcn ]
