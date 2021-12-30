@@ -1,0 +1,69 @@
+
+# ============== UPDATE INFORMATION BELOW BEFORE USE
+
+# -------- TENANT 1
+
+# ---- Tenant 
+tenant1_tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+tenant1_user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+tenant1_fingerprint      = "80:8d:62:02:9a:0f:95:xx:xx:xx:xx:xx:fa:4e:9d:bb"
+tenant1_private_key_path = "/Users/cpauliat/.oci/oci_api_key_TENANT1_private.pem"
+tenant1_compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+tenant1_region           = "eu-frankfurt-1"
+
+# ---- SSH key pair
+tenant1_ssh_public_key_file_ol7 = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+tenant1_ssh_private_key_file_ol7= "/Users/cpauliat/.ssh/id_rsa"
+
+# ---- Authorized public IPs ingress
+#tenant1_authorized_ips		= "90.119.77.177/32"	# a specific public IP on Internet
+#tenant1_authorized_ips		= "129.156.0.0/16"	    # a specific Class B network on Internet
+tenant1_authorized_ips		= "0.0.0.0/0"		    # all Internet
+
+# -------- TENANT 2
+
+# ---- Tenant 
+tenant2_tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+tenant2_user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+tenant2_fingerprint      = "80:8d:62:02:9a:0f:95:xx:xx:xx:xx:xx:fa:4e:9d:bb"
+tenant2_private_key_path = "/Users/cpauliat/.oci/oci_api_key_tenant2_private.pem"
+tenant2_compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+tenant2_region           = "eu-frankfurt-1"
+
+# ---- SSH key pair
+tenant2_ssh_public_key_file_ol7 = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+tenant2_ssh_private_key_file_ol7= "/Users/cpauliat/.ssh/id_rsa"
+
+# ---- Authorized public IPs ingress
+#tenant2_authorized_ips		= "90.119.77.177/32"	# a specific public IP on Internet
+#tenant2_authorized_ips		= "129.156.0.0/16"	    # a specific Class B network on Internet
+tenant2_authorized_ips		= "0.0.0.0/0"		    # all Internet
+
+# ============== NO UPDATE NEEDED BELOW 
+
+# -------- TENANT 1
+
+# ---- availability domain (1, 2 or 3)
+tenant1_AD                = "1"
+
+# ---- IP addresses
+tenant1_cidr_vcn          = "10.0.0.0/16"
+tenant1_cidr_subnet_test  = "10.0.0.0/24"
+
+# ---- Compute instances
+tenant1_BootStrapFile_test = "userdata/bootstrap_d39t1-test.sh"
+
+# -------- TENANT 2
+
+# ---- availability domain (1, 2 or 3)
+tenant2_AD                = "1"
+
+# ---- IP addresses
+tenant2_cidr_vcn              = "192.168.0.0/16"
+tenant2_cidr_subnet_libreswan = "192.168.0.0/24"
+tenant2_cidr_subnet_test      = "192.168.1.0/24"
+tenant2_libreswan_private_ip  = "192.168.0.2"
+
+# ---- Compute instances
+tenant2_BootStrapFile_test      = "userdata/bootstrap_d39t2-test.sh"
+tenant2_BootStrapFile_libreswan = "userdata/bootstrap_d39t2-libreswan.sh"
