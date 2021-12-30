@@ -630,15 +630,18 @@ Last update: December 12, 2019
 ### 35_OCI_demo_remote_desktop_noVNC
 
 ```
-Summary: HTTPS Remote Desktop Oracle Linux 7 using noVNC WebUI (no VNC client needed)
+Summary: HTTPS Remote Desktop Oracle Linux 7 using noVNC WebUI (no VNC client needed) with HW acceleration on GPU shapes
 
 Details:
 - 1 VCN with 1 public regional subnet + 1 internet gateway + 1 route table + 1 security list
 - 1 compute instance (DESKTOP) Oracle Linux 7 with cloud-init post-provisioning tasks:
   + install and configure VNC server (including VNC password from random string)
   + install and configure noVNC with HTTPS self signed certificate
+  + For GPU shapes: use TurboVNC and VirtualGL to provide GPU accelerated remote desktop
+  + For non-GPU shapes: use TigerVNC
+  + Connection to VNC using VNC client or Web Browser + NoVNC
 
-Last update: December 18, 2019
+Last update: October 15, 2021
 ```
 
 ### 36_OCI_demo_vcn_OL8_cockpit
@@ -679,6 +682,22 @@ Details:
 - get name, cidr, dnslabem of subnets from array variables
 
 Last update: January 9, 2020
+```
+
+### 39_demo_ipsec_libreswan_2_OCI_tenants
+
+```
+Summary: IPsec between OCI and ON premises using Libreswan
+
+Details:
+- ON premises infrastructure is simulated in OCI (same or different tenant)
+- 1 VCN on "OCI" tenant with DRG + IPsec connection
+- 1 VCN on "ONprem" tenant
+- 1 test compute instance in each tenant
+- 1 Libreswan compute instance in the "ONprem" tenant
+- automatic configuration of Libreswan
+
+Last update: December 30, 2021
 ```
 
 ### 40_OCI_demo_vcn_OL7_instances_ansible
