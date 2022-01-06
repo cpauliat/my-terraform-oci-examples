@@ -4,6 +4,7 @@ variable "fingerprint" {}
 variable "private_key_path" {}
 variable "compartment_ocid" {}
 variable "region" {}
+variable "home_region" {}
 variable "ssh_public_key_file" {}
 variable "ssh_private_key_file" {}
 variable "ssh_public_key_file_bastion" {}

@@ -62,6 +62,30 @@ data oci_containerengine_node_pool demo17-npool {
     node_pool_id = oci_containerengine_node_pool.demo17-npool.id
 }
 
+# # -------- Create a dynamic group containing the OCIDs of the compute instance in the node pool
+# resource oci_identity_dynamic_group nodes_dg {
+#     provider       = oci.home_region
+#     compartment_id = var.tenancy_ocid
+#     description    = "Demo 17 OKE (cpauliat)"
+#     name           = "Demo17-cpauliat"
+#     matching_rule  = "Any { ${join (", ", [for n in oci_containerengine_node_pool.demo17-npool.nodes : "instances.ocid = '${n.id}'" ])} }"
+# }
+
+# # -------- Add a tag to all compute instances in the node pool
+# resource null_resource add_tag {
+#   depends_on = [ oci_containerengine_node_pool.demo17-npool ]
+
+#   provisioner "local-exec" {
+#     command = join ("; ", [for n in oci_containerengine_node_pool.demo17-npool.nodes :
+#         "echo OCI_object_add_tag -id ${n.id} -n tag_ns -k tag_key -vl tag_value" ])
+#   }
+# }
+
+# # -------- List the OCIDs of compute instances in node pool
+# output test {
+#   value = [for n in oci_containerengine_node_pool.demo17-npool.nodes : n.id ]
+# }
+
 # --------- Create the Kubeconfig file
 data oci_containerengine_cluster_kube_config demo17-oke {
     cluster_id = oci_containerengine_cluster.demo17-oke.id

@@ -7,6 +7,7 @@ fingerprint      = "80:8d:62:02:9a:0f:95:e0:29:79:90:78:8a:4e:9d:bb"
 private_key_path = "/Users/cpauliat/.oci/oci_api_key_EMEAOSC_20190430_private.pem"
 compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
 region           = "eu-frankfurt-1"
+home_region      = "eu-frankfurt-1"
 
 # ---- SSH key pair for OKE worker nodes
 ssh_public_key_file          = "sshkeys/ssh_key_workers.pub"
