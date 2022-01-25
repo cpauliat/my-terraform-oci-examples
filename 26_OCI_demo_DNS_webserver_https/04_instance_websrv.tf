@@ -14,6 +14,13 @@ data oci_core_images ImageOCID-ol7 {
 
 # ------ Create a compute instance from the most recent Oracle Linux 7.x image
 resource oci_core_instance tf-demo26-ws {
+  # ignore change in cloud-init file after provisioning
+  lifecycle {
+    ignore_changes = [
+      metadata
+    ]
+  }
+  
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo26-websrv"
@@ -60,8 +67,9 @@ resource null_resource tf-demo26 {
         private_key = file(var.ssh_private_key_file)
     }
     inline = [
-      "sleep 60",
+      "sudo cloud-init status --wait",
       "sudo rm -f /usr/share/nginx/html/*",
+      "sudo mkdir -p /usr/share/nginx/html",
       "sudo unzip -d /usr/share/nginx/html ${var.web_page_zip}"
     ]
   }

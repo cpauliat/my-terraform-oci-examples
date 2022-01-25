@@ -18,13 +18,13 @@ echo "========== Disable SElinux"
 sed -i -e 's#SELINUX=enforcing#SELINUX=disabled#' /etc/selinux/config
 setenforce 0
 
-echo "========== Install and configure NGINX Web Server"
+echo "========== Install and configure NGINX Web Server (from repo ol7_developer_epel-x86_64)"
 yum install nginx -y
 systemctl enable nginx
 systemctl start nginx
 
 echo "========== Configure HTTPS SSL on nginx"
-yum install certbot python2-certbot-nginx -y
+yum install certbot python2-certbot-nginx -y python2-pyOpenSSL.noarch python2-pip
 sed -i.bak -e "s#server_name.*$#server_name ${DNS_HOSTNAME};#g" /etc/nginx/nginx.conf
 mv /usr/lib64/python2.7/site-packages/OpenSSL /usr/lib64/python2.7/site-packages/pyOpenSSL
 certbot --authenticator webroot -w /usr/share/nginx/html --installer nginx --redirect \
@@ -34,9 +34,9 @@ echo "========== Install additional packages"
 yum install zsh -y
 
 echo "========== Apply updates to Linux OS"
-yum update -y
+#yum update -y
 
 echo "========== FINAL REBOOT"
-reboot
+#reboot
 
 
