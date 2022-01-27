@@ -799,3 +799,31 @@ Details:
 
 Last update: September 14, 2021
 ```
+
+### 51_demo_vcn_mysql
+
+```
+Summary: 1 VCN + 1 MySQL DB system + 1 compute instance with MySQL client
+
+Details:
+- 1 VCN with 1 public subnet and 1 private subnet
+- 1 MySQL DB system in the private subnet
+- 1 Linux compute instance in public subnet with MySQL client and MySQL shell
+
+Last update: December 3, 2021
+```
+
+### 52_OCI_demo_vcn_LB_https_WAF
+
+```
+Summary: 1 VCN + 3 compute instances (1 bastion and 2 web servers) + HTTPS Load Balancer + Web Application Firewall
+
+Details:
+- 1 VCN with 1 public subnet and 1 private subnet
+- 1 compute instance in public subnet acting as bastion for SSH connections
+- 2 compute instances with web servers in private subnet acting as redundant web server
+- 1 public load balancer in front of the 2 web servers using HTTPS in SSL termination mode (HTTPS between client and LB, and HTTP between LB and Web servers)
+- 1 Web Application Firewall (WAF) policy attached to load balancer
+
+Last update: December 16, 2021
+```
