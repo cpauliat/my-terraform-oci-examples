@@ -1,5 +1,10 @@
 # ------ Create a compute instance for bastion host
 resource oci_core_instance demo52-bastion {
+    # ignore change in cloud-init file after provisioning
+  lifecycle {
+    ignore_changes = [ defined_tags, metadata ]
+  }
+  
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD_bastion - 1]["name"]
   compartment_id      = var.compartment_ocid
   display_name        = "demo52-bastion"

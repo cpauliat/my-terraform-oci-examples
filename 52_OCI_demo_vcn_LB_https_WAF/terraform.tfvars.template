@@ -29,10 +29,10 @@ dns_hostname                 = "lb07c.example.com"
 # true:  use an exising "Certificate Service Managed Certificate" (already created/imported)
 use_cert_cs    = "false"
 
-# ---- Create certificate at LB level (only used if use_cert_cs = true)
+# ---- Create certificate at LB level (only used if use_cert_cs == true)
 oci_cs_cert_id = "ocid1.certificate.oc1.eu-frankfurt-1.amaaaaaanmvrbeaavbhfvv2i43tcsc7sidwzn5g54j2iyftssafjoxareoca"   
 
-# ---- Create certificate at LB level (only used if use_cert_cs = false)
+# ---- Create certificate at LB level (only used if use_cert_cs == false)
 file_lb_cert   = "cert-sslforfree/certificate.crt"
 file_ca_cert   = "cert-sslforfree/ca_bundle.crt"
 file_lb_key    = "cert-sslforfree/private.key"
