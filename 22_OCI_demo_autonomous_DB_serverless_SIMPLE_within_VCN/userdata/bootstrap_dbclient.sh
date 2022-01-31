@@ -98,9 +98,6 @@ chmod 700 /home/oracle/sqlplus.sh
 echo "========== Install additional packages"
 yum install nmap -y
 
-echo "========== Apply latest updates to Linux OS"
-yum update -y
-
 echo "========== Configure ADB wallet"
 # waiting for wallet.zip file to be copied using remote-exec
 while true
@@ -111,7 +108,8 @@ do
 done
 
 # continuing
-mkdir -p 700 /home/oracle/credentials_adb
+mkdir -p /home/oracle/credentials_adb
+chmod 700 /home/oracle/credentials_adb
 chown -R oracle:dba /home/oracle/credentials_adb
 
 cd /home/oracle/credentials_adb
@@ -119,6 +117,9 @@ unzip /tmp/${WALLET_FILENAME}
 mv /tmp/${WALLET_FILENAME} /home/oracle
 sed -i.bak 's#?/network/admin#/home/oracle/credentials_adb#' /home/oracle/credentials_adb/sqlnet.ora
 chown -R oracle:dba /home/oracle/credentials_adb /home/oracle/${WALLET_FILENAME}
+
+echo "========== Apply latest updates to Linux OS"
+yum update -y
 
 echo "========== Final reboot"
 reboot
