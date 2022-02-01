@@ -29,12 +29,6 @@ echo "========== Configure Linux Firewall for VNC"
 firewall-offline-cmd --zone=public --add-service vnc-server
 systemctl restart firewalld
 
-echo "========== If GPU shape, Install and configure VirtualGL"
-SHAPE=`curl -L http://169.254.169.254/opc/v1/instance/shape`
-if [[ $SHAPE == *"GPU"* ]]; then 
-    yum install -y https://downloads.sourceforge.net/project/virtualgl/2.6.5/VirtualGL-2.6.5.x86_64.rpm
-fi
-
 echo "========== Start VNC server"
 systemctl daemon-reload
 systemctl enable vncserver@:1.service
