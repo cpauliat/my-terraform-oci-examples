@@ -1,0 +1,55 @@
+# -- Tenant 
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "80:8d:62:02:9a:0f:95:xx:xx:xx:xx:xx:fa:4e:9d:bb"
+private_key_path = "/Users/cpauliat/.oci/oci_api_key_TENANT1_private.pem"
+compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
+region           = "eu-frankfurt-1"
+
+ssh_public_key   = "ssh-rsa AAAAxxxxxx"
+
+# -- cluster name
+use_custom_name = "true"
+cluster_name = "mynfs"
+
+# -- misc
+# Valid values for Availability Domain: 0,1,2, if the region has 3 ADs, else only 0.
+ad_number=0
+
+# Scratch or Persistent.  Persistent fs_type will use network attached Block volumes (redundant/more durable). Scratch fs_type will use local NVMe SSDs attached to the VM/BM DenseIO node.
+fs_type="Persistent"
+
+# Set to true to create 2 node NFS server with active/passive high availability cluster.  Can only be used with fs_type="Persistent".  If set to false, a single node NFS server will be deployed.
+fs_ha="true"
+
+# set, when fs_type="Persistent", otherwise, its value is ignored.
+persistent_storage_server_shape="VM.Standard.E2.2"
+
+# -- fs1
+use_non_uhp_fs1 = true
+
+# Storage disk (OCI Block Volumes) to attach for Persistent NFS filesystem.  Not applicable for "Scratch" filesystem, since it will use local NVMe SSDs attached to the VM/BM DenseIO node.
+fs1_disk_count="2"
+
+# Disk capacity in GB per disk
+fs1_disk_size="100"
+
+# Disk performance tiers - "Higher Performance",  "Balanced" & "Lower Cost"
+fs1_disk_perf_tier="Balanced"
+
+# -- bastion and quorum servers
+bastion_shape       = "VM.Standard.E2.1"
+quorum_server_shape = "VM.Standard.E2.1"
+
+# -- NFS client machines (optional)
+create_compute_nodes=true
+client_node_shape="VM.Standard.E2.1"
+client_node_count=2
+mount_point="/mnt/nfs"
+
+# -- monitoring server (optional)
+create_monitoring_server=false
+monitoring_server_shape="VM.Standard.E2.1"
+
+
+
