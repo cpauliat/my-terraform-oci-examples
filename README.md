@@ -303,7 +303,7 @@ Details:
   If you plan to keep the compute instance, you need to change the password for user opc and opc2
 - Provisioning: install Firefox, Filezilla, Notepad++ and OCI CLI, and display file extensions in File explorer.
 
-Last update: July 10, 2020
+Last update: February 7, 2022
 ```
 
 ### 10c_OCI_demo_vcn_win2016_instance_pwd_changed_secure

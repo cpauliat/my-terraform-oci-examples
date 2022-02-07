@@ -10,9 +10,14 @@ compartment_ocid = "ocid1.compartment.oc1..aaaaaaaxxxxxxxxxxxxxxxxxxxxxxxx"
 region           = "eu-frankfurt-1"
 
 # ---- Authorized public IPs ingress
-#authorized_ips		= "90.119.77.177/32"	# a specific public IP on Internet
-#authorized_ips		= "129.156.0.0/16"	    # a specific Class B network on Internet
-authorized_ips		= "0.0.0.0/0"		    # all Internet
+#authorized_ips   = "90.119.77.177/32"	# a specific public IP on Internet
+#authorized_ips   = "129.156.0.0/16"	    # a specific Class B network on Internet
+authorized_ips   = "0.0.0.0/0"		    # all Internet
+
+# ---- Shape for compute instance
+shape            = "VM.Standard3.Flex"
+shape_config     = [ { "ocpus": 1, "memory_in_gbs": 8 } ]     
+#shape_config     = []           # for non Flexible shapes
 
 # ============== NO UPDATE NEEDED BELOW 
 
@@ -24,4 +29,4 @@ cidr_vcn         = "10.0.0.0/16"
 cidr_subnet1     = "10.0.0.0/24"
 
 # ---- Compute instances
-BootStrapFile_win2016   = "userdata/bootstrap_win2016.ps1"
+BootStrapFile_windows   = "userdata/bootstrap_windows.ps1"

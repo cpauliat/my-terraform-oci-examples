@@ -5,7 +5,9 @@ variable "private_key_path" {}
 variable "compartment_ocid" {}
 variable "region" {}
 variable "authorized_ips" {}
+variable "shape" {}
+variable "shape_config" {}
 variable "AD" {}
 variable "cidr_vcn" {}
 variable "cidr_subnet1" {}
-variable "BootStrapFile_win2016" {}
+variable "BootStrapFile_windows" {}
