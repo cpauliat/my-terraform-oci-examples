@@ -1,6 +1,6 @@
 # ---- Get password from secret stored in OCI Vault
 
-# -- This does not work in OCI provider 4.46 (secret content not returned)
+# -- This does not work in OCI provider 4.68 (secret content not returned)
 # data oci_vault_secret tf-demo23-secret-adb-passwd {
 #   secret_id = var.adb_password_secret_id
 # }
@@ -41,9 +41,9 @@ locals {
 
 # ---- Get auth Token from secret stored in OCI Vault
 
-# -- This does not work in OCI provider 4.46 (secret content not returned)
-# data oci_vault_secret tf-demo23-secret-adb-passwd {
-#   secret_id = var.adb_password_secret_id
+# # -- This does not work in OCI provider 4.68 (secret content not returned)
+# data oci_vault_secret tf-demo23-secret-auth-token {
+#   secret_id = var.auth_token_secret_id
 # }
 
 # -- Workaround: use OCI CLI to get secret content
