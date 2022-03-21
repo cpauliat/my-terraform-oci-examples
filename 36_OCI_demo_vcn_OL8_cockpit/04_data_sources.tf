@@ -12,7 +12,7 @@ data oci_core_images ImageOCID-ol8 {
   # filter to keep only Oracle Linux 8.4 non-GPU images
   filter {
     name   = "display_name"
-    values = ["^.*Oracle-Linux-8.4-202.*$"]
+    values = ["^.*Oracle-Linux-8..-202.*$"]
     regex  = true
   }
 }
