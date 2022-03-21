@@ -43,6 +43,7 @@ output DB_client {
      ssh -F sshcfg d21dbclient-oracle
      ./sqlcl.sh
 
+     DB password = ${random_string.tf-demo21-adb-password.result}
 EOF
 
 }
