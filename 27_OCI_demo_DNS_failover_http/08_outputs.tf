@@ -20,8 +20,8 @@ If not yet done, you need to delegate name resolution of your public DNS domain 
   websrv2: ssh -i ${var.ssh_private_key_file} opc@${oci_core_instance.tf-demo27-ws2.public_ip}
 
 ---- You can follow progress of post-provisioning tasks by running following command. Last task is the FINAL REBOOT:
-  websrv1: ssh -i ${var.ssh_private_key_file} opc@${oci_core_instance.tf-demo27-ws1.public_ip} sudo tail -f /var/log/cloud-init.log
-  websrv2: ssh -i ${var.ssh_private_key_file} opc@${oci_core_instance.tf-demo27-ws2.public_ip} sudo tail -f /var/log/cloud-init.log
+  websrv1: ssh -i ${var.ssh_private_key_file} opc@${oci_core_instance.tf-demo27-ws1.public_ip} sudo tail -f /var/log/cloud-init2.log
+  websrv2: ssh -i ${var.ssh_private_key_file} opc@${oci_core_instance.tf-demo27-ws2.public_ip} sudo tail -f /var/log/cloud-init2.log
 
 
 EOF

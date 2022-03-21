@@ -26,9 +26,9 @@ echo "========== Install additional packages"
 yum install zsh nmap -y
 
 echo "========== Apply updates to Linux OS"
-yum update -y
+#yum update -y
 
 echo "========== FINAL REBOOT"
-reboot
+#reboot
 
 
