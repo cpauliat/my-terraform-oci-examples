@@ -28,9 +28,11 @@ cidr_private_subnet  = "10.0.1.0/24"
 bastion_private_ip   = "10.0.0.2"
 websrv_private_ips   = [ "10.0.1.2", "10.0.1.3", "10.0.1.4", "10.0.1.5", "10.0.1.6" ]
 
-# ---- Flexible shape for Load Balancer
+# ---- Load Balancer
 lb_mbps_min          = "100"
 lb_mbps_max          = "500"
+lb_bes_names         = [ "demo07d_bes1_hostname1", "demo07d_bes2_hostname2", "demo07d_bes3_default" ]
+lb_listeners_names   = [ "demo07d_listener1_hostname1", "demo07d_listener2_hostname2", "demo07d_listener3_default" ]
 
 # ---- Availability domains
 AD_bastion           = "1"

@@ -16,6 +16,8 @@ variable "bastion_private_ip" {}
 variable "websrv_private_ips" {}
 variable "lb_mbps_min" {}
 variable "lb_mbps_max" {}
+variable "lb_bes_names" {}
+variable "lb_listeners_names" {}
 variable "AD_bastion" {}
 variable "AD_websrvs" {}
 variable "BootStrapFile_bastion" {}

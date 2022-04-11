@@ -63,8 +63,9 @@ output CONNECTIONS {
      ${oci_load_balancer.tf-demo07d-lb.ip_addresses[0]} ${var.hostnames[0]} ${var.hostnames[1]}
 
      Then open following URLs in your Web browser:
-     http://${var.hostnames[0]}
-     http://${var.hostnames[1]}
+     ${format("http://%-22s", var.hostnames[0])                               }             (should be served by backend set #1)
+     ${format("http://%-22s", var.hostnames[1])                               }             (should be served by backend set #2)
+     ${format("http://%-22s", oci_load_balancer.tf-demo07d-lb.ip_addresses[0])}             (should be served by backend set #3 / default)
 
 EOF
 
