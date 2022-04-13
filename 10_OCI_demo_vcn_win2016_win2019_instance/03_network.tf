@@ -8,7 +8,7 @@ resource oci_core_vcn tf-demo10-vcn {
   cidr_blocks    = [ var.cidr_vcn ]
   compartment_id = var.compartment_ocid
   display_name   = "tf-demo10-vcn"
-  dns_label      = "tfdemovcn"
+  dns_label      = "demo10vcn"
 }
 
 # ------ Create a new Internet Gategay
@@ -27,7 +27,7 @@ resource oci_core_route_table tf-demo10-rt {
   route_rules {
     destination       = "0.0.0.0/0"
     network_entity_id = oci_core_internet_gateway.tf-demo10-ig.id
-    description       = "single route rule to Internet gateway for all traffic"
+    description       = "Single route rule to Internet gateway for all traffic"
   }
 }
 
@@ -47,6 +47,7 @@ resource oci_core_security_list tf-demo10-subnet1-sl {
     protocol = "all"
     source   = var.cidr_vcn
   }
+
   ingress_security_rules {
     protocol = "6" # tcp
     source   = var.authorized_ips
@@ -56,6 +57,7 @@ resource oci_core_security_list tf-demo10-subnet1-sl {
       max = 3389
     }
   }
+
   ingress_security_rules {
     protocol    = "1" # icmp
     source      = var.authorized_ips
@@ -67,17 +69,15 @@ resource oci_core_security_list tf-demo10-subnet1-sl {
   }
 }
 
-# ------ Create a public subnet 1 in AD1 in the new VCN
+# ------ Create a public subnet 1 in the new VCN
 resource oci_core_subnet tf-demo10-public-subnet1 {
-# uncomment the following line to create an AD specific subnet
-# availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   cidr_block          = var.cidr_subnet1
   display_name        = "tf-demo10-public-subnet1"
   dns_label           = "subnet1"
   compartment_id      = var.compartment_ocid
   vcn_id              = oci_core_vcn.tf-demo10-vcn.id
   route_table_id      = oci_core_route_table.tf-demo10-rt.id
-  security_list_ids   = [oci_core_security_list.tf-demo10-subnet1-sl.id]
+  security_list_ids   = [ oci_core_security_list.tf-demo10-subnet1-sl.id ]
   dhcp_options_id     = oci_core_vcn.tf-demo10-vcn.default_dhcp_options_id
 }
 
