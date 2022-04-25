@@ -50,9 +50,9 @@ output Instance_OL7 {
   ---- You can SSH directly to the OL7 instance by typing the following ssh command
   ssh -i ${var.ssh_private_key_file_ol7} opc@${oci_core_instance.tf-demo02-ol7.public_ip}
 
-  ---- Alternatively, you can add the following lines to your file $HOME/.ssh/config and then just run "ssh ol7"
+  ---- Alternatively, you can add the following lines to your file $HOME/.ssh/config and then just run "ssh d02ol7"
 
-  Host ol7
+  Host d02ol7
           Hostname ${oci_core_instance.tf-demo02-ol7.public_ip}
           User opc
           IdentityFile ${var.ssh_private_key_file_ol7}
