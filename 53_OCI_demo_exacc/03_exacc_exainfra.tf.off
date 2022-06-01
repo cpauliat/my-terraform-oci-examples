@@ -1,0 +1,49 @@
+resource oci_database_exadata_infrastructure ecch {
+  additional_storage_count    = "0"
+  admin_network_cidr          = "100.104.0.0/23"
+  cloud_control_plane_server1 = "138.3.8.210"
+  cloud_control_plane_server2 = "138.3.8.211"
+  compartment_id              = var.infra_compartment_id
+  compute_count               = "4"
+  contacts {
+    email = "jackie.boyle@oracle.com"
+    is_primary   = "true"
+    name         = "Jackie Boyle"
+    phone_number = "+441506673563"
+  }
+  contacts {
+    email = "matthieu.bordonne@oracle.com"
+    is_primary   = "false"
+    name         = "Matthieu Bordonne"
+    phone_number = "+33672874378"
+  }
+  contacts {
+    email = "david.williamson@oracle.com"
+    is_primary   = "false"
+    name         = "David Williamson"
+    phone_number = "00447818588629"
+  }
+  corporate_proxy = "http://138.3.34.194:80"
+  display_name = "exacc-infra-ecch"
+  dns_server = [
+    "138.3.34.4",
+    "138.3.34.5",
+  ]
+  gateway                  = "138.3.8.1"
+  infini_band_network_cidr = "100.107.0.0/22"
+  maintenance_window {
+    custom_action_timeout_in_mins = "0"
+    hours_of_day = [
+    ]
+    is_custom_action_timeout_enabled = "false"
+    patching_mode = "ROLLING"
+    preference    = "NO_PREFERENCE"
+  }
+  netmask = "255.255.252.0"
+  ntp_server = [
+    "138.3.34.10",
+  ]
+  shape         = "ExadataCC.X8M"
+  storage_count = "6"
+  time_zone     = "Europe/London"
+}

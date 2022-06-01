@@ -1,0 +1,84 @@
+output toto {
+  value = var.exacc_infra_id
+}
+
+resource oci_database_vm_cluster_network ecch-cl3 {
+  compartment_id              = var.infra_compartment_id
+  exadata_infrastructure_id   = oci_database_exadata_infrastructure.ecch.id   # var.exacc_infra_id
+  display_name                = "ecch-net-c3"
+  dns                         = ["138.3.34.4", "138.3.34.5"]
+  ntp                         = ["138.3.34.10"]
+  validate_vm_cluster_network = false
+
+  scans {
+    hostname                   = "ecchc3-scan"
+    ips                        = [ "138.3.16.174", "138.3.16.175", "138.3.16.176" ]
+    port                       = "1521"
+    scan_listener_port_tcp     = "1521"
+    scan_listener_port_tcp_ssl = "2484"
+  }
+
+  vm_networks {
+    domain_name  = "osc.uk.oracle.com"
+    gateway      = "138.3.16.1"
+    netmask      = "255.255.254.0"
+    network_type = "CLIENT"
+    vlan_id      = "1705"
+
+    nodes {
+      hostname     = "ecchc3n1"
+      ip           = "138.3.16.166"
+      vip          = "138.3.16.167"
+      vip_hostname = "ecchc3n1-vip"
+    }
+
+    nodes {
+      hostname     = "ecchc3n2"
+      ip           = "138.3.16.168"
+      vip          = "138.3.16.169"
+      vip_hostname = "ecchc3n2-vip"
+    }
+
+    nodes {
+      hostname     = "ecchc3n3"
+      ip           = "138.3.16.170"
+      vip          = "138.3.16.171"
+      vip_hostname = "ecchc3n3-vip"
+    }
+
+    nodes {
+      hostname     = "ecchc3n4"
+      ip           = "138.3.16.172"
+      vip          = "138.3.16.173"
+      vip_hostname = "ecchc3n4-vip"
+    }
+  }
+
+  vm_networks {
+    domain_name  = "osc.uk.oracle.com"
+    gateway      = "138.3.12.1"
+    netmask      = "255.255.255.0"
+    network_type = "BACKUP"
+    vlan_id      = "1701"
+
+    nodes {
+      hostname = "ecchc3bakn1"
+      ip       = "138.3.12.236"
+    }
+
+    nodes {
+      hostname = "ecchc3bakn2"
+      ip       = "138.3.12.237"
+    }
+
+    nodes {
+      hostname = "ecchc3bakn3"
+      ip       = "138.3.12.238"
+    }
+
+    nodes {
+      hostname = "ecchc3bakn4"
+      ip       = "138.3.12.239"
+    }
+  }
+}

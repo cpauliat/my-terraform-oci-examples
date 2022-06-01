@@ -1,0 +1,47 @@
+# -- Tenant 
+tenancy_ocid     = "ocid1.tenancy.oc1..aaaaaaaafxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+user_ocid        = "ocid1.user.oc1..aaaaaaaafipe4lmow7rfxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+fingerprint      = "xx:xx:xx:xx:xx:xx:xx:9b:16:b0:bf:e4:xx:xx:xx:xx"
+private_key_path = "/Users/cpauliat/.oci/apikey.pem"
+region           = "eu-frankfurt-1"
+
+
+# -- ExaCC
+infra_compartment_id       = "ocid1.compartment.oc1..aaaaaaaavypfradrknml2zixxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" 
+vmcluster_compartment_id   = "ocid1.compartment.oc1..aaaaaaaa2wilzqatiwtbgoxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                             
+exacc_infra_id             = "ocid1.exadatainfrastructure.oc1.eu-frankfurt-1.abtheljtrl4efvwy23mvuq7o5z6xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"    
+exacc_vmcluster_network_id = "ocid1.vmclusternetwork.oc1.eu-frankfurt-1.abtheljtzefvb652h6cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"         
+exacc_vmcluster_ocpus             = "8"     # for all nodes (on each node, we have this divided by nb of nodes)
+exacc_vmcluster_memory_gbs        = "512"   # for all nodes (on each node, we have this divided by nb of nodes)
+exacc_vmcluster_local_storage_gbs = "300"   # for all nodes (on each node, we have this divided by nb of nodes)
+exacc_vmcluster_exa_storage_tbs   = "4"     # Minimum is 2 TBs
+exacc_vmcluster_name              = "ecch-cl3"
+exacc_vmcluster_db_server1        = "ocid1.dbserver.oc1.eu-frankfurt-1.antheljtefas42yanq5vkaurupmbr2a2qjw6bbfxxxxxxxxxxxxxxxxxxxxx"
+exacc_vmcluster_db_server2        = "ocid1.dbserver.oc1.eu-frankfurt-1.antheljtefas42yapesvqe5t7unhlwkd7ftcncexxxxxxxxxxxxxxxxxxxxx"
+exacc_vmcluster_db_server3        = "ocid1.dbserver.oc1.eu-frankfurt-1.antheljtefas42yaxg5evsyhivgz4qauoxfhbavxxxxxxxxxxxxxxxxxxxxx"
+exacc_vmcluster_db_server4        = "ocid1.dbserver.oc1.eu-frankfurt-1.antheljtefas42ya5bagwtdal563a4yxbjvykkjxxxxxxxxxxxxxxxxxxxxx"
+exacc_vmcluster_gi_version        = "19.0.0.0.0"                   # 19.0.0.0 or 18.0.0.0
+exacc_vmcluster_lic_model         = "BRING_YOUR_OWN_LICENSE"       # LICENSE_INCLUDED,BRING_YOUR_OWN_LICENSE.
+
+exacc_vmcluster_ssh_public_key_file = "/Users/cpauliat/.ssh/pub/id_rsa.pub"
+
+# -- database home #1
+dbhome1_version      = "19.14.0.0"
+dbhome1_display_name = "CPA_OH_19.14"
+
+# -- database
+db_name              = "CPA3"
+db_pdb_name          = "PDB1"
+db_workload          = "OLTP"
+db_character_set     = "AL32UTF8"
+db_ncharacter_set    = "AL16UTF16"
+db_admin_password    = "DB#2022#adm"
+
+# -- database home #2
+dbhome2_db1_name     = "CPA7"
+dbhome2_db1_pdb2_name= "PDB2"
+
+# -- database home #3
+dbhome3_version      = "19.12.0.0"
+dbhome3_display_name = "CPA_OH_19.12"
