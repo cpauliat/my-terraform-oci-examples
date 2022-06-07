@@ -5,7 +5,7 @@ resource random_string opc_password {
   min_upper   = 2
   lower       = true
   min_lower   = 2
-  number      = true
+  numeric     = true
   min_numeric = 2
   special     = true
   min_special = 2

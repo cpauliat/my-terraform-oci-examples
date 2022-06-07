@@ -5,7 +5,7 @@ resource random_string tf-demo05-pdb2-passwd {
   min_upper   = 2
   lower       = true
   min_lower   = 2
-  number      = true
+  numeric     = true
   min_numeric = 2
   special     = true
   min_special = 2

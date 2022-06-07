@@ -8,7 +8,7 @@ resource random_string ipsec-shared-secrets {
   min_upper   = 16
   lower       = true
   min_lower   = 16
-  number      = true
+  numeric     = true
   min_numeric = 2
   special     = false
 }
