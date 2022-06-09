@@ -202,7 +202,7 @@ resource oci_core_security_list demo17-sl-lbs {
 # ------ Create a regional public subnet
 resource oci_core_subnet demo17-lbs {
   cidr_block          = var.cidr_lbs
-  display_name        = "demo17-api-endpoint"
+  display_name        = "demo17-lb"
   dns_label           = "lbs"
   compartment_id      = var.compartment_ocid
   vcn_id              = oci_core_vcn.demo17-vcn.id
