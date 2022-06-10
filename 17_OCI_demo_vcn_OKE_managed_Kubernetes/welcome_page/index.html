@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta
+      http-equiv="content-type"
+      content="application/xhtml+xml; charset=UTF-8"
+    />
+    <title>Demo Page</title>
+    <style type="text/css">
+      /*<![CDATA[*/
+      body {
+        background-color: #312d2a;
+        background-image: url("background.jpg");
+        color: #fcfbfa;
+        font-size: 0.9em;
+        font-family: sans-serif, helvetica;
+        margin: 0;
+        padding: 0;
+      }
+      :link {
+        color: #c00;
+      }
+      :visited {
+        color: #c00;
+      }
+      a:hover {
+        color: #f50;
+      }
+      h1 {
+        text-align: left;
+        margin: 0;
+        background-color: #085f68;
+      }
+      h1 strong {
+        font-weight: bold;
+        font-size: 1.5em;
+      }
+      h2 {
+        text-align: center;
+        background-color: #6d8e63;
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #fff;
+        margin: 0;
+        padding: 0.5em;
+        border-bottom: 2px solid #294172;
+      }
+      hr {
+        display: none;
+      }
+      .content {
+        padding: 1em 5em;
+      }
+      .alert {
+        border: 2px solid #000;
+      }
+
+      img {
+        padding: 2px;
+        margin: 2px;
+      }
+      a:hover img {
+        border: 2px solid #294172;
+      }
+      .logos {
+        margin: 1em;
+        text-align: center;
+      }
+      /*]]>*/
+    </style>
+    <meta name="author" content="Oracle Solution Center" />
+  </head>
+  <body>
+    <h1><img src="osc_logo_white.png" alt="" title="osc_logo" /></h1>
+    <div class="content">
+      <p><br /></p>
+      <div class="alert">
+        <h2>Terraform on OCI demo for OKE (Kubernetes cluster in OCI)</h2>
+        <div class="content">
+          <p>
+            This demo web page is hosted on a Kubernetes pod in an OKE cluster
+            on OCI.
+          </p>
+          <p>
+            The following OCI objects were provisioned by Terraform:<br />
+            - 1 Virtual Cloud Network with 1 public regional subnet + 1 Internet
+            gateway + 1 route table + 1 security list<br />
+            - 1 OKE cluster containing a node pool with 2 Oracle Linux 7.x
+            nodes.<br />
+          </p>
+
+          <p>
+            The Kubernetes pod / deployment and service were deployed using
+            HELM.
+          </p>
+          <img src="oracle_tag.png" alt="" />
+          <p>
+            <meta charset="utf-8" />
+          </p>
+        </div>
+      </div>
+      <div class="logos">  <br /></div>
+    </div>
+  </body>
+</html>

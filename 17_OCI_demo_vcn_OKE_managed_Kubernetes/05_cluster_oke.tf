@@ -94,6 +94,7 @@ data oci_containerengine_cluster_kube_config demo17-oke {
 resource local_file kubeconfig {
   content  = data.oci_containerengine_cluster_kube_config.demo17-oke.content
   filename = "kubeconfig"
+  file_permission = "0700"
 }
 
 # --------- Create a service account and cluster role binding
