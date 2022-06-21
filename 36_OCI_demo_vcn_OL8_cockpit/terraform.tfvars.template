@@ -31,5 +31,5 @@ cidr_vcn         = "10.0.0.0/16"
 cidr_subnet1     = "10.0.0.0/24"
 
 # -- variables for compute instance
-ol8_image_ocid      = "ocid1.image.oc1..aaaaaaaaiqhm2r5wsdd4p2dnz4s2q34nblvxwui45v6vpegpr2rjfeqb7r7q"  # Oracle-Linux-8.0.2019.08.18-1
+#ol8_image_ocid      = "ocid1.image.oc1..aaaaaaaaiqhm2r5wsdd4p2dnz4s2q34nblvxwui45v6vpegpr2rjfeqb7r7q"  # Oracle-Linux-8.0.2019.08.18-1
 BootStrapFile       = "userdata/bootstrap_ol8.sh"

@@ -11,5 +11,4 @@ variable "authorized_ips" {}
 variable "AD" {}
 variable "cidr_vcn" {}
 variable "cidr_subnet1" {}
-variable "ol8_image_ocid" {}
 variable "BootStrapFile" {}

@@ -16,7 +16,7 @@ resource oci_core_instance tf-demo36-ol8 {
   availability_domain  = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   compartment_id       = var.compartment_ocid
   display_name         = "tf-demo36-ol8"
-  shape                = "VM.Standard2.1"
+  shape                = "VM.Standard.E2.2"
   preserve_boot_volume = "false"
 
   source_details {

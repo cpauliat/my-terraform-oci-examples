@@ -34,45 +34,50 @@ resource oci_core_security_list tf-demo36-subnet1-sl {
   egress_security_rules {
     protocol    = "all"
     destination = "0.0.0.0/0"
+    description = "Allow all outgoing traffic"
   }
 
   ingress_security_rules {
     protocol = "all"
     source   = var.cidr_vcn
+    description = "Allow all traffic coming from the VCN"
   }
-  ingress_security_rules {
-    protocol = "6" # tcp
-    source   = var.authorized_ips
 
+  ingress_security_rules {
+    protocol    = "6" # tcp
+    source      = var.authorized_ips
+    description = "Allow SSH access to Linux instance from authorized public IP address(es)"
     tcp_options {
       min = 22 # to allow SSH acccess to Linux instance
       max = 22
     }
   }
-  ingress_security_rules {
-    protocol = "6" # tcp
-    source   = var.authorized_ips
 
-    tcp_options {
-      min = 3389 # to allow RDP acccess to Windows instance
-      max = 3389
-    }
-  }
   ingress_security_rules {
-    protocol = "6" # tcp
-    source   = var.authorized_ips
-
+    protocol    = "6" # tcp
+    source      = var.authorized_ips
+    description = "Allow Web access to Cockit web console on port 443 from authorized public IP address(es)"
     tcp_options {
       min = 443 # Cockit Web console
       max = 443
     }
   }
+
+  # ingress_security_rules {
+  #   protocol    = "6" # tcp
+  #   source      = var.authorized_ips
+  #   description = "Allow Web access to Cockit web console default port from authorized public IP address(es)"
+  #   tcp_options {
+  #     min = 9090 # Cockit Web console default port
+  #     max = 9090
+  #   }
+  # }
  
   # needed. See https://docs.cloud.oracle.com/iaas/Content/Network/Troubleshoot/connectionhang.htm?Highlight=MTU#Path
   ingress_security_rules {
-    protocol = "1" # icmp
-    source   = var.authorized_ips
-
+    protocol    = "1" # icmp
+    source      = var.authorized_ips
+    description = "Needed for MTU. See https://docs.cloud.oracle.com/iaas/Content/Network/Troubleshoot/connectionhang.htm?Highlight=MTU#Path"
     icmp_options {
       type = 3
       code = 4
@@ -80,17 +85,15 @@ resource oci_core_security_list tf-demo36-subnet1-sl {
   }
 }
 
-# ------ Create a public subnet 1 in AD1 in the new VCN
+# ------ Create a public regional subnet in the new VCN
 resource oci_core_subnet tf-demo36-public-subnet1 {
-# uncomment the following line to create an AD specific subnet
-# availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
   cidr_block          = var.cidr_subnet1
   display_name        = "tf-demo36-public-subnet1"
   dns_label           = "subnet1"
   compartment_id      = var.compartment_ocid
   vcn_id              = oci_core_vcn.tf-demo36-vcn.id
   route_table_id      = oci_core_route_table.tf-demo36-rt.id
-  security_list_ids   = [oci_core_security_list.tf-demo36-subnet1-sl.id]
+  security_list_ids   = [ oci_core_security_list.tf-demo36-subnet1-sl.id ]
   dhcp_options_id     = oci_core_vcn.tf-demo36-vcn.default_dhcp_options_id
 }
 
